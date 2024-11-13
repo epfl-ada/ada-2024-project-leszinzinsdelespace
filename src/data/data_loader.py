@@ -1,19 +1,19 @@
 import pandas as pd
 import numpy as np
-from src.utils.utils import url_decode
+from src.utils.utils import url_decode,path_to_list
 
 def load_paths():
-    paths_finished = pd.read_csv('data/wikispeedia_paths-and-graph/paths_finished.tsv', sep='\t', comment='#')
-    paths_unfinished = pd.read_csv('data/wikispeedia_paths-and-graph/paths_unfinished.tsv', sep='\t', comment='#')
-    paths_finished.columns = ['hashedIpAddress', 'timestamp', 'durationInSec', 'path', 'rating']
-    paths_unfinished.columns = ['hashedIpAddress', 'timestamp', 'durationInSec', 'path', 'target', 'type']
-    paths_unfinished['target'] = paths_unfinished['target'].apply(url_decode)
+    paths_finished = pd.read_csv('data/wikispeedia_paths-and-graph/paths_finished.tsv', sep='\t', comment='#', names=['hashedIpAddress', 'timestamp', 'durationInSec', 'path', 'rating'])
+    paths_unfinished = pd.read_csv('data/wikispeedia_paths-and-graph/paths_unfinished.tsv', sep='\t', comment='#', names=['hashedIpAddress', 'timestamp', 'durationInSec', 'path', 'target', 'type'])
     paths_finished['status'] = 'finished'
     paths_unfinished['status'] = 'unfinished'
+    paths_unfinished['target'] = paths_unfinished['target'].apply(url_decode)
+    paths_finished['target'] = paths_finished['path'].apply(lambda x: url_decode(x.split(';')[-1]))
     paths_unfinished['durationInSec'] = paths_unfinished.apply(lambda row: row['durationInSec'] if not row['type'] == 'timeout' else row['durationInSec']-1800, axis=1)
     paths_finished['backtracks'] = paths_finished['path'].apply(find_backtracks)
     paths_unfinished['backtracks'] = paths_unfinished['path'].apply(find_backtracks)
-
+    paths_finished['traversed'] = paths_finished['path'].apply(path_to_list)
+    paths_unfinished['traversed'] = paths_unfinished['path'].apply(path_to_list)
 
     all_paths = pd.concat(
         [paths_finished,paths_unfinished],
@@ -54,6 +54,19 @@ def load_distance_matrix():
             matrix.append(row)
     
     return np.array(matrix)
+
+def load_all_path_similarities():
+    all_path_similarities = pd.read_csv('data/similarities.csv')
+    all_path_similarities['last_article'] = all_path_similarities['path'].apply(lambda x: eval(x)[0][-1])
+    all_path_similarities_unfinished = all_path_similarities[all_path_similarities['last_article'] != all_path_similarities['target']]
+    all_path_similarities_finished = all_path_similarities[all_path_similarities['last_article'] == all_path_similarities['target']]
+    return all_path_similarities_unfinished, all_path_similarities_finished
+
+def get_embeddings():
+    embeddings = pd.read_csv('data/embeddings.csv')
+    embeddings['embedding'] = embeddings['embedding'].apply(lambda x: eval(x))
+    embeddings['article'] = embeddings['article'].apply(url_decode)
+    return embeddings
 
 def find_backtracks(path):
     backtracks = []
