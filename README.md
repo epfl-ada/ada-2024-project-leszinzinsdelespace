@@ -36,9 +36,9 @@ Other ideas we explored initially but subsequently dropped:
 ## Proposed additional datasets (optional)
 
 - For the experiment we will be using 3 main datasets :
-    - Finished path : used as a reference -  `paths_finished.tsv`
-    - Unfinished path : used to test our hypothesis - `paths_unfinished.tsv`
-    - Merge with all the path : mainly use for exploration and Final Testing -
+    - Finished paths : used as a reference -  `paths_finished.tsv`
+    - Unfinished paths : used to test our hypothesis - `paths_unfinished.tsv`
+    - Merged all paths : mainly used for Exploration and Final Testing - 
 
 We did not use additional external datasets, however we perhaps would have liked having access to more data relative to the “signal missing link” button at the top right of the webpage. This could be used as an additional metric to assess dead-ends and missing connections. 
 
