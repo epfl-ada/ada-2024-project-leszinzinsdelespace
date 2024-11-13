@@ -1,26 +1,11 @@
 import numpy as np
 import pandas as pd
-import urllib.parse
+from src.utils.utils import url_decode
+from src.data.data_loader import load_distance_matrix, load_articles
 
-def load_distance_matrix(filepath):
-    # Read the file and create matrix
-    matrix = []
-    with open(filepath, 'r') as file:
-        for line in file:
-            # Skip comment lines and empty lines
-            if line.startswith('#') or not line.strip():
-                continue
-            # Convert each character to integer, ignoring underscores
-            row = [int(char.replace('_', '-1')) for char in line.strip()]
-            matrix.append(row)
-    
-    return np.array(matrix)
+distance_matrix = load_distance_matrix()
 
-filepath = "data/wikispeedia_paths-and-graph/shortest-path-distance-matrix.txt"
-distance_matrix = load_distance_matrix(filepath)
-
-articles_df = pd.read_csv('data/wikispeedia_paths-and-graph/articles.tsv', sep='\t', comment='#', names=['page'])
-articles_df['page'] = articles_df['page'].apply(lambda x: urllib.parse.unquote(x).replace('_', ' '))
+articles_df = load_articles()
 
 
 
