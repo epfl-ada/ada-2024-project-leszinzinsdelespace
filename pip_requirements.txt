@@ -9,3 +9,6 @@ pandas
 scikit-learn
 seaborn
 tqdm
+torch
+sentence-transformers
+openai
