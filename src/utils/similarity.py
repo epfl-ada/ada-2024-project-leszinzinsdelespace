@@ -27,3 +27,9 @@ def get_cosine_similarity_for_path_word_by_word_openai(path, target_word):
         cosine_score = cosine_similarity(word_embedding, target_embedding)
         similarities.append(float(cosine_score))
     return similarities
+
+def should_have_link(current,target,threshold=0.4):
+    current_embedding = get_embedding(current)
+    target_embedding = get_embedding(target)
+    similarity = cosine_similarity(current_embedding,target_embedding)
+    return bool(similarity >= threshold),float(similarity)

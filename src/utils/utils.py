@@ -5,5 +5,5 @@ def url_decode(url_encoded):
 
 def path_to_list(path,keep_backtracks=False):
     if not keep_backtracks:
-        path = path.replace('<;','')
+        path = path.replace(';<','')
     return [url_decode(p) for p in path.split(';')]

@@ -57,9 +57,8 @@ def load_distance_matrix():
 
 def load_all_path_similarities():
     all_path_similarities = pd.read_csv('data/similarities.csv')
-    all_path_similarities['last_article'] = all_path_similarities['path'].apply(lambda x: eval(x)[0][-1])
-    all_path_similarities_unfinished = all_path_similarities[all_path_similarities['last_article'] != all_path_similarities['target']]
-    all_path_similarities_finished = all_path_similarities[all_path_similarities['last_article'] == all_path_similarities['target']]
+    all_path_similarities_unfinished = all_path_similarities[all_path_similarities['status'] == 'unfinished']
+    all_path_similarities_finished = all_path_similarities[all_path_similarities['status'] == 'finished']
     return all_path_similarities_unfinished, all_path_similarities_finished
 
 def get_embeddings():
