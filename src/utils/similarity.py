@@ -33,3 +33,13 @@ def should_have_link(current,target,threshold=0.4):
     target_embedding = get_embedding(target)
     similarity = cosine_similarity(current_embedding,target_embedding)
     return bool(similarity >= threshold),float(similarity)
+
+def process_similarities(similarities_df):
+    distance_to_series = {}
+    for similarities in similarities_df:
+        for j, sim in enumerate(reversed(similarities)):
+            if j in distance_to_series:
+                distance_to_series[j].append(sim)
+            else:
+                distance_to_series[j] = [sim]
+    return list(distance_to_series.values())
