@@ -14,15 +14,27 @@ body {
 }
 
 header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 20px;
+    position: fixed;        /* Fix the header at the top */
+    top: 0;                 /* Align to the top */
+    left: 0;                /* Align to the left */
+    right: 0;               /* Stretch to full width */
+    padding: 20px;          /* Add padding for spacing */
+    display: flex;          /* Use Flexbox for layout */
+    justify-content: space-between; /* Space between logo and other content */
+    align-items: center;    /* Center-align items vertically */
+    z-index: 100;           /* Ensure it stays above other elements */
+    background-color: var(--bg-color); /* Optional: Add a background color */
+}
+
+.logo-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 100;
+    align-items: center;    /* Align logo vertically */
+}
+
+.logo {
+    width: 40px;            /* Adjust size of the logo */
+    height: auto;           /* Maintain aspect ratio */
+    cursor: pointer;        /* Optional: Make it clickable */
 }
 
 .side-nav {
@@ -103,16 +115,21 @@ header {
 }
 
 .section {
-    min-height: 100vh;
-    padding: 40px 120px;
+    display: flex;               /* Enable Flexbox */
+    flex-direction: column;      /* Stack elements vertically */
+    justify-content: center;     /* Center elements vertically */
+    align-items: center;         /* Center elements horizontally */
+    height: 100vh;               /* Full viewport height */
+    text-align: center;          /* Center-align the text */
+    padding: 40px 120px;         /* Retain existing padding */
     box-sizing: border-box;
     position: relative;
 }
 
 h1 {
-    font-size: 4rem;
-    margin: 0;
+    margin: 0 0 10px; /* Minimal spacing */
 }
+
 
 h2 {
     font-size: 2rem;
@@ -240,6 +257,18 @@ h2 {
 .go-button:hover {
     background: #ff4f91;
     transform: translateY(-2px);
+}
+
+.graph-container {
+    text-align: center; /* Center the image horizontally */
+    margin: 40px 0;     /* Add spacing above and below the graph */
+}
+
+.graph {
+    max-width: 100%;    /* Make the graph responsive */
+    height: auto;       /* Maintain aspect ratio */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Optional: Add shadow */
 }
 
 .similarity-indicator {
@@ -423,10 +452,7 @@ main {
 }
 
 .subtitle {
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 3rem;
+    margin: 0 0 20px;
 }
 
 .intro-text {
@@ -461,15 +487,17 @@ main {
 }
 
 h1 {
-    font-size: 5rem;
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 1rem;
+    font-size: 5rem;          /* Adjust the size if needed */
+    font-weight: 700;         /* Keep it bold */
+    margin: 0;                /* Remove extra margin */
+    color: #ffffff;           /* Set the text color */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); /* Add the shadow */
 }
 
+
 .emoji {
-    font-size: 4rem;
-    vertical-align: middle;
+    font-size: 4rem;             /* Adjust size of the emoji */
+    margin-bottom: 10px;         /* Add space below the emoji */
 }
 
 .gradient-text {
@@ -661,12 +689,13 @@ h1 {
 
     /* Improve section centering */
     .section {
-        padding: 40px 20px;
-        min-height: 100vh;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
+        padding: 0 20px;
+        margin: 0;
+        height: auto;
     }
 
     .text-container {
@@ -717,3 +746,43 @@ h1 {
         grid-template-columns: 1fr;
     }
 } 
+
+
+.styled-table {
+    width: 80%; /* Adjust width */
+    margin: 25px auto; /* Center table */
+    border-collapse: collapse;
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+    text-align: left;
+    border-radius: 8px; /* Add rounded corners */
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05); /* Transparent background */
+    backdrop-filter: blur(10px); /* Blur effect for transparency */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.styled-table thead tr {
+    background-color: rgba(255, 31, 113, 0.8); /* Semi-transparent pink header */
+    color: #ffffff; /* White text */
+    text-align: left;
+    font-weight: bold;
+}
+
+.styled-table th, .styled-table td {
+    padding: 15px;
+    color: #ffffff; /* White text for readability */
+}
+
+.styled-table tbody tr {
+    background-color: rgba(255, 255, 255, 0.03); /* Light transparent rows */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle row borders */
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: rgba(255, 255, 255, 0.05); /* Slightly darker alternate rows */
+}
+
+.styled-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Highlight row on hover */
+}

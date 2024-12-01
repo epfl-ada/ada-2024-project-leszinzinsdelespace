@@ -9,18 +9,21 @@
 </head>
 <body>
     <header>
-        <div class="logo">
-            <img src="assets/logo.png" alt="Logo">
+        <div class="logo-container">
+            <a href="https://github.com/epfl-ada/ada-2024-project-leszinzinsdelespace" target="_blank" rel="noopener noreferrer">
+                <img src="assets/ada.svg" alt="ADA Logo" class="logo">
+            </a>
         </div>
         <div class="github-link">
-            <a href="#" class="view-dataset">
+            <a href="https://snap.stanford.edu/data/wikispeedia.html" class="view-dataset" target="_blank" rel="noopener noreferrer">
                 <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
                     <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
                 </svg>
-                view dataset
+                View Dataset
             </a>
         </div>
     </header>
+    
 
     <nav class="side-nav">
         <div class="nav-indicator"></div>
@@ -37,14 +40,20 @@
     <main>
         <section id="home" class="section">
             <div class="text-container">
-                <h1>Saving Christmas <span class="emoji">🎄</span></h1>
-                <h2 class="subtitle">Understanding User Frustration in Wikispeedia</h2>
-                <div class="intro-text">
+                <section id="home" class="section">
+                    <div class="text-container">
+                        <div class="title-container">
+                            <div class="emoji">🎄</div>
+                            <h1>Saving Christmas</h1>
+                            <h2 class="subtitle">Understanding User Frustration in Wikispeedia</h2>
+                        </div>
+                    </div>
+                </section>
                     <p class="lead">Wikispeedia lets users chase connections between ideas - but sometimes, the path to victory vanishes unexpectedly. Players think they're close, only to hit dead-ends where crucial links are missing.</p>
                     <p>Imagine starting on "Bob Dylan," aiming for "Christmas," and wandering through "Winter," "Snow," and "Santa Claus" - only to find "Christmas" doesn't exist. The game reveals the fascinating (and frustrating) gaps in how we connect concepts.</p>
                 </div>
-                <div class="graph-visualization">
-                    <!-- Graph visualization will go here -->
+                <div class="graph-container">
+                    <img src="assets/partiemaudite.png" alt="Graph Visualization" class="graph">
                 </div>
             </div>
         </section>
@@ -52,8 +61,42 @@
         <section id="struggle" class="section">
             <div class="text-container">
                 <h2 class="section-title">The struggle to stay on track</h2>
-                <div class="placeholder-image">
-                    <!-- Image placeholder -->
+                <div class="text-block">
+                    <p> Navigating Wikispeedia should feel intuitive and rewarding, yet many users encounter moments of frustration that disrupt their experience.  Embedded within our dataset are subtle yet telling behaviors that collectively reveal the underlying struggles of users. 
+
+                        Frustration manifests not just in what users do, but in how they deviate from expected pathways. Backtracking, for instance, serves as a clear signal—a tacit acknowledgment by users that the current route feels insufficient or misleading.</p>
+                    <p>These obstacles challenge players' perseverance and highlight gaps in the network structure.</p>
+                </div>
+                <div class="graph-container">
+                    <img src="assets/mediangamedurationvsbacktracks.png" alt="Median Game Duration vs Backtracks" class="graph">
+                </div>
+                <div class="text-block">
+                    <p>If a game drags on too long, frustration can build as players wait longer for the rewarding sense of completion. As illustrated in the graph above, there is a noticeable correlation between the frequency of backtracking and overall game duration: each backtrack adds an average of 43 seconds to the game time.</p>
+                </div>
+                <div class="graph-container">
+                    <img src="assets/avgratingvsbacktracks.png" alt="Average Rating vs Backtracks" class="graph">
+                </div>
+                <div class="text-block">
+                    <p>Backtracking is a clear sign of frustration and a roadblock for the players - the more a player backtracks, the more difficult he perceives the game to be.</p>
+                </div>
+                <div class="graph-container">
+                    <img src="assets/ratingswithandwithoutbacktracks.png" alt="Ratings With and Without Backtracks" class="graph">
+                    <p class="graph-caption">Figure 3: Comparison of user ratings for games with and without backtracking.</p>
+                </div>
+                <div class="text-block">
+                    <p>Similarly, unfinished games become a reflection of deeper systemic issues: moments when the cognitive cost of continuing outweighs the motivation to persist.
+
+                        Even more revealing are the repeated encounters with "dead ends"—articles devoid of meaningful connections. These moments highlight the fragility of a system that relies on semantic coherence, pointing to gaps where structure and intuition fail to meet. 
+                        
+                        This layout is concise and makes it easy to analyze the patterns in backtrack and target pairs.
+                        
+                        In examining these behaviors, we move beyond isolated actions to uncover a narrative of user experience, one where frustration is not just an obstacle but a window into the complexities of human navigation and decision-making.
+                        
+                        Frustration is an emotion that we all experience as human beings in our daily lives: when we fail a tricky maths exercise or the queue at the bakery is too long: it arises when efforts to achieve something come up against repeated obstacles or failures, causing a feeling of tension and dissatisfaction.
+                        
+                        Playing a game like wikispeedia with inaccessible pages can lead to a cocktail of hormones in our users, resulting in growing frustration and abandonment in some of our players. An increase in cortisol, adrenalin, and a drop in dopamine are all factors in the abandonment of our wikispeedia players who were waiting to find the Christmas page.
+                        
+                        Let's follow our player on his emotional journey: when he starts playing, he's driven by his search for **dopamine** and his reward circuit: he wants to find page Santa as quickly as possible to feel good and satisfied. As the game progresses, our player realizes that he can't find the target page: the **dopamine** he's looking for becomes increasingly inaccessible and diminishes, increasing his sense of frustration.  As the player moves forward and gets stuck between the Santa page and the Christmas page, frustration and **stress levels** rise, and the body releases **cortisol** and a dose of **adrenalin**. Physiologically, an increase in these hormones creates emotional difficulties for our player: this is the beginning of the **“fight or flight”** response for our player, who will get angry trying to find a link between our two pages, and who will eventually give up and blame Santa.</p>
                 </div>
             </div>
         </section>
@@ -63,9 +106,79 @@
                 <h2 class="section-title">Why the path feels broken</h2>
                 <div class="content-wrapper">
                     <div class="text-block">
-                        <p>These recurring patterns of visibly frustrated user behavior stem from the fact that there seem to be unexpected dead-ends and unreachable targets. Upon close inspection of certain paths, we notice that some target articles do not exist at all, forcing the user to repeatedly think they are very close to the target, only to find themselves having to backtrack.</p>
-                        <p>In a similar fashion, users very often follow their intuition to a pages that logically would link to their target article (why wouldn't "Soybean" link to "Bean"?) but discover that the desired link is either completely missing from the page or only present as text (no hyperlink), which is perhaps even more frustrating.</p>
+                        <p>These recurring patterns of visibly frustrated user behavior stem from the fact that there seem to be unexpected dead-ends and unreachable targets.  A simple analysis of the pages at which players backtrack most often shows that backtracking is associated with closely related concepts not being linked together in the hyperlink network.
+
+                            Upon close inspection of certain paths, we notice that some target articles do not exist at all, forcing the user to repeatedly think they are very close to the target, only to find themselves having to backtrack.</p>
+                        <p>In a similar fashion, users very often follow their intuition to a pages that logically would link to their target article (why wouldn’t “Soybean” link to “Bean”?) but discover that the desired link is either completely missing from the page or only present as text (no hyperlink), which is perhaps even more frustrating.</p>
                     </div>
+                    <section id="backtrack-table" class="section">
+                        <div class="text-container">
+                            <h2 class="section-title">Most Frequent Backtracks</h2>
+                            <table class="styled-table">
+                                <thead>
+                                    <tr>
+                                        <th>Backtrack</th>
+                                        <th>Target</th>
+                                        <th>Count</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Soybean</td>
+                                        <td>Bean</td>
+                                        <td>111</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Herbivore</td>
+                                        <td>Zebra</td>
+                                        <td>89</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Protein</td>
+                                        <td>Bean</td>
+                                        <td>62</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cell (biology)</td>
+                                        <td>Telephone</td>
+                                        <td>46</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sport</td>
+                                        <td>Tiger Woods</td>
+                                        <td>42</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Salsa music</td>
+                                        <td>Bean</td>
+                                        <td>42</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Coffee</td>
+                                        <td>Bean</td>
+                                        <td>38</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Optical fiber</td>
+                                        <td>Telephone</td>
+                                        <td>37</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Animal</td>
+                                        <td>Zebra</td>
+                                        <td>34</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mexico</td>
+                                        <td>Bean</td>
+                                        <td>34</td>
+                                    </tr>
+                                    <!-- Add more rows as needed -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    
                     <p class="highlight">But this, while infuriating for users, leads to a very intriguing question:</p>
                     <h3 class="gradient-text">How would one go about finding the missing semantic links that lead to repeated and consistent user frustration?</h3>
                 </div>
