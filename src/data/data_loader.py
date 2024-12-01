@@ -68,16 +68,18 @@ def get_embeddings():
     return embeddings
 
 def find_backtracks(path):
-    backtracks = []
+    # Split the path into words
     words = path.split(';')
     stack = []
+    backtracks = []
 
     for word in words:
         if word == "<":
             if stack:
-                backtracks.append(stack.pop())
+                backtracks.append(stack.pop())  # Record the last valid word as a backtrack
         else:
-            stack.append(url_decode(word))
+            stack.append(url_decode(word))  # Decode and push the word onto the stack
 
-    return backtracks
+    # Filter out empty or invalid entries before returning
+    return [word for word in backtracks if word]
 
