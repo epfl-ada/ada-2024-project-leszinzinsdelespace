@@ -115,15 +115,11 @@ header {
 }
 
 .section {
-    display: flex;               /* Enable Flexbox */
-    flex-direction: column;      /* Stack elements vertically */
-    justify-content: center;     /* Center elements vertically */
-    align-items: center;         /* Center elements horizontally */
-    height: 100vh;               /* Full viewport height */
-    text-align: center;          /* Center-align the text */
-    padding: 40px 120px;         /* Retain existing padding */
-    box-sizing: border-box;
+    padding: 40px 0;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 h1 {
@@ -165,8 +161,7 @@ h2 {
 }
 
 .content-wrapper {
-    max-width: 800px;
-    margin: 0 auto;
+    margin: 40px 0;
 }
 
 .gradient-text {
@@ -260,8 +255,8 @@ h2 {
 }
 
 .graph-container {
-    text-align: center; /* Center the image horizontally */
-    margin: 40px 0;     /* Add spacing above and below the graph */
+    margin: 40px 0;
+    text-align: center;
 }
 
 .graph {
@@ -400,7 +395,7 @@ h2 {
 }
 
 .contributors {
-    padding: 120px 0;
+    padding: 80px 0;
     background: rgba(255, 255, 255, 0.02);
 }
 
@@ -435,6 +430,7 @@ h2 {
 
 main {
     padding-top: 80px;
+    overflow-x: hidden;
 }
 
 .side-nav {
@@ -447,8 +443,17 @@ main {
 
 .text-container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin-left: 100px;
+    margin-right: 300px;
     padding: 0 20px;
+    box-sizing: border-box;
+}
+.title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .subtitle {
@@ -470,13 +475,13 @@ main {
 .section-title {
     font-size: 2.5rem;
     font-weight: 600;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     color: white;
 }
 
 .text-block {
     max-width: 800px;
-    margin-bottom: 2rem;
+    margin-bottom: 40px;
 }
 
 .text-block p {
@@ -512,10 +517,6 @@ h1 {
     line-height: 1.4;
     color: rgba(255, 255, 255, 0.9);
     margin: 2.5rem 0;
-}
-
-.section {
-    padding: 120px 0;
 }
 
 .search-interface {
