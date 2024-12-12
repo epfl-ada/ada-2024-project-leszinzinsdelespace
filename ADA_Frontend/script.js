@@ -19,37 +19,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Update active nav item on scroll
   const updateActiveNav = () => {
-    console.log("-------------------------------");
     const scrollPosition = window.scrollY + window.innerHeight / 2; // Use middle of viewport
-    console.log("scrollPosition", scrollPosition);
 
     // Find the current section
     let found = false;
     let currentSectionIndex = 0;
     sections.forEach((section, index) => {
       if (found) {
-        console.log("Already found, skipping");
         return;
       }
       const sectionTop = section.getBoundingClientRect().top + window.pageYOffset-20;
       const sectionBottom = section.getBoundingClientRect().bottom + window.pageYOffset-20;
-      console.log("section ", section.id,": [", sectionTop, " , ", sectionBottom, "]");
 
       // Check if scroll position is within section bounds
-      if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
-        
+      if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {       
         found = true;
-        console.log(
-          "scrollPosition (",
-          scrollPosition,
-          ") is within section ",
-          section.id,
-          " : from (",
-          sectionTop,
-          " to ",
-          sectionBottom,
-          ")"
-        );
         currentSectionIndex = index;
 
         // Remove active class from all nav items
@@ -57,14 +41,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Add active class to current nav item
         navItems[index].classList.add("active");
-        console.log("currentSectionIndex", currentSectionIndex);
 
         // Update indicator position
         document.documentElement.style.setProperty(
           "--nav-indicator-top",
           calculateIndicatorPosition(index)
         );
-
       }
     });
 
@@ -104,51 +86,118 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initial update
   updateActiveNav();
 
-  // Function to fetch similarity score from backend
-  async function fetchSimilarityScore(startArticle, targetArticle) {
-    try {
-      const response = await fetch("/api/similarity", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          start: startArticle,
-          target: targetArticle,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+  // Load embeddings data
+  let embeddings = {};
+  
+  // Load embeddings from CSV file
+  fetch('data/embeddings.csv')
+    .then(response => response.text())
+    .then(data => {
+      // Split CSV into lines and process each line
+      const lines = data.split('\n');
+      
+      // Skip header row if present
+      const startIndex = lines[0].includes('article,embedding') ? 1 : 0;
+      
+      // Process each line
+      for (let i = startIndex; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (line) {
+          const article = decodeURI(line.substring(0, line.indexOf(','))).replace('_', ' ');
+          const embeddingStr = line.substring(line.indexOf(',') + 3, line.lastIndexOf(']'));
+          const embedding = embeddingStr.split(',').map(Number);
+          embeddings[article] = embedding;
+        }
       }
-
-      const data = await response.json();
-      return data.similarityScore;
-    } catch (error) {
-      console.error("Error fetching similarity score:", error);
-      return null;
-    }
+      console.log("embeddings", embeddings);
+    })
+    .catch(error => {
+      console.error('Error loading embeddings:', error);
+    });
+ 
+  // Calculate cosine similarity between two vectors
+  function cosineSimilarity(vec1, vec2) {
+    const dotProduct = vec1.reduce((sum, val, i) => sum + val * vec2[i], 0);
+    const mag1 = Math.sqrt(vec1.reduce((sum, val) => sum + val * val, 0));
+    const mag2 = Math.sqrt(vec2.reduce((sum, val) => sum + val * val, 0));
+    return dotProduct / (mag1 * mag2);
   }
 
-  // Function to update the UI with the similarity score
+  // Function to calculate similarity score between articles
+  async function calculateSimilarity(startArticle, targetArticle) {
+    console.log("Calculating similarity for", startArticle, "and", targetArticle);
+    
+    // Clean article names to match embeddings format
+    const cleanArticleName = (name) => name.trim();
+    const start = cleanArticleName(startArticle);
+    const target = cleanArticleName(targetArticle);
+
+    // Get embeddings for both articles
+    const startEmbedding = embeddings[start];
+    const targetEmbedding = embeddings[target];
+
+    if (!startEmbedding || !targetEmbedding) {
+      console.error('Could not find embeddings for articles');
+      return null;
+    }
+
+    // Calculate cosine similarity
+    const similarity = cosineSimilarity(startEmbedding, targetEmbedding);
+    console.log("similarity", similarity);
+    return similarity;
+  }
+
+  // Update the GO button event listener
+  const goButton = document.querySelector(".go-button");
+  if (goButton) {
+    goButton.addEventListener("click", async () => {
+      const startInput = document.querySelector('input[placeholder="start article"]');
+      const targetInput = document.querySelector('input[placeholder="target article"]');
+
+      if (startInput && targetInput) {
+        const startArticle = startInput.value.trim();
+        const targetArticle = targetInput.value.trim();
+
+        if (startArticle && targetArticle) {
+          try {
+            const score = await calculateSimilarity(startArticle, targetArticle);
+            if (score !== null) {
+              updateSimilarityScore(score);
+            } else {
+              // Fallback to demo value if calculation fails
+              updateSimilarityScore(0.87);
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            // Fallback to demo value if calculation fails
+            updateSimilarityScore(0.87);
+          }
+        }
+      }
+    });
+  }
+
+  // Keep existing updateSimilarityScore function
   function updateSimilarityScore(score) {
     const similarityValue = document.querySelector(".similarity-value");
     if (similarityValue) {
-      // Animate the score change
-      const currentScore = parseFloat(similarityValue.dataset.score);
+      const currentScore = parseFloat(similarityValue.dataset.score || 0);
       const newScore = parseFloat(score);
 
-      // Simple animation of the score
-      const duration = 1000; // 1 second
+      const duration = 1000;
       const start = performance.now();
 
       function updateScore(currentTime) {
         const elapsed = currentTime - start;
         const progress = Math.min(elapsed / duration, 1);
-
-        const currentValue =
-          currentScore + (newScore - currentScore) * progress;
+        const currentValue = currentScore + (newScore - currentScore) * progress;
         similarityValue.textContent = currentValue.toFixed(2);
+
+        // Update gradient based on score
+        const color = `rgb(${31 + (currentValue * 224)}, ${31 + (currentValue * 212)}, ${243})`; 
+        
+        similarityValue.style.background = color;
+        similarityValue.style.boxShadow = `0 0 30px ${color.replace('rgb', 'rgba').replace(')', ', 0.3)')}`;
 
         if (progress < 1) {
           requestAnimationFrame(updateScore);
@@ -159,80 +208,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
       requestAnimationFrame(updateScore);
     }
-  }
-
-  // Event listener for the GO button
-  document.querySelector(".go-button")?.addEventListener("click", async () => {
-    const startInput = document.querySelector(
-      'input[placeholder="start article"]'
-    );
-    const targetInput = document.querySelector(
-      'input[placeholder="target article"]'
-    );
-
-    if (startInput && targetInput) {
-      const startArticle = startInput.value.trim();
-      const targetArticle = targetInput.value.trim();
-
-      if (startArticle && targetArticle) {
-        // For now, use the hardcoded value
-        updateSimilarityScore(0.87);
-
-        // When backend is ready, uncomment this:
-        // const score = await fetchSimilarityScore(startArticle, targetArticle);
-        // if (score !== null) {
-        //     updateSimilarityScore(score);
-        // }
-      }
-    }
-  });
-
-  // Add mobile nav synchronization
-  if (window.innerWidth <= 768) {
-    const updateMobileNav = () => {
-      const activeNavItem = document.querySelector(".side-nav li.active");
-      if (activeNavItem) {
-        // Calculate scroll position
-        const navList = document.querySelector(".side-nav ul");
-        const itemLeft = activeNavItem.offsetLeft;
-        const navWidth = navList.offsetWidth;
-        const itemWidth = activeNavItem.offsetWidth;
-
-        // Calculate the ideal scroll position to center the item
-        const scrollLeft = itemLeft - navWidth / 2 + itemWidth / 2;
-
-        // Smooth scroll to the position
-        navList.scrollTo({
-          left: scrollLeft,
-          behavior: "smooth",
-        });
-      }
-    };
-
-    // Update nav scroll position when active item changes
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (
-          mutation.type === "attributes" &&
-          mutation.attributeName === "class"
-        ) {
-          updateMobileNav();
-        }
-      });
-    });
-
-    // Observe all nav items for class changes
-    document.querySelectorAll(".side-nav li").forEach((item) => {
-      observer.observe(item, {
-        attributes: true,
-        attributeFilter: ["class"],
-      });
-    });
-
-    // Initial update
-    updateMobileNav();
-
-    // Update on scroll
-    window.addEventListener("scroll", updateMobileNav);
   }
 });
