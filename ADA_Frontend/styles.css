@@ -8,22 +8,24 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #020010 0%, #053141 100%);
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
 }
 
 header {
-    position: fixed;        /* Fix the header at the top */
-    top: 0;                 /* Align to the top */
-    left: 0;                /* Align to the left */
-    right: 0;               /* Stretch to full width */
-    padding: 20px;          /* Add padding for spacing */
-    display: flex;          /* Use Flexbox for layout */
-    justify-content: space-between; /* Space between logo and other content */
-    align-items: center;    /* Center-align items vertically */
-    z-index: 100;           /* Ensure it stays above other elements */
-    background-color: var(--bg-color); /* Optional: Add a background color */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    background: transparent;
 }
 
 .logo-container {
@@ -40,7 +42,7 @@ header {
 .side-nav {
     position: fixed;
     right: 40px;
-    top: 50%;
+    top: calc(50% + 150px);
     transform: translateY(-50%);
     z-index: 90;
     background: rgba(255, 255, 255, 0.03);
@@ -189,7 +191,7 @@ h2 {
 
 .search-interface {
     background: rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
+    border-radius: 24px;
     padding: 40px;
     max-width: 800px;
     margin: 60px auto 0;
@@ -200,7 +202,7 @@ h2 {
 
 .card {
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
+    border-radius: 24px;
     padding: 20px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
@@ -216,7 +218,7 @@ h2 {
     margin: 10px 0;
     background: rgba(255, 255, 255, 0.1);
     border: none;
-    border-radius: 6px;
+    border-radius: 12px;
     color: var(--text-color);
     transition: background 0.3s ease;
 }
@@ -239,7 +241,7 @@ h2 {
     background: var(--primary-color);
     color: white;
     border: none;
-    border-radius: 25px;
+    border-radius: 12px;
     width: auto;
     padding: 10px 20px;
     cursor: pointer;
@@ -276,7 +278,7 @@ h2 {
 .result-display {
     margin-top: 40px;
     background: rgba(255, 255, 255, 0.02);
-    border-radius: 12px;
+    border-radius: 24px;
     padding: 30px;
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -447,6 +449,7 @@ main {
     margin-right: 300px;
     padding: 0 20px;
     box-sizing: border-box;
+    color: rgba(255, 255, 255, 0.9);
 }
 .title-container {
     display: flex;
@@ -482,6 +485,7 @@ main {
 .text-block {
     max-width: 800px;
     margin-bottom: 40px;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .text-block p {
@@ -521,7 +525,7 @@ h1 {
 
 .search-interface {
     background: rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
+    border-radius: 24px;
     padding: 40px;
     max-width: 800px;
     margin: 60px auto 0;
@@ -538,7 +542,7 @@ h1 {
     margin: 60px auto 0;
     height: 400px;
     background: rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
+    border-radius: 24px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -729,6 +733,42 @@ h1 {
     }
 }
 
+.highlight-question {
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    display: inline-block;
+    cursor: default;
+}
+
+.highlight-question:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+.graph.smaller {
+    max-width: 70%;  /* Adjust this percentage to make it smaller or larger */
+    margin: 0 auto;  /* This centers the image */
+    display: block;
+}
+
+.analysis-list {
+    max-width: 800px;
+    margin: 1.5rem auto;
+    padding-left: 2rem;
+}
+
+.analysis-list li {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.analysis-list strong {
+    color: #ff1f71;  /* Pink color to match your theme */
+    font-weight: 600;
+}
 /* Additional adjustments for very small screens */
 @media screen and (max-width: 380px) {
     .side-nav a {
@@ -786,4 +826,199 @@ h1 {
 
 .styled-table tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.1); /* Highlight row on hover */
+}
+
+/* Flow Diagram Styles */
+.flow-diagram {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.diagram {
+    max-width: 100%;
+    height: auto;
+}
+
+.diagram-caption {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 1rem;
+}
+
+/* Feature List Styles */
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+}
+
+.feature-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.status-dot.linked { background-color: #4CAF50; }
+.status-dot.not-needed { background-color: #FFC107; }
+.status-dot.missing { background-color: #F44336; }
+.status-dot.non-existent { background-color: #9E9E9E; }
+
+/* Tool Description Styles */
+.tool-description {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 24px;
+    margin: 2rem 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Conclusion Styles */
+.conclusion {
+    margin: 3rem 0;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.conclusion p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Enhanced Result Display */
+.result-display {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.similarity-result {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.similarity-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.similarity-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2196F3;
+    margin-top: 0.5rem;
+}
+
+/* Formula Styles */
+.formula {
+    font-family: 'Latin Modern Math', serif;
+    text-align: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.9);
+    font-style: normal;
+}
+
+.formula p {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.dictionary-entry {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    transition: all 0.3s ease;
+}
+
+.dictionary-entry:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.dictionary-entry .term {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.dictionary-entry .pronunciation {
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.dictionary-entry .definition {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+.code-block {
+    background: rgba(255, 255, 255, 0.05);  /* Lighter, more neutral background */
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    font-family: 'Monaco', 'Consolas', monospace;
+    font-size: 0.9rem;
+    overflow-x: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    line-height: 1.5;
+    max-width: 800px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);  /* Added for glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.05);  /* Subtle border */
+}
+
+
+.code-block pre {
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+/* Syntax highlighting */
+.code-block .article-name {
+    color: #ff1f71;  /* Pink */
+    font-weight: 500;
+}
+
+.code-block .brackets {
+    color: #8BE9FD;  /* Light blue */
+}
+
+.code-block .array-content {
+    color: #61E6DF;  /* Green */
+}
+
+.code-block .comma {
+    color: #6272A4;  /* Muted blue */
+}
+
+.code-block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.08);  /* Slightly lighter on hover */
 }

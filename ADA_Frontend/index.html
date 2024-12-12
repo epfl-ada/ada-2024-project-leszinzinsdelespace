@@ -161,11 +161,112 @@
         <section id="dots" class="section">
             <div class="text-container">
                 <h2 class="section-title">Reconnecting the dots</h2>
+                <p class="lead">This is where the notion of semantic distance comes in.</p>
+                
+                <div class="dictionary-entry">
+                    <div class="term">Semantic Distance</div>
+                    <div class="pronunciation">/sɪˈmæntɪk ˈdɪstəns/</div>
+                    <div class="definition">
+                        A quantitative measure of the conceptual difference between two entities in a semantic space. In the context of Wikispeedia, it is computed using the complement of cosine similarity between the vector representations of two articles.
+                    </div>
+                    <div class="formula">
+                        Semantic Distance = |1 - Cosine Similarity|
+                    </div>
+                </div>
+                
                 <div class="content-wrapper">
                     <div class="text-block">
-                        <p class="lead">This is where the notion of semantic distance comes in.</p>
-                        <p>Semantic distance is a quantitative measure of the conceptual difference between two entities in a semantic space. In the context of Wikispeedia, it is computed using the complement of cosine similarity between the vector representations of two articles.</p>
-                        <p>Imagine starting on "Bob Dylan," aiming for "Christmas," and wandering through "Winter," "Snow," and "Santa Claus" - only to find "Christmas" doesn't exist. The game reveals the fascinating (and frustrating) gaps in how we connect concepts.</p>
+                        <p>By analyzing the cosine similarity, we can quantify how conceptually close two articles are, regardless of whether a hyperlink exists between them. A high cosine similarity combined with the absence of a hyperlink suggests a "missing link"—a connection that users would expect but is absent in the network.</p>
+                    </div>
+
+                    <div class="code-block">
+                        <pre><span class="article-name">Édouard Manet</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Paul Cézanne'</span><span class="brackets">]</span>
+<span class="article-name">Óengus I of the Picts</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Picts'</span><span class="brackets">]</span>
+<span class="article-name">€2 commemorative coins</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Euro'</span><span class="brackets">]</span>
+<span class="article-name">11th century</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Middle Ages'</span><span class="brackets">]</span>
+<span class="article-name">12th century</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Middle Ages'</span><span class="brackets">]</span>
+<span class="article-name">13th century</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'4th century', 'Crusades', 'Middle Ages'</span><span class="brackets">]</span>
+<span class="article-name">14th century</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'4th century', '5th century'</span><span class="brackets">]</span>
+<span class="article-name">19th century</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Industrial Revolution'</span><span class="brackets">]</span>
+<span class="article-name">1 Ceres</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Ceres (dwarf planet)'</span><span class="brackets">]</span>
+<span class="article-name">2004 Atlantic hurricane season</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Hurricane Dennis'</span><span class="brackets">]</span>
+<span class="article-name">21st century</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'1st century', '2nd century'</span><span class="brackets">]</span>
+<span class="article-name">4 Vesta</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Asteroid'</span><span class="brackets">]</span>
+<span class="article-name">4th century</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Constantine I'</span><span class="brackets">]</span>
+<span class="article-name">90377 Sedna</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Scattered disc'</span><span class="brackets">]</span>
+<span class="article-name">AC DC</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Alternating current'</span><span class="brackets">]</span>
+<span class="article-name">AK-47</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Firearm', 'Weapon'</span><span class="brackets">]</span>
+<span class="article-name">ASCII</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Algorithm', 'Alphabet', 'BASIC', 'Unix'</span><span class="brackets">]</span>
+<span class="article-name">Aachen</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Austria'</span><span class="brackets">]</span>
+<span class="article-name">Aardvark</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Ape'</span><span class="brackets">]</span>
+<span class="article-name">Abacá</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Manila'</span><span class="brackets">]</span>
+<span class="article-name">Abacus</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Algorithm'</span><span class="brackets">]</span>
+<span class="article-name">Abbey Theatre</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Abbey'</span><span class="brackets">]</span>
+<span class="article-name">Abbot</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Archbishop of Canterbury', 'Pope'</span><span class="brackets">]</span>
+<span class="article-name">Abidjan</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Ghana', 'Ivory'</span><span class="brackets">]</span>
+<span class="article-name">Abkhazia</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Armenia'</span><span class="brackets">]</span>
+<span class="article-name">Absinthe</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Alcohol', 'Wine'</span><span class="brackets">]</span></pre>
+                    </div>
+
+                    <div class="text-block">
+                        <p class="analysis-text">If we take a closer look at the infamous "Bob Dylan" to "Christmas" game, we stumble upon something very interesting: the ups and downs in cosine similarity along the path reveal critical moments of coherence and disconnection. The fluctuations show that certain transitions between articles are semantically smooth, marked by high similarity scores, while others involve abrupt drops, indicating potential cognitive roadblocks for players.</p>
+                    </div>
+
+                    <div class="graph-container">
+                        <img src="assets/path_to_christmas.png" alt="Path to Christmas Analysis" class="graph">
+                        <p class="graph-caption">Figure: Semantic similarity analysis of the path from "Bob Dylan" to "Christmas"</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p class="analysis-text">For instance, the sudden rise in similarity around "A Christmas Carol" suggests a clear connection to the target topic, providing players with a sense of progress. On the other hand, sharp dips, such as transitions to unrelated concepts like "Domesticated Turkey" or "Roman Britain," highlight moments where players might feel lost or misdirected. These valleys in similarity likely represent key frustration points, where the semantic bridge between concepts feels incomplete or unintuitive.</p>
+                        
+                        <p class="analysis-text">These patterns tell a story of how players navigate conceptual leaps, with peaks offering clear guidance and troughs reflecting moments of struggle.</p>
+                        
+                        <p class="analysis-text insight-question">So it might be interesting to look at the cosine similarity for every position in other paths - perhaps a common pattern will emerge?</p>
+                    </div>
+
+                    <div class="graph-container">
+                        <img src="assets/paths_similarity.png" alt="Paths Similarity Analysis" class="graph smaller">
+                        <p class="graph-caption">Figure: Semantic similarity analysis across different paths</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p class="analysis-text smaller">It seems like we are onto something. It might be interesting to compare the paths, adjusting for path length.</p>
+                    </div>
+
+                    <div class="graph-container">
+                        <img src="assets/paths_adjusted_for_length.png" alt="Paths Adjusted for Length Analysis" class="graph smaller">
+                        <p class="graph-caption">Figure: Path similarity analysis adjusted for length</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p class="analysis-text">Across all completed games, a distinct trend appears during the endgame stage. But does this pattern persist in unfinished games as well? Let's take a closer look—leaving out the final step, naturally!</p>
+                    </div>
+
+                    <div class="graph-container">
+                        <img src="assets/distance_from_end.png" alt="Distance from End Analysis" class="graph smaller">
+                        <p class="graph-caption">Figure: Analysis of semantic distance from target in final steps</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p class="analysis-text">Sometimes a dead-end might be due to the correct link being "hidden" in the article page - analysis shows that players consistently click on the first links.</p>
+                    </div>
+
+                    <div class="graph-container">
+                        <img src="assets/distrib.png" alt="Link Distribution Analysis" class="graph smaller">
+                        <p class="graph-caption">Figure: Distribution of clicked links by position in article</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p class="analysis-text">Our analysis uncovers a fascinating pattern in the endgame stage—even in unfinished paths. By zooming in on the highest similarity point within each game and the final eight moves leading up to it, we can piece together several intriguing scenarios for every Wikispeedia game:</p>
+
+                        <ul class="analysis-list">
+                            <li><strong>Lost Player</strong>: The player explores validly but doesn't break a cosine similarity (CS) threshold of 0.3.</li>
+                            <li><strong>Frustrated Player</strong>: They reach a high CS (>0.3) but hit a dead-end due to missing links, blocking progress.</li>
+                            <li><strong>Unobservant Player</strong>: A key link exists (CS > 0.3) but is overlooked and not clicked. This hints at interface design improvements.</li>
+                            <li><strong>Player Messing Around</strong>: They navigate aimlessly, forming circular paths with no real progress, indicating data to filter or clean.</li>
+                            <li><strong>Victorious Player</strong>: They reach the target, offering insights into optimal navigation.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -173,9 +274,26 @@
 
         <section id="tools" class="section">
             <div class="text-container">
-                <h2 class="section-title">Tools to light the way</h2>
-                <div class="placeholder-image">
-                    <!-- Image placeholder -->
+                <h2 class="section-title">Tools to Light the Way</h2>
+                <div class="content-wrapper">
+                    <div class="text-block">
+                        <p class="lead">We've developed the Wikispeedia Missing Link Research Tool to enhance both player experience and network design.</p>
+                        
+                        <div class="flow-diagram">
+                            <img src="assets/flow-diagram.svg" alt="Decision Flow Diagram" class="diagram">
+                            <p class="diagram-caption">Decision flow for link analysis</p>
+                        </div>
+
+                        <div class="tool-description">
+                            <p>Our analysis tool categorizes article relationships into four key scenarios:</p>
+                            <ul class="feature-list">
+                                <li><span class="status-dot linked"></span>Linked: Direct connection exists</li>
+                                <li><span class="status-dot not-needed"></span>Not Linked (Appropriate): No connection needed</li>
+                                <li><span class="status-dot missing"></span>Missing Link: Should be connected</li>
+                                <li><span class="status-dot non-existent"></span>Non-existent: Article needs creation</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -183,35 +301,10 @@
         <section id="beyond" class="section">
             <div class="text-container">
                 <h2 class="section-title">Beyond the broken links</h2>
-                <div class="search-interface">
-                    <div class="search-box card">
-                        <div class="input-group">
-                            <input type="text" placeholder="start article" class="search-input">
-                            <span class="input-icon"><i class="fas fa-rocket"></i></span>
-                        </div>
-                        <div class="input-group">
-                            <input type="text" placeholder="target article" class="search-input">
-                            <span class="input-icon"><i class="fas fa-bullseye"></i></span>
-                        </div>
-                        <button class="go-button" >GO</button>
-                    </div>
-                    <div class="result-display">
-                        <div class="result-content">
-                            <div class="result-status">
-                                <div class="status-indicator">
-                                    <div class="status-line"></div>
-                                    <div class="status-dot"></div>
-                                </div>
-                                <div class="status-text">
-                                    <p class="status-primary">THE LINK DOES NOT EXIST</p>
-                                    <p class="status-secondary">BUT SHOULD EXIST</p>
-                                </div>
-                            </div>
-                            <div class="similarity-result">
-                                <p class="similarity-label">COSINE SIMILARITY</p>
-                                <div class="similarity-value" data-score="0.87">0.87</div>
-                            </div>
-                        </div>
+                
+                <div class="content-wrapper">
+                    <div class="text-block">
+                        <p class="analysis-text">As an added bonus, we have created the Wikispeedia Missing Link Research Tool, a resource designed to enhance both player experience and network design. By identifying potential missing links and areas of frustration, this tool provides actionable insights for improving the hyperlink network - and saving Christmas by letting Santa get to Christmas.</p>
                     </div>
                 </div>
             </div>
