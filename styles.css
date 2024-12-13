@@ -1669,3 +1669,21 @@ header {
     text-align: center;
 }
 
+.subtitle-container {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.pink-subtitle {
+    color: var(--primary-color);  /* Using your existing pink color variable */
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.path-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
