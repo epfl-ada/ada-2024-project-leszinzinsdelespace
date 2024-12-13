@@ -1,3 +1,140 @@
+class AudioPlayer {
+    constructor() {
+        this.songs = [
+            'assets/songs/it_beggins_to_look_a_lot_like_christmas.mp3',
+            'assets/songs/letitsnow.mp3',
+            'assets/songs/Mastercarey.mp3',
+            'assets/songs/vivelecringe.mp3'
+        ];
+        
+        // Shuffle the songs array at initialization
+        this.shuffleArray(this.songs);
+        
+        this.currentSongIndex = 0;
+        this.isPlaying = false;
+        this.audio = new Audio();
+        this.audio.volume = 0.5;
+
+        this.initializeControls();
+        this.updateControlsVisibility(false); // Hide controls initially
+        this.setupEventListeners();
+
+        // Add device change listener
+        navigator.mediaDevices.addEventListener('devicechange', () => {
+            this.handleDeviceChange();
+        });
+    }
+
+    // Add a shuffle method
+    shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    initializeControls() {
+        this.playPauseBtn = document.getElementById('playPauseBtn');
+        this.nextBtn = document.getElementById('nextBtn');
+    }
+
+    updateControlsVisibility(isPlaying) {
+        const controls = document.querySelector('.audio-controls');
+        if (isPlaying) {
+            controls.classList.add('playing');
+            this.nextBtn.style.display = 'flex';
+            this.playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        } else {
+            controls.classList.remove('playing');
+            this.nextBtn.style.display = 'none';
+            this.playPauseBtn.innerHTML = '<i class="fas fa-music"></i> Enhance Experience';
+        }
+    }
+
+    setupEventListeners() {
+        this.playPauseBtn.addEventListener('click', () => this.togglePlayPause());
+        this.nextBtn.addEventListener('click', () => this.playNext());
+        
+        this.audio.addEventListener('ended', () => this.playNext());
+        this.audio.addEventListener('error', (e) => {
+            console.error('Audio error:', e);
+            this.playNext();
+        });
+
+        // Add audio state change listeners
+        this.audio.addEventListener('pause', () => {
+            this.playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            this.isPlaying = false;
+            this.updateControlsVisibility(false);
+        });
+
+        this.audio.addEventListener('play', () => {
+            this.playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            this.isPlaying = true;
+            this.updateControlsVisibility(true);
+        });
+    }
+
+    togglePlayPause() {
+        if (!this.audio.src) {
+            this.loadAndPlaySong(this.currentSongIndex);
+            return;
+        }
+
+        if (this.isPlaying) {
+            this.audio.pause();
+            this.playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            this.updateControlsVisibility(false);
+        } else {
+            this.audio.play()
+                .then(() => {
+                    this.playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    this.updateControlsVisibility(true);
+                })
+                .catch(error => {
+                    console.error('Error playing audio:', error);
+                    this.playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    this.isPlaying = false;
+                    this.updateControlsVisibility(false);
+                    return;
+                });
+        }
+        this.isPlaying = !this.isPlaying;
+    }
+
+    loadAndPlaySong(index) {
+        this.audio.src = this.songs[index];
+        this.audio.play()
+            .then(() => {
+                this.isPlaying = true;
+                this.playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                this.updateControlsVisibility(true);
+            })
+            .catch(error => {
+                console.error('Error playing audio:', error);
+                this.isPlaying = false;
+                this.playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                this.updateControlsVisibility(false);
+                this.playNext();
+            });
+    }
+
+    playNext() {
+        this.currentSongIndex = (this.currentSongIndex + 1) % this.songs.length;
+        this.loadAndPlaySong(this.currentSongIndex);
+    }
+
+    // Add this new method
+    handleDeviceChange() {
+        if (this.isPlaying) {
+            this.audio.pause();
+            this.isPlaying = false;
+            this.playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            this.updateControlsVisibility(false);
+        }
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const sections = document.querySelectorAll(".section");
   const navItems = document.querySelectorAll(".side-nav li");
@@ -218,6 +355,8 @@ document.addEventListener("DOMContentLoaded", () => {
       requestAnimationFrame(updateScore);
     }
   }
+
+  const audioPlayer = new AudioPlayer();
 });
 
 document.addEventListener('touchstart', function() {}, {passive: true});
