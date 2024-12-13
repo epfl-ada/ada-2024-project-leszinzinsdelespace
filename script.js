@@ -221,3 +221,43 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener('touchstart', function() {}, {passive: true});
+
+function createSnowflakes() {
+    const container = document.createElement('div');
+    container.className = 'snow-container';
+    document.body.prepend(container);
+
+    const createSnowflake = () => {
+        const snowflake = document.createElement('div');
+        snowflake.className = 'snowflake';
+        
+        // Random starting position
+        snowflake.style.left = `${Math.random() * 100}%`;
+        
+        // Random size
+        const size = Math.random() * 4 + 2;
+        snowflake.style.width = `${size}px`;
+        snowflake.style.height = `${size}px`;
+        
+        // Much slower animation duration (increased to 8+5)
+        snowflake.style.animationDuration = `${Math.random() * 8 + 5}s`;
+        
+        container.appendChild(snowflake);
+        
+        // Increased timeout for longer animation
+        setTimeout(() => {
+            snowflake.remove();
+        }, 13000);
+    };
+
+    // Create initial snowflakes
+    for (let i = 0; i < 30; i++) {
+        setTimeout(createSnowflake, Math.random() * 2000);
+    }
+
+    // Much slower interval for creating snowflakes (increased to 500)
+    setInterval(createSnowflake, 500);
+}
+
+// Start snow effect when page loads
+document.addEventListener('DOMContentLoaded', createSnowflakes);
