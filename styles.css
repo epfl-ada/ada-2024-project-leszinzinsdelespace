@@ -24,12 +24,12 @@ header {
     top: 0;
     left: 0;
     right: 0;
-    padding: 20px;
+    padding: 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
-    background: transparent;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .logo-container {
@@ -1496,12 +1496,12 @@ h1 {
     display: flex;
     align-items: center;
     gap: 15px;
-    transition: all 0.3s ease;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .audio-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     color: white;
     cursor: pointer;
     padding: 8px 15px;
@@ -1509,15 +1509,16 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(4px);
 }
 
 .audio-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     transform: translateY(-1px);
     cursor: pointer;
     filter: brightness(1.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .audio-btn:active {
@@ -1546,6 +1547,7 @@ h1 {
     height: 32px;
     padding: 0;
     border-radius: 50%;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .audio-controls.playing #playPauseBtn i {
@@ -1554,6 +1556,7 @@ h1 {
 
 .audio-controls.playing #nextBtn {
     display: flex !important;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media screen and (max-width: 768px) {
@@ -1572,8 +1575,9 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    background: rgba(10, 25, 47, 0.8);
-    backdrop-filter: blur(10px);
+    background: rgba(10, 25, 47, 0);
+    backdrop-filter: blur(4px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
 }
 
 @media screen and (max-width: 768px) {
@@ -1588,6 +1592,7 @@ header {
 
     header {
         padding: 15px 20px;
+        background: rgba(10, 25, 47, 0.1);
     }
 }
 
