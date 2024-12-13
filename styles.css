@@ -1461,3 +1461,103 @@ h1 {
     }
 }
 
+/* Update audio controls styles */
+.audio-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s ease;
+}
+
+.audio-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    cursor: pointer;
+    padding: 8px 15px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.audio-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+    cursor: pointer;
+    filter: brightness(1.1);
+}
+
+.audio-btn:active {
+    transform: translateY(1px);
+}
+
+.audio-btn i {
+    margin-right: 8px;
+}
+
+/* Hide next button by default */
+#nextBtn {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 50%;
+}
+
+#nextBtn i {
+    margin: 0;
+}
+
+/* When playing, show minimal controls */
+.audio-controls.playing #playPauseBtn {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 50%;
+}
+
+.audio-controls.playing #playPauseBtn i {
+    margin: 0;
+}
+
+.audio-controls.playing #nextBtn {
+    display: flex !important;
+}
+
+@media screen and (max-width: 768px) {
+    .audio-controls {
+        padding: 5px 10px;
+    }
+
+    .audio-btn {
+        font-size: 0.9rem;
+    }
+}
+
+/* Update existing header styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: rgba(10, 25, 47, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+@media screen and (max-width: 768px) {
+    .audio-controls {
+        padding: 5px 10px;
+    }
+
+    .now-playing {
+        max-width: 120px;
+        font-size: 0.8rem;
+    }
+
+    header {
+        padding: 15px 20px;
+    }
+}
+
