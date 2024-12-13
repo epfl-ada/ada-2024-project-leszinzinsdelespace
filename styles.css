@@ -416,6 +416,21 @@ h2 {
 
 .contributor {
     text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+.contributor:hover {
+    transform: translateY(-8px) scale(1.02);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 
+        0 10px 20px rgba(0, 0, 0, 0.2),
+        0 0 20px rgba(255, 31, 113, 0.15);
+    border-color: rgba(255, 31, 113, 0.3);
 }
 
 .contributor img {
@@ -423,6 +438,15 @@ h2 {
     height: 80px;
     border-radius: 50%;
     margin-bottom: 10px;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    border: 2px solid transparent;
+}
+
+.contributor:hover img {
+    transform: scale(1.05);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(255, 31, 113, 0.3);
 }
 
 .contributor h4 {
@@ -435,6 +459,15 @@ h2 {
     margin: 5px 0 0;
     opacity: 0.7;
     font-size: 0.8rem;
+}
+
+.contributor h3 {
+    transition: all 0.3s ease;
+    margin: 10px 0 5px;
+}
+
+.contributor:hover h3 {
+    color: var(--primary-color);
 }
 
 main {
