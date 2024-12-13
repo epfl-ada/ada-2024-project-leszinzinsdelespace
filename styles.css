@@ -605,27 +605,18 @@ h1 {
     }
 
     .side-nav a {
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        position: relative;
-        padding: 0;
-        opacity: 0.6;
-        transition: opacity 0.3s ease;
+        font-size: 12px;
+        white-space: normal;
+        text-align: center;
     }
 
-    /* Add icons before text */
-    .side-nav a::before {
-        content: '';
-        display: block;
-        width: 24px;
-        height: 24px;
-        margin: 0 auto 4px;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        opacity: 0.7;
-        transition: opacity 0.3s ease;
+    .side-nav a[href="#home"]::before,
+    .side-nav a[href="#struggle"]::before,
+    .side-nav a[href="#path"]::before,
+    .side-nav a[href="#dots"]::before,
+    .side-nav a[href="#tools"]::before,
+    .side-nav a[href="#beyond"]::before {
+        display: none;  /* This hides the icons */
     }
 
     .side-nav li:nth-child(1) a::before {
