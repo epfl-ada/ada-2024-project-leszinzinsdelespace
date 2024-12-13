@@ -1334,3 +1334,97 @@ h1 {
     }
 }
 
+/* Mobile-specific changes */
+@media screen and (max-width: 768px) {
+    main {
+        width: 100%;
+        padding: 20px;
+        margin: 0;
+        padding-bottom: 80px; /* Space for bottom nav */
+    }
+
+    .text-container {
+        width: 90%;
+        padding: 0 15px;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    /* Content scaling */
+    .graph-container,
+    .content-wrapper,
+    img,
+    .graph {
+        width: 95%;
+        max-width: 95%;
+        height: auto;
+        margin: 20px auto;
+        display: block;
+    }
+
+    /* Text adjustments */
+    p, h1, h2, h3, .lead {
+        width: 100%;
+        padding: 0;
+        margin-left: 0;
+        margin-right: 0;
+        box-sizing: border-box;
+    }
+
+    /* Bottom navigation for mobile only */
+    @media (max-width: 768px) {
+        .side-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            top: auto;
+            transform: none;
+            width: 100%;
+            height: auto;
+            background: rgba(10, 25, 47, 0.98);
+            padding: 15px 0;
+            margin: 0;
+            border-radius: 15px 15px 0 0;
+            z-index: 9999;
+        }
+
+        .side-nav ul {
+            flex-direction: row;
+            justify-content: space-around;
+            padding: 0 15px;
+            margin: 0;
+        }
+
+        .side-nav li {
+            margin: 0;
+            padding: 5px 10px;
+        }
+
+        .side-nav a {
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .nav-indicator {
+            display: none; /* Hide vertical indicator on mobile */
+        }
+    }
+}
+
+/* Extra small devices */
+@media screen and (max-width: 480px) {
+    .text-container {
+        width: 95%;
+        padding: 0 10px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
