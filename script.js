@@ -81,7 +81,16 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Listen for scroll events
-  window.addEventListener("scroll", updateActiveNav);
+  let ticking = false;
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateActiveNav();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
 
   // Initial update
   updateActiveNav();
@@ -210,3 +219,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
+
+document.addEventListener('touchstart', function() {}, {passive: true});

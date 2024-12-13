@@ -1022,3 +1022,175 @@ h1 {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     background: rgba(255, 255, 255, 0.08);  /* Slightly lighter on hover */
 }
+
+/* Mobile Navigation */
+@media screen and (max-width: 768px) {
+    .side-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: auto;
+        transform: none;
+        width: 100%;
+        padding: 15px;
+        border-radius: 20px 20px 0 0;
+        z-index: 1000;
+    }
+
+    .side-nav ul {
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 10px;
+    }
+
+    .side-nav li {
+        padding: 8px;
+        height: auto;
+    }
+
+    .side-nav a {
+        font-size: 12px;
+        white-space: normal;
+        text-align: center;
+    }
+
+    .nav-indicator {
+        display: none;
+    }
+
+    /* Main Content Adjustments */
+    .section {
+        padding: 20px 15px;
+        margin-bottom: 60px; /* Space for bottom nav */
+    }
+
+    /* Graph Containers */
+    .graph.smaller {
+        max-width: 95%;
+    }
+
+    /* Tables */
+    .styled-table {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .styled-table th, .styled-table td {
+        padding: 8px;
+    }
+
+    /* Dictionary Entry */
+    .dictionary-entry {
+        padding: 1.5rem;
+        margin: 1rem 15px;
+    }
+
+    /* Code Block */
+    .code-block {
+        font-size: 12px;
+        padding: 1rem;
+        margin: 1rem 15px;
+    }
+
+    /* Contributors Grid */
+    .contributors-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .contributor img {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+/* Extra Small Devices */
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    .text-block {
+        font-size: 0.9rem;
+    }
+
+    .contributors-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .view-dataset {
+        font-size: 12px;
+        padding: 8px 15px;
+    }
+}
+
+/* Handle iPhone Notch */
+@supports (padding: max(0px)) {
+    .side-nav {
+        padding-bottom: max(15px, env(safe-area-inset-bottom));
+    }
+}
+
+/* Base container styles */
+.text-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+    body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    main {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .section {
+        width: 100%;
+        padding: 20px 0;
+    }
+
+    .text-container {
+        padding: 0 15px;
+        width: 100%;
+    }
+
+    .content-wrapper {
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    /* Ensure images don't overflow */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Adjust title container for mobile */
+    .title-container {
+        padding: 0 15px;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2rem;
+        word-wrap: break-word;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+        word-wrap: break-word;
+    }
+}
