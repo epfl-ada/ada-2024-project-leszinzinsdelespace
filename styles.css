@@ -1194,3 +1194,164 @@ h1 {
         word-wrap: break-word;
     }
 }
+
+/* Base mobile styles */
+@media screen and (max-width: 768px) {
+    html, body {
+        width: 100%;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+    }
+
+    main {
+        width: 100vw;  /* Use viewport width */
+        overflow-x: hidden;
+        padding: 0;
+    }
+
+    /* Header adjustments */
+    header {
+        padding: 10px;
+    }
+
+    .logo-container {
+        max-width: 80px;
+    }
+
+    /* Title adjustments */
+    .title-container {
+        width: 100%;
+        padding: 20px 15px;
+        box-sizing: border-box;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin: 10px 0;
+        width: 100%;
+        word-wrap: break-word;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+        width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    /* Content adjustments */
+    .section {
+        width: 100%;
+        padding: 15px;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .text-container {
+        width: 100%;
+        padding: 0 15px;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .content-wrapper {
+        width: 100%;
+        padding: 0;
+        margin: 10px 0;
+    }
+
+    /* Image adjustments */
+    .graph-container {
+        width: 100%;
+        margin: 15px 0;
+        padding: 0;
+    }
+
+    .graph {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+    }
+
+    /* Navigation adjustments */
+    .side-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        padding: 10px 5px;
+        padding-bottom: max(10px, env(safe-area-inset-bottom));
+        transform: none;
+        z-index: 1000;
+    }
+
+    .side-nav ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 0;
+        margin: 0;
+    }
+
+    .side-nav li {
+        padding: 5px;
+        margin: 0;
+        font-size: 12px;
+    }
+
+    .side-nav a {
+        font-size: 10px;
+        padding: 5px;
+        white-space: normal;
+        text-align: center;
+    }
+
+    /* Text adjustments */
+    .text-block {
+        width: 100%;
+        padding: 0;
+        margin: 10px 0;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    /* Table adjustments */
+    .styled-table {
+        width: 100%;
+        margin: 15px 0;
+        font-size: 14px;
+        overflow-x: auto;
+        display: block;
+    }
+
+    /* Additional iPhone-specific adjustments */
+    @supports (-webkit-touch-callout: none) {
+        /* iOS-specific styles */
+        .side-nav {
+            padding-bottom: max(15px, env(safe-area-inset-bottom));
+        }
+
+        main {
+            padding-bottom: 100px; /* Extra padding for navigation */
+        }
+    }
+}
+
+/* Extra small devices (phones, 375px and down) */
+@media screen and (max-width: 375px) {
+    .side-nav a {
+        font-size: 9px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+}
