@@ -570,171 +570,42 @@ h1 {
     /* Enhanced Navigation adjustments */
     .side-nav {
         position: fixed;
-        right: 0;
-        bottom: 0;
-        top: auto;
-        transform: none;
-        width: 100%;
-        padding: 12px 0;
-        border-radius: 20px 20px 0 0;
-        background: rgba(10, 25, 47, 0.98);
-        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+        right: 40px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 90;
+        background: rgba(255, 255, 255, 0.03);
+        padding: 20px 35px 20px 20px;
+        border-radius: 30px;
         backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.05);
-        z-index: 1000;
+    }
+
+    .nav-indicator {
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: 20px;
+        bottom: 20px;
+        width: 4px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 2px;
     }
 
     .side-nav ul {
-        flex-direction: row;
-        justify-content: flex-start;
-        padding: 0 15px;
-        margin: 0;
-        position: relative;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-
-    .side-nav ul::-webkit-scrollbar {
-        display: none;
+        flex-direction: column;
+        gap: 20px;
     }
 
     .side-nav li {
-        flex: 0 0 auto;
-        margin: 0 10px;
-        min-width: 64px;
-        padding: 8px 4px;
-    }
-
-    .side-nav li:first-child {
-        margin-left: 15px;
-    }
-
-    .side-nav li:last-child {
-        margin-right: 15px;
+        padding: 10px 15px;
+        height: 20px;
+        margin: 0;
     }
 
     .side-nav a {
-        font-size: 12px;
-        white-space: normal;
-        text-align: center;
-    }
-
-    .side-nav a[href="#home"]::before,
-    .side-nav a[href="#struggle"]::before,
-    .side-nav a[href="#path"]::before,
-    .side-nav a[href="#dots"]::before,
-    .side-nav a[href="#tools"]::before,
-    .side-nav a[href="#beyond"]::before {
-        display: none;  /* This hides the icons */
-    }
-
-    .side-nav li:nth-child(1) a::before {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M12 5.69l5 4.5V18h-2v-6H9v6H7v-7.81l5-4.5M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z'/%3E%3C/svg%3E");
-    }
-
-    .side-nav li:nth-child(2) a::before {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'/%3E%3C/svg%3E");
-    }
-
-    .side-nav li:nth-child(3) a::before {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M9.17 6l2 2H20v10H4V6h5.17M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z'/%3E%3C/svg%3E");
-    }
-
-    .side-nav li:nth-child(4) a::before {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z'/%3E%3Cpath d='M7 12h2v5H7zm4-3h2v8h-2zm4-3h2v11h-2z'/%3E%3C/svg%3E");
-    }
-
-    .side-nav li:nth-child(5) a::before {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7z'/%3E%3Cpath d='M12 17l1.25-2.75L16 13l-2.75-1.25L12 9l-1.25 2.75L8 13l2.75 1.25z'/%3E%3C/svg%3E");
-    }
-
-    .side-nav li:nth-child(6) a::before {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-7-2h2V7h-2v4h-2V7H8v4h2v2H8v2h2v2z'/%3E%3C/svg%3E");
-    }
-
-    .side-nav li.active a {
-        opacity: 1;
-        color: var(--primary-color);
-    }
-
-    .side-nav li.active a::before {
-        opacity: 1;
-    }
-
-    /* Active indicator dot */
-    .side-nav li.active::after {
-        content: '';
-        position: absolute;
-        bottom: -8px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 4px;
-        height: 4px;
-        background: var(--primary-color);
-        border-radius: 50%;
-        box-shadow: 0 0 8px var(--primary-color);
-    }
-
-    /* Hide original nav indicator */
-    .nav-indicator {
-        display: none;
-    }
-
-    /* Add touch feedback */
-    .side-nav li {
-        cursor: pointer;
-        transition: transform 0.2s ease;
-    }
-
-    .side-nav li:active {
-        transform: scale(0.95);
-    }
-
-    /* Adjust main content padding for new nav */
-    main {
-        padding-bottom: 90px;
-    }
-
-    /* Improve section centering */
-    .section {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        padding: 0 20px;
-        margin: 0;
-        height: auto;
-    }
-
-    .text-container {
-        width: 100%;
-        max-width: 100%;
-        padding: 0 15px;
-        box-sizing: border-box;
-    }
-
-    /* Ensure content is centered within sections */
-    .intro-text,
-    .content-wrapper,
-    .search-interface,
-    .placeholder-image {
-        width: 100%;
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    /* Adjust text alignment for better mobile reading */
-    .text-block {
-        text-align: left;
-        margin: 0 auto;
-    }
-
-    /* Ensure proper padding at the bottom of the last section */
-    section:last-of-type {
-        padding-bottom: 120px;
+        font-size: 14px;
+        white-space: nowrap;
     }
 }
 
@@ -1365,16 +1236,13 @@ h1 {
 
 /* Extra small devices (phones, 375px and down) */
 @media screen and (max-width: 375px) {
+    .side-nav {
+        right: 20px;
+        padding: 15px 25px 15px 15px;
+    }
+
     .side-nav a {
-        font-size: 9px;
-    }
-
-    h1 {
-        font-size: 1.8rem;
-    }
-
-    .subtitle {
-        font-size: 1rem;
+        font-size: 12px;
     }
 }
 
