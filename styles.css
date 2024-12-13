@@ -403,9 +403,11 @@ h2 {
 
 .contributors-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 40px;
-    margin-top: 60px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .contributor {
@@ -420,14 +422,15 @@ h2 {
 }
 
 .contributor h4 {
-    margin: 10px 0 5px;
-    font-size: 1rem;
+    margin: 0;
+    color: var(--text-color);
+    font-size: 0.9rem;
 }
 
 .contributor p {
-    font-size: 0.9rem;
-    opacity: 0.6;
-    margin: 0;
+    margin: 5px 0 0;
+    opacity: 0.7;
+    font-size: 0.8rem;
 }
 
 main {
@@ -790,42 +793,64 @@ h1 {
 
 
 .styled-table {
-    width: 80%; /* Adjust width */
-    margin: 25px auto; /* Center table */
-    border-collapse: collapse;
-    font-size: 1rem;
-    font-family: Arial, sans-serif;
-    text-align: left;
-    border-radius: 8px; /* Add rounded corners */
+    width: 100%;
+    max-width: 800px;
+    margin: 25px auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 12px;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.05); /* Transparent background */
-    backdrop-filter: blur(10px); /* Blur effect for transparency */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .styled-table thead tr {
-    background-color: rgba(255, 31, 113, 0.8); /* Semi-transparent pink header */
-    color: #ffffff; /* White text */
+    background-color: #ff1f71;
+    color: #ffffff;
     text-align: left;
     font-weight: bold;
+    font-size: 1.1rem;
 }
 
-.styled-table th, .styled-table td {
-    padding: 15px;
-    color: #ffffff; /* White text for readability */
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
 }
 
 .styled-table tbody tr {
-    background-color: rgba(255, 255, 255, 0.03); /* Light transparent rows */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle row borders */
+    transition: all 0.3s ease;
 }
 
 .styled-table tbody tr:nth-of-type(even) {
-    background-color: rgba(255, 255, 255, 0.05); /* Slightly darker alternate rows */
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.styled-table tbody tr:last-of-type td {
+    border-bottom: none;
 }
 
 .styled-table tbody tr:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Highlight row on hover */
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+    .styled-table {
+        width: 90%;
+        margin: 15px auto;
+        font-size: 14px;
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 10px;
+    }
+    
+    .styled-table thead tr {
+        font-size: 1rem;
+    }
 }
 
 /* Flow Diagram Styles */
@@ -1122,11 +1147,6 @@ h1 {
     .contributors-grid {
         grid-template-columns: 1fr;
     }
-
-    .view-dataset {
-        font-size: 12px;
-        padding: 8px 15px;
-    }
 }
 
 /* Handle iPhone Notch */
@@ -1399,5 +1419,59 @@ html, body {
         position: relative;
         left: 0;
         right: 0;
+    }
+}
+
+/* Mobile responsiveness for table */
+@media screen and (max-width: 768px) {
+    .styled-table {
+        width: 95%;
+        font-size: 14px;
+    }
+
+    .styled-table th, .styled-table td {
+        padding: 10px;
+    }
+}
+
+/* Mobile table styles */
+@media screen and (max-width: 768px) {
+    .styled-table {
+        width: 90%;
+        margin: 15px auto;
+        font-size: 14px;
+        display: block;
+        overflow-x: auto; /* Enables horizontal scrolling if needed */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    }
+
+    .styled-table thead {
+        display: table-header-group;
+    }
+
+    .styled-table tbody {
+        display: table-row-group;
+    }
+
+    .styled-table tr {
+        display: table-row;
+    }
+
+    .styled-table th,
+    .styled-table td {
+        display: table-cell;
+        padding: 10px;
+        min-width: 100px; /* Ensures columns don't get too narrow */
+        white-space: nowrap; /* Prevents text wrapping */
+    }
+    
+    .styled-table thead tr {
+        font-size: 1rem;
+    }
+
+    /* Container for the table */
+    .text-container {
+        width: 100%;
+        overflow-x: hidden; /* Prevents horizontal scroll on the container */
     }
 }
