@@ -1464,14 +1464,14 @@ h1 {
 .dataset-button {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     margin-top: 20px;
-    padding: 12px 24px;
+    padding: 8px 18px;
     background: rgba(255, 255, 255, 0.05);
-    border-radius: 30px;
+    border-radius: 40px;
     color: white;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 16px;
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
@@ -1593,6 +1593,53 @@ header {
     header {
         padding: 15px 20px;
         background: rgba(10, 25, 47, 0.1);
+    }
+}
+
+/* Existing dataset button styles */
+.dataset-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 30px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+    .dataset-button {
+        padding: 6px 14px;
+        font-size: 14px;
+        gap: 6px;
+        border-radius: 30px;
+    }
+
+    .dataset-button img {
+        height: 16px;
+        width: 16px;
+    }
+}
+
+/* Extra small devices */
+@media screen and (max-width: 480px) {
+    .dataset-button {
+        padding: 5px 12px;
+        font-size: 13px;
+        gap: 4px;
+        border-radius: 25px;
+    }
+
+    .dataset-button img {
+        height: 14px;
+        width: 14px;
     }
 }
 
