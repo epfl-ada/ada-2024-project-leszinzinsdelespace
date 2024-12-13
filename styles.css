@@ -471,7 +471,7 @@ h2 {
 }
 
 main {
-    padding-top: 80px;
+    padding-top: 120px;
     overflow-x: hidden;
 }
 
@@ -497,6 +497,8 @@ main {
     align-items: center;
     justify-content: center;
     text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
 }
 
 .subtitle {
@@ -1641,5 +1643,29 @@ header {
         height: 14px;
         width: 14px;
     }
+}
+
+/* Style for both header buttons */
+.view-button, .enhance-button {  /* Add whatever classes your buttons use */
+    display: flex;
+    align-items: center;
+    justify-content: center;  /* Center the content horizontally */
+    gap: 8px;  /* Space between icon and text */
+    min-width: 160px;  /* Optional: ensure consistent width */
+    text-align: center;  /* Center the text */
+}
+
+/* If needed, adjust the icon positioning */
+.view-button svg, .enhance-button svg {
+    flex-shrink: 0;  /* Prevent icon from shrinking */
+}
+
+/* If you're using specific class names, use those instead */
+.github-link a, .enhance-experience a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
 }
 
