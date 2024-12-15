@@ -400,3 +400,110 @@ function createSnowflakes() {
 
 // Start snow effect when page loads
 document.addEventListener('DOMContentLoaded', createSnowflakes);
+
+// Create modal container
+const modal = document.createElement('div');
+modal.className = 'graph-modal';
+modal.innerHTML = `
+    <button class="graph-modal-close">×</button>
+    <img src="" alt="Full screen graph">
+`;
+document.body.appendChild(modal);
+
+// Add click handlers to all regular graphs
+document.querySelectorAll('.graph-container .graph, .graph-wrapper .graph').forEach(graph => {
+    if (!graph.closest('.interactive-graph-container')) { // Exclude interactive graphs
+        graph.addEventListener('click', function() {
+            const modalImg = modal.querySelector('img');
+            modalImg.src = this.src;
+            modal.classList.add('active');
+            document.body.classList.add('modal-open');
+        });
+    }
+});
+
+// Close modal when clicking outside the image or on close button
+modal.addEventListener('click', function(e) {
+    if (e.target === modal || e.target.classList.contains('graph-modal-close')) {
+        modal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+    }
+});
+
+// Close modal with escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+        modal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+    }
+});
+
+class PathVisualizer {
+    constructor() {
+        this.finishedPaths = Array.from({length: 10}, (_, i) => `assets/path_visualisation/finished_path_${i}.html`);
+        this.unfinishedPaths = Array.from({length: 10}, (_, i) => `assets/path_visualisation/unfinished_path_${i}.html`);
+        this.currentPath = this.finishedPaths[0];
+        
+        this.init();
+    }
+
+    init() {
+        // Create container and controls
+        const container = document.createElement('div');
+        container.className = 'path-container';
+        
+        const controls = document.createElement('div');
+        controls.className = 'path-controls';
+        
+        const finishedButton = document.createElement('button');
+        finishedButton.className = 'path-button';
+        finishedButton.textContent = 'Show Random Finished Path';
+        
+        const unfinishedButton = document.createElement('button');
+        unfinishedButton.className = 'path-button';
+        unfinishedButton.textContent = 'Show Random Unfinished Path';
+        
+        controls.appendChild(finishedButton);
+        controls.appendChild(unfinishedButton);
+        
+        // Create iframe
+        const iframe = document.createElement('iframe');
+        iframe.src = this.currentPath;
+        container.appendChild(iframe);
+        
+        // Add to DOM
+        const beyondSection = document.querySelector('#beyond');
+        if (beyondSection) {
+            beyondSection.appendChild(controls);
+            beyondSection.appendChild(container);
+        }
+        
+        // Add event listeners
+        finishedButton.addEventListener('click', () => {
+            const randomPath = this.finishedPaths[Math.floor(Math.random() * this.finishedPaths.length)];
+            if (randomPath !== this.currentPath) {
+                this.currentPath = randomPath;
+                iframe.src = this.currentPath;
+            } else {
+                // If same path is selected, try again
+                finishedButton.click();
+            }
+        });
+        
+        unfinishedButton.addEventListener('click', () => {
+            const randomPath = this.unfinishedPaths[Math.floor(Math.random() * this.unfinishedPaths.length)];
+            if (randomPath !== this.currentPath) {
+                this.currentPath = randomPath;
+                iframe.src = this.currentPath;
+            } else {
+                // If same path is selected, try again
+                unfinishedButton.click();
+            }
+        });
+    }
+}
+
+// Initialize the path visualizer when the DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new PathVisualizer();
+});
