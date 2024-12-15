@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Saving Christmas - Understanding User Frustration in Wikispeedia</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="https://dlab.epfl.ch/wikispeedia/play/" target="_blank" rel="noopener noreferrer">
+                <img src="assets/ada.svg" alt="ADA Logo" class="logo">
+            </a>
+        </div>
+        
+        <div class="audio-controls">
+            <button id="playPauseBtn" class="audio-btn">
+                <i class="fas fa-music"></i> Enhance Experience
+            </button>
+            <button id="nextBtn" class="audio-btn" style="display: none;">
+                <i class="fas fa-forward"></i>
+            </button>
+        </div>
+
+        <div class="github-link">
+            <a href="https://github.com/epfl-ada/ada-2024-project-leszinzinsdelespace" class="view-dataset" target="_blank" rel="noopener noreferrer">
+                <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+                View Repository
+            </a>
+        </div>
+    </header>
+    
+
+    <nav class="side-nav">
+        <div class="nav-indicator"></div>
+        <ul>
+            <li class="active"><a href="#home">Home</a></li>
+            <li><a href="#struggle">The Struggle to Stay on Track</a></li>
+            <li><a href="#path">Why the Path Feels Broken</a></li>
+            <li><a href="#fixing">Fixing missing links</a></li>
+            <li><a href="#beyond">Beyond the Broken Links</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="home" class="section">
+            <div class="title-container">
+                <div class="emoji">🎄</div>
+                <h1>Saving Christmas</h1>
+                <h2 class="subtitle">Understanding User Frustration in Wikispeedia</h2>
+            </div>
+            <div class="text-container">
+                <div class="content-wrapper">
+                    <div class="text-block">
+                        <p class="lead">Wikispeedia lets users chase connections between ideas - but sometimes, the path to victory vanishes unexpectedly. Players think they're close, only to hit dead-ends where crucial links are missing.</p>
+                        <p>Imagine starting on "Bob Dylan," aiming for "Christmas," and wandering through "Winter," "Snow," and "Santa Claus" - only to find "Christmas" doesn't exist. The game reveals the fascinating (and frustrating) gaps in how we connect concepts.</p>
+                    </div>
+                    <div class="subtitle-container">
+                        <h3 class="pink-subtitle">The Ups and Downs of Wikispeedia</h3>
+                        <img src="assets/partiemaudite.png" alt="Wikispeedia Path Visualization" class="path-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="struggle" class="section">
+            <div class="text-container">
+                <h2 class="section-title">The struggle to stay on track</h2>
+                <div class="content-wrapper">
+                    <div class="text-block">
+                        <p>Navigating Wikispeedia should feel intuitive and rewarding, yet many users encounter moments of frustration that disrupt their experience. Embedded within our dataset are subtle yet telling behaviors that collectively reveal the underlying struggles of users.</p>
+                        <p>Frustration manifests not just in what users do, but in how they deviate from expected pathways. Backtracking, for instance, serves as a clear signal—a tacit acknowledgment by users that the current route feels insufficient or misleading.</p>
+                    </div>
+                    <div class="graphs-container">
+                        <div class="graph-wrapper">
+                            <img src="assets/graphs/mediangamedurationvsbacktracks.png" alt="Median Game Duration vs Backtracks" class="graph">
+                            <p class="graph-caption">Figure 1: Relationship between game duration and number of backtracks.</p>
+                        </div>
+                        <div class="graph-wrapper">
+                            <img src="assets/graphs/averageratingvsbacktracks.png" alt="Average Rating vs Backtracks" class="graph">
+                            <p class="graph-caption">Figure 2: Impact of backtracks on user ratings.</p>
+                        </div>
+                    </div>
+                    <div class="text-block">
+                        <p>If a game drags on too long, frustration can build as players wait longer for the rewarding sense of completion. As illustrated in the graph above, there is a noticeable correlation between the frequency of backtracking and overall game duration: each backtrack adds an average of 43 seconds to the game time.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="path" class="section">
+            <div class="text-container">
+                <h2 class="section-title">Why the path feels broken</h2>
+                <div class="content-wrapper">
+                    <div class="text-block">
+                        <p class="lead">These recurring patterns of visibly frustrated user behavior stem from the fact that there seem to be unexpected dead-ends and unreachable targets. A simple analysis of the pages at which players backtrack most often shows that backtracking is associated with closely related concepts not being linked together in the hyperlink network.</p>
+                        <p>Upon close inspection of certain paths, we notice that some target articles do not exist at all, forcing the user to repeatedly think they are very close to the target, only to find themselves having to backtrack.</p>
+                    </div>
+                    <div id="backtrack-table" >
+                        <div class="text-container">
+                            <h2 class="section-title">Most Frequent Backtracks</h2>
+                            <table class="styled-table">
+                                <thead>
+                                    <tr>
+                                        <th>Backtrack</th>
+                                        <th>Target</th>
+                                        <th>Count</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Soybean</td>
+                                        <td>Bean</td>
+                                        <td>111</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Herbivore</td>
+                                        <td>Zebra</td>
+                                        <td>89</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Protein</td>
+                                        <td>Bean</td>
+                                        <td>62</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cell (biology)</td>
+                                        <td>Telephone</td>
+                                        <td>46</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sport</td>
+                                        <td>Tiger Woods</td>
+                                        <td>42</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Salsa music</td>
+                                        <td>Bean</td>
+                                        <td>42</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Coffee</td>
+                                        <td>Bean</td>
+                                        <td>38</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Optical fiber</td>
+                                        <td>Telephone</td>
+                                        <td>37</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Animal</td>
+                                        <td>Zebra</td>
+                                        <td>34</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <p class="highlight">But this, while infuriating for users, leads to a very intriguing question:</p>
+                    <h3 class="gradient-text">How would one go about finding the missing semantic links that lead to repeated and consistent user frustration?</h3>
+                </div>
+            </div>
+        </section>
+
+        <section id="dots" class="section">
+            <div class="text-container">
+                <h2 class="section-title">Reconnecting the dots</h2>
+                <p class="lead">This is where the notion of semantic distance comes in.</p>
+                
+                <div class="dictionary-entry">
+                    <div class="term">Semantic Distance</div>
+                    <div class="pronunciation">/sɪˈmæntɪk ˈdɪstəns/</div>
+                    <div class="definition">
+                        A quantitative measure of the conceptual difference between two entities in a semantic space. In the context of Wikispeedia, it is computed using the complement of cosine similarity between the vector representations of two articles.
+                    </div>
+                    <div class="formula">
+                        Semantic Distance = |1 - Cosine Similarity |
+                    </div>
+                </div>
+                
+                <div class="content-wrapper">
+                    <div class="text-block">
+                        <p>By analyzing the cosine similarity, we can quantify how conceptually close two articles are, regardless of whether a hyperlink exists between them. A high cosine similarity combined with the absence of a hyperlink suggests a "missing link"—a connection that users would expect but is absent in the network.</p>
+                    </div>
+
+                    <!-- <div class="code-block">
+                        <pre><span class="article-name">Édouard Manet</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Paul Cézanne'</span><span class="brackets">]</span>
+<span class="article-name">Óengus I of the Picts</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Picts'</span><span class="brackets">]</span>
+<span class="article-name">€2 commemorative coins</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Euro'</span><span class="brackets">]</span>
+<span class="article-name">11th century</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Middle Ages'</span><span class="brackets">]</span>
+<span class="article-name">12th century</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Middle Ages'</span><span class="brackets">]</span>
+<span class="article-name">13th century</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'4th century', 'Crusades', 'Middle Ages'</span><span class="brackets">]</span>
+<span class="article-name">14th century</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'4th century', '5th century'</span><span class="brackets">]</span>
+<span class="article-name">19th century</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Industrial Revolution'</span><span class="brackets">]</span>
+<span class="article-name">1 Ceres</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Ceres (dwarf planet)'</span><span class="brackets">]</span>
+<span class="article-name">2004 Atlantic hurricane season</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Hurricane Dennis'</span><span class="brackets">]</span>
+<span class="article-name">21st century</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'1st century', '2nd century'</span><span class="brackets">]</span>
+<span class="article-name">4 Vesta</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Asteroid'</span><span class="brackets">]</span>
+<span class="article-name">4th century</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Constantine I'</span><span class="brackets">]</span>
+<span class="article-name">90377 Sedna</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Scattered disc'</span><span class="brackets">]</span>
+<span class="article-name">AC DC</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Alternating current'</span><span class="brackets">]</span>
+<span class="article-name">AK-47</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Firearm', 'Weapon'</span><span class="brackets">]</span>
+<span class="article-name">ASCII</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Algorithm', 'Alphabet', 'BASIC', 'Unix'</span><span class="brackets">]</span>
+<span class="article-name">Aachen</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Austria'</span><span class="brackets">]</span>
+<span class="article-name">Aardvark</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Ape'</span><span class="brackets">]</span>
+<span class="article-name">Abacá</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Manila'</span><span class="brackets">]</span>
+<span class="article-name">Abacus</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Algorithm'</span><span class="brackets">]</span>
+<span class="article-name">Abbey Theatre</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Abbey'</span><span class="brackets">]</span>
+<span class="article-name">Abbot</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Archbishop of Canterbury', 'Pope'</span><span class="brackets">]</span>
+<span class="article-name">Abidjan</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Ghana', 'Ivory'</span><span class="brackets">]</span>
+<span class="article-name">Abkhazia</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Armenia'</span><span class="brackets">]</span>
+<span class="article-name">Absinthe</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Alcohol', 'Wine'</span><span class="brackets">]</span></pre>
+                    </div> -->
+
+                    <div class="text-block">
+                        <p class="analysis-text">If we take a closer look at the infamous "Bob Dylan" to "Christmas" game, we stumble upon something very interesting: the ups and downs in cosine similarity along the path reveal critical moments of coherence and disconnection. The fluctuations show that certain transitions between articles are semantically smooth, marked by high similarity scores, while others involve abrupt drops, indicating potential cognitive roadblocks for players.</p>
+                    </div>
+
+                    <div class="graph-container">
+                        <img src="assets/path_to_christmas.png" alt="Path to Christmas Analysis" class="graph">
+                        <p class="graph-caption">Figure: Semantic similarity analysis of the path from "Bob Dylan" to "Christmas"</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p class="analysis-text">For instance, the sudden rise in similarity around "A Christmas Carol" suggests a clear connection to the target topic, providing players with a sense of progress. On the other hand, sharp dips, such as transitions to unrelated concepts like "Domesticated Turkey" or "Roman Britain," highlight moments where players might feel lost or misdirected. These valleys in similarity likely represent key frustration points, where the semantic bridge between concepts feels incomplete or unintuitive.</p>
+                        
+                        <p class="analysis-text">These patterns tell a story of how players navigate conceptual leaps, with peaks offering clear guidance and troughs reflecting moments of struggle.</p>
+                        
+                        <p class="analysis-text insight-question">So it might be interesting to look at the cosine similarity for every position in other paths - perhaps a common pattern will emerge?</p>
+                    </div>
+
+                    <div class="graph-container">
+                        <img src="assets/path_evolution.gif" alt="Paths Similarity Analysis" class="graph smaller">
+                        <p class="graph-caption">Figure: Semantic similarity analysis across different paths</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p class="analysis-text smaller">It seems like we are onto something. It might be interesting to compare the paths, adjusting for path length.</p>
+                    </div>
+
+                    <div class="graph-container">
+                        <img src="assets/paths_adjusted_for_length.png" alt="Paths Adjusted for Length Analysis" class="graph smaller">
+                        <p class="graph-caption">Figure: Path similarity analysis adjusted for length</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p class="analysis-text">Across all completed games, a distinct trend appears during the endgame stage. But does this pattern persist in unfinished games as well? Let's take a closer look—leaving out the final step, naturally!</p>
+                    </div>
+
+                    <div class="graph-container">
+                        <img src="assets/distance_from_end.png" alt="Distance from End Analysis" class="graph smaller">
+                        <p class="graph-caption">Figure: Analysis of semantic distance from target in final steps</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p class="analysis-text">Sometimes a dead-end might be due to the correct link being "hidden" in the article page - analysis shows that players consistently click on the first links.</p>
+                    </div>
+
+                    <div class="graph-container">
+                        <img src="assets/distrib.png" alt="Link Distribution Analysis" class="graph smaller">
+                        <p class="graph-caption">Figure: Distribution of clicked links by position in article</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p class="analysis-text">Our analysis uncovers a fascinating pattern in the endgame stage—even in unfinished paths. By zooming in on the highest similarity point within each game and the final eight moves leading up to it, we can piece together several intriguing scenarios for every Wikispeedia game:</p>
+
+                        <ul class="analysis-list">
+                            <li><strong>Lost Player</strong>: The player explores validly but doesn't break a cosine similarity (CS) threshold of 0.3.</li>
+                            <li><strong>Frustrated Player</strong>: They reach a high CS (>0.3) but hit a dead-end due to missing links, blocking progress.</li>
+                            <li><strong>Unobservant Player</strong>: A key link exists (CS > 0.3) but is overlooked and not clicked. This hints at interface design improvements.</li>
+                            <li><strong>Player Messing Around</strong>: They navigate aimlessly, forming circular paths with no real progress, indicating data to filter or clean.</li>
+                            <li><strong>Victorious Player</strong>: They reach the target, offering insights into optimal navigation.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="fixing" class="section">
+            <div class="text-container">
+                <h2 class="section-title">Fixing missing links</h2>
+                <div class="content-wrapper">
+                    <div class="text-block">
+                        <p class="lead">In Wikispeedia's network of articles, not every page is reachable from every other page. This fundamental connectivity issue means that some games are impossible to complete from the start.</p>
+                    </div>
+
+                    <div class="graph-container">
+                        <img src="assets/graphs/initial_strongly_connected.png" alt="Initial Network Connectivity Analysis" class="graph">
+                        <p class="graph-caption">Figure: Analysis of the initial network connectivity in Wikispeedia. Not all articles are mutually reachable.</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p>Our goal is to make every article reachable from any starting point, enhancing the game's playability while preserving its core challenge. We'll focus on adding only the most essential connections - those that users naturally expect to find - rather than artificially flooding the network with links.</p>
+                        
+                        <p>Let's revisit our table of most frequent backtracks. The most common frustration point occurs between "Soybean" and "Bean", with 111 recorded backtracks. This suggests a missing connection that should be obvious to users.</p>
+                        
+                        <p>Looking at the actual content of the Soybean article, we find something interesting:</p>
+                        
+                        <div class="article-excerpt">
+                            <blockquote>
+                                "...Beans are classed as pulses whereas soybeans are classed as oilseeds. The word soy is derived from the Japanese word shoyu (soy sauce/soya sauce)..."
+                            </blockquote>
+                        </div>
+                        
+                        <p>The word "bean" explicitly appears in the article, yet there's no hyperlink to the Bean page! This is a clear example of a missing semantic connection - the link should exist but was simply overlooked during the wiki's creation. Such oversights, while small, may significantly impact user experience and navigation patterns.</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p>Using this insight, we developed a systematic approach: add a link between articles when:</p>
+                        <ol class="criteria-list">
+                            <li>The name of one article appears in the content of another, and</li>
+                            <li>The two articles have a strong semantic similarity (cosine similarity > 0.5)</li>
+                        </ol>
+                        
+                        <p>This approach ensures we only add links that are both contextually relevant and semantically meaningful.</p>
+                    </div>
+
+                    <div class="graph-container">
+                        <img src="assets/graphs/strong_similarity_inarticle_strongly_connected.png" alt="Network Connectivity After Adding Semantic Links" class="graph">
+                        <p class="graph-caption">Figure: Network connectivity after adding links based on article content and semantic similarity. The main connected component grew from 4,051 to 4,100 articles.</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p>While this improvement is modest - only 49 additional articles became reachable - it confirms our hypothesis that some disconnected articles are semantically related and referenced within each other. However, the small increase also suggests that we need additional strategies to significantly improve the network's connectivity.</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p>We then tried a less restrictive approach: add a link whenever one article's name appears in another's content, regardless of semantic similarity.</p>
+                    </div>
+
+                    <div class="graph-container">
+                        <img src="assets/graphs/all_inarticle_strongly_connected.png" alt="Network Connectivity with All In-Article Links" class="graph">
+                        <p class="graph-caption">Figure: Network connectivity after adding all possible in-article links. While only 17 articles remain isolated, the network becomes overwhelmed with new connections.</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p>This approach dramatically improved connectivity, but at a severe cost: it added 372,813 new links—more than quintupling the total number of connections in the network. Such a dense web of links would fundamentally change the nature of Wikispeedia, making it too easy to find connections and removing the creative challenge that makes the game engaging.</p>
+                        
+                        <p>This reveals an important tension in our mission: while we want to make the game more accessible by eliminating impossible paths, we must be careful not to sacrifice the core gameplay experience that makes Wikispeedia both challenging and rewarding.</p>
+                    </div>
+
+                    
+
+                    <div class="interactive-graph-container">
+                        <iframe src="assets/interactive/isolated_words.html" scrolling="no"></iframe>
+                        <p class="graph-caption">Graph:....</p>
+                    </div>
+                    <div class="text-block">
+                        <p>Explain algorithm</p>
+                    </div>
+
+                    <div class="interactive-graph-container">
+                        <iframe src="assets/interactive/word_embeddings_with_links.html" scrolling="no"></iframe>
+                        <p class="graph-caption">Graph:....</p>
+
+                    </div>
+
+                    <div class="text-block">
+                        <p>By carefully balancing semantic similarity and network structure, we developed an optimized approach that achieves full connectivity while preserving the game's challenge.</p>
+                    </div>
+
+                    <div class="graph-container">
+                        <img src="assets/graphs/final_strongly_connected.png" alt="Final Network Connectivity" class="graph">
+                        <p class="graph-caption">Figure: Final network connectivity after our optimized approach. All articles are now mutually reachable with only 525 additional links.</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p>This balanced approach achieved full connectivity while adding only 525 links. But do these new links make sense semantically? Let's examine some examples:</p>
+
+                        <h3>Links added first by our algorithm</h3>
+                        <table class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Article 1</th>
+                                    <th>Article 2</th>
+                                    <th>Similarity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Polish-Muscovite War (1605–1618)</td>
+                                    <td>Polish–Muscovite War (1605–1618)</td>
+                                    <td>0.977</td>
+                                </tr>
+                                <tr>
+                                    <td>The Bahamas</td>
+                                    <td>Bahamas</td>
+                                    <td>0.944</td>
+                                </tr>
+                                <tr>
+                                    <td>Cleopatra VII</td>
+                                    <td>Cleopatra VII of Egypt</td>
+                                    <td>0.927</td>
+                                </tr>
+                                <tr>
+                                    <td>European Goldfinch</td>
+                                    <td>European Greenfinch</td>
+                                    <td>0.817</td>
+                                </tr>
+                                <tr>
+                                    <td>List of countries</td>
+                                    <td>List of European countries</td>
+                                    <td>0.802</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>The highest-similarity connections are extremely intuitive - many are simply different names for the same concept or closely related species. These links are so natural that their absence from the original network seems more like an oversight than a deliberate choice.</p>
+
+                        <h3>Links added last by our algorithm</h3>
+                        <table class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Article 1</th>
+                                    <th>Article 2</th>
+                                    <th>Similarity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Romeo and Juliet</td>
+                                    <td>Julius and Ethel Rosenberg</td>
+                                    <td>0.336</td>
+                                </tr>
+                                <tr>
+                                    <td>Crohn's disease</td>
+                                    <td>Schatzki ring</td>
+                                    <td>0.333</td>
+                                </tr>
+                                <tr>
+                                    <td>Little Women</td>
+                                    <td>The Famous Five (characters)</td>
+                                    <td>0.330</td>
+                                </tr>
+                                <tr>
+                                    <td>Minimum wage</td>
+                                    <td>FairTax</td>
+                                    <td>0.313</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>Even the lower-similarity connections maintain some logical relationship - they connect articles within similar domains (literature, medical conditions, economic policy) while still requiring players to think creatively about the connections. This preserves the game's challenge while eliminating truly impossible paths.</p>
+
+                        <p>It's important to note that these limitations in connectivity are partly due to the nature of the dataset itself. Wikispeedia uses only a small subset of Wikipedia articles, which means that many potential intermediate articles that could provide more natural connections are simply not available in the game. For instance, while "Romeo and Juliet" and "Julius and Ethel Rosenberg" might be better connected through articles about "Famous couples" or "Tragic love stories", such bridging articles are not part of the Wikispeedia dataset.</p>
+
+                        <div class="graphs-container">
+                            <div class="graph-wrapper">
+                                <img src="assets/graphs/distribution_current_links.png" alt="Distribution of Current Links" class="graph">
+                                <p class="graph-caption">Figure: Distribution of existing links in the Wikispeedia network.</p>
+                            </div>
+                            <div class="graph-wrapper">
+                                <img src="assets/graphs/distribution_added_links.png" alt="Distribution of Added Links" class="graph">
+                                <p class="graph-caption">Figure: Distribution of links added by our algorithm.</p>
+                            </div>
+                        </div>
+
+                        <p>The distribution graphs above show how our added links complement the existing network structure, maintaining a similar pattern of connectivity while filling critical gaps in the network.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="beyond" class="section">
+            <div class="text-container">
+                <h2 class="section-title">Beyond the broken links</h2>
+                
+                <div class="content-wrapper">
+                    <div class="text-block">
+                        <p class="analysis-text">As an added bonus, we have created the Wikispeedia Missing Link Research Tool, a resource designed to enhance both player experience and network design. By identifying potential missing links and areas of frustration, this tool provides actionable insights for improving the hyperlink network - and saving Christmas by letting Santa get to Christmas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="about-section">
+            <h3>About This Project</h3>
+            <p>
+                This website presents the findings of our Applied Data Analysis (CS-401) project at EPFL. 
+                Using data from Wikispeedia, we analyzed how players navigate between Wikipedia articles, 
+                focusing on understanding patterns of user frustration and identifying missing semantic connections.
+            </p>
+            
+            <a href="https://snap.stanford.edu/data/wikispeedia.html" class="dataset-button" target="_blank" rel="noopener noreferrer">
+                <img src="assets/dataset.svg" height="20" width="20" alt="Dataset icon">
+                View Dataset
+            </a>
+        </div>
+
+        <footer class="contributors">
+            <div class="text-container">
+                <h2 class="section-title">Contributors</h2>
+                <div class="contributors-grid">
+                    <div class="contributor">
+                        <img src="assets/hugo.png" alt="">
+                        <h4>Hugo Masson</h4>
+                        <p>Etno</p>
+                    </div>
+                    <div class="contributor">
+                        <img src="assets/tania.png" alt="">
+                        <h4>Tania Pesic</h4>
+                        <p>Gros cerveau</p>
+                    </div>
+                    <div class="contributor">
+                        <img src="assets/albert.png" alt="">
+                        <h4>Albert Troussard</h4>
+                        <p>Le goat</p>
+                    </div>
+                    <div class="contributor">
+                        <img src="assets/khadija.png" alt="">
+                        <h4>Khadija Tagemouati</h4>
+                        <p>short text</p>
+                    </div>
+                    <div class="contributor">
+                        <img src="assets/elena.png" alt="">
+                        <h4>Elena Dimitratchkova</h4>
+                        <p>Miaou</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html> 
