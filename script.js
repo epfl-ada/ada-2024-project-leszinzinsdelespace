@@ -440,8 +440,8 @@ document.addEventListener('keydown', function(e) {
 
 class PathVisualizer {
     constructor() {
-        this.finishedPaths = Array.from({length: 10}, (_, i) => `assets/path_visualisation/finished_path_${i}.html`);
-        this.unfinishedPaths = Array.from({length: 10}, (_, i) => `assets/path_visualisation/unfinished_path_${i}.html`);
+        this.finishedPaths = Array.from({length: 20}, (_, i) => `assets/path_visualisation/finished_path_${i}.html`);
+        this.unfinishedPaths = Array.from({length: 20}, (_, i) => `assets/path_visualisation/unfinished_path_${i}.html`);
         this.currentPath = this.finishedPaths[0];
         
         this.init();
