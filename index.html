@@ -43,8 +43,7 @@
             <li class="active"><a href="#home">Home</a></li>
             <li><a href="#struggle">The Struggle to Stay on Track</a></li>
             <li><a href="#path">Why the Path Feels Broken</a></li>
-            <li><a href="#dots">Reconnecting the Dots</a></li>
-            <li><a href="#tools">Tools to Light the Way</a></li>
+            <li><a href="#fixing">Fixing missing links</a></li>
             <li><a href="#beyond">Beyond the Broken Links</a></li>
         </ul>
     </nav>
@@ -78,9 +77,15 @@
                         <p>Navigating Wikispeedia should feel intuitive and rewarding, yet many users encounter moments of frustration that disrupt their experience. Embedded within our dataset are subtle yet telling behaviors that collectively reveal the underlying struggles of users.</p>
                         <p>Frustration manifests not just in what users do, but in how they deviate from expected pathways. Backtracking, for instance, serves as a clear signal—a tacit acknowledgment by users that the current route feels insufficient or misleading.</p>
                     </div>
-                    <div class="graph-container">
-                        <img src="assets/mediangamedurationvsbacktracks.png" alt="Median Game Duration vs Backtracks" class="graph">
-                        <p class="graph-caption">Figure 1: Relationship between game duration and number of backtracks.</p>
+                    <div class="graphs-container">
+                        <div class="graph-wrapper">
+                            <img src="assets/graphs/mediangamedurationvsbacktracks.png" alt="Median Game Duration vs Backtracks" class="graph">
+                            <p class="graph-caption">Figure 1: Relationship between game duration and number of backtracks.</p>
+                        </div>
+                        <div class="graph-wrapper">
+                            <img src="assets/graphs/averageratingvsbacktracks.png" alt="Average Rating vs Backtracks" class="graph">
+                            <p class="graph-caption">Figure 2: Impact of backtracks on user ratings.</p>
+                        </div>
                     </div>
                     <div class="text-block">
                         <p>If a game drags on too long, frustration can build as players wait longer for the rewarding sense of completion. As illustrated in the graph above, there is a noticeable correlation between the frequency of backtracking and overall game duration: each backtrack adds an average of 43 seconds to the game time.</p>
@@ -154,11 +159,6 @@
                                         <td>Zebra</td>
                                         <td>34</td>
                                     </tr>
-                                    <tr>
-                                        <td>Mexico</td>
-                                        <td>Bean</td>
-                                        <td>34</td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -182,7 +182,7 @@
                         A quantitative measure of the conceptual difference between two entities in a semantic space. In the context of Wikispeedia, it is computed using the complement of cosine similarity between the vector representations of two articles.
                     </div>
                     <div class="formula">
-                        Semantic Distance = |1 - Cosine Similarity|
+                        Semantic Distance = |1 - Cosine Similarity |
                     </div>
                 </div>
                 
@@ -191,7 +191,7 @@
                         <p>By analyzing the cosine similarity, we can quantify how conceptually close two articles are, regardless of whether a hyperlink exists between them. A high cosine similarity combined with the absence of a hyperlink suggests a "missing link"—a connection that users would expect but is absent in the network.</p>
                     </div>
 
-                    <div class="code-block">
+                    <!-- <div class="code-block">
                         <pre><span class="article-name">Édouard Manet</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Paul Cézanne'</span><span class="brackets">]</span>
 <span class="article-name">Óengus I of the Picts</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Picts'</span><span class="brackets">]</span>
 <span class="article-name">€2 commemorative coins</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Euro'</span><span class="brackets">]</span>
@@ -218,7 +218,7 @@
 <span class="article-name">Abidjan</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Ghana', 'Ivory'</span><span class="brackets">]</span>
 <span class="article-name">Abkhazia</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Armenia'</span><span class="brackets">]</span>
 <span class="article-name">Absinthe</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Alcohol', 'Wine'</span><span class="brackets">]</span></pre>
-                    </div>
+                    </div> -->
 
                     <div class="text-block">
                         <p class="analysis-text">If we take a closer look at the infamous "Bob Dylan" to "Christmas" game, we stumble upon something very interesting: the ups and downs in cosine similarity along the path reveal critical moments of coherence and disconnection. The fluctuations show that certain transitions between articles are semantically smooth, marked by high similarity scores, while others involve abrupt drops, indicating potential cognitive roadblocks for players.</p>
@@ -238,7 +238,7 @@
                     </div>
 
                     <div class="graph-container">
-                        <img src="assets/paths_similarity.png" alt="Paths Similarity Analysis" class="graph smaller">
+                        <img src="assets/path_evolution.gif" alt="Paths Similarity Analysis" class="graph smaller">
                         <p class="graph-caption">Figure: Semantic similarity analysis across different paths</p>
                     </div>
 
@@ -284,27 +284,186 @@
             </div>
         </section>
 
-        <section id="tools" class="section">
+        <section id="fixing" class="section">
             <div class="text-container">
-                <h2 class="section-title">Tools to Light the Way</h2>
+                <h2 class="section-title">Fixing missing links</h2>
                 <div class="content-wrapper">
                     <div class="text-block">
-                        <p class="lead">We've developed the Wikispeedia Missing Link Research Tool to enhance both player experience and network design.</p>
+                        <p class="lead">In Wikispeedia's network of articles, not every page is reachable from every other page. This fundamental connectivity issue means that some games are impossible to complete from the start.</p>
+                    </div>
+
+                    <div class="graph-container">
+                        <img src="assets/graphs/initial_strongly_connected.png" alt="Initial Network Connectivity Analysis" class="graph">
+                        <p class="graph-caption">Figure: Analysis of the initial network connectivity in Wikispeedia. Not all articles are mutually reachable.</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p>Our goal is to make every article reachable from any starting point, enhancing the game's playability while preserving its core challenge. We'll focus on adding only the most essential connections - those that users naturally expect to find - rather than artificially flooding the network with links.</p>
                         
-                        <div class="flow-diagram">
-                            <img src="assets/flow-diagram.svg" alt="Decision Flow Diagram" class="diagram">
-                            <p class="diagram-caption">Decision flow for link analysis</p>
+                        <p>Let's revisit our table of most frequent backtracks. The most common frustration point occurs between "Soybean" and "Bean", with 111 recorded backtracks. This suggests a missing connection that should be obvious to users.</p>
+                        
+                        <p>Looking at the actual content of the Soybean article, we find something interesting:</p>
+                        
+                        <div class="article-excerpt">
+                            <blockquote>
+                                "...Beans are classed as pulses whereas soybeans are classed as oilseeds. The word soy is derived from the Japanese word shoyu (soy sauce/soya sauce)..."
+                            </blockquote>
+                        </div>
+                        
+                        <p>The word "bean" explicitly appears in the article, yet there's no hyperlink to the Bean page! This is a clear example of a missing semantic connection - the link should exist but was simply overlooked during the wiki's creation. Such oversights, while small, may significantly impact user experience and navigation patterns.</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p>Using this insight, we developed a systematic approach: add a link between articles when:</p>
+                        <ol class="criteria-list">
+                            <li>The name of one article appears in the content of another, and</li>
+                            <li>The two articles have a strong semantic similarity (cosine similarity > 0.5)</li>
+                        </ol>
+                        
+                        <p>This approach ensures we only add links that are both contextually relevant and semantically meaningful.</p>
+                    </div>
+
+                    <div class="graph-container">
+                        <img src="assets/graphs/strong_similarity_inarticle_strongly_connected.png" alt="Network Connectivity After Adding Semantic Links" class="graph">
+                        <p class="graph-caption">Figure: Network connectivity after adding links based on article content and semantic similarity. The main connected component grew from 4,051 to 4,100 articles.</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p>While this improvement is modest - only 49 additional articles became reachable - it confirms our hypothesis that some disconnected articles are semantically related and referenced within each other. However, the small increase also suggests that we need additional strategies to significantly improve the network's connectivity.</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p>We then tried a less restrictive approach: add a link whenever one article's name appears in another's content, regardless of semantic similarity.</p>
+                    </div>
+
+                    <div class="graph-container">
+                        <img src="assets/graphs/all_inarticle_strongly_connected.png" alt="Network Connectivity with All In-Article Links" class="graph">
+                        <p class="graph-caption">Figure: Network connectivity after adding all possible in-article links. While only 17 articles remain isolated, the network becomes overwhelmed with new connections.</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p>This approach dramatically improved connectivity, but at a severe cost: it added 372,813 new links—more than quintupling the total number of connections in the network. Such a dense web of links would fundamentally change the nature of Wikispeedia, making it too easy to find connections and removing the creative challenge that makes the game engaging.</p>
+                        
+                        <p>This reveals an important tension in our mission: while we want to make the game more accessible by eliminating impossible paths, we must be careful not to sacrifice the core gameplay experience that makes Wikispeedia both challenging and rewarding.</p>
+                    </div>
+
+                    
+
+                    <div class="interactive-graph-container">
+                        <iframe src="assets/interactive/isolated_words.html" scrolling="no"></iframe>
+                        <p class="graph-caption">Graph:....</p>
+                    </div>
+                    <div class="text-block">
+                        <p>Explain algorithm</p>
+                    </div>
+
+                    <div class="interactive-graph-container">
+                        <iframe src="assets/interactive/word_embeddings_with_links.html" scrolling="no"></iframe>
+                        <p class="graph-caption">Graph:....</p>
+
+                    </div>
+
+                    <div class="text-block">
+                        <p>By carefully balancing semantic similarity and network structure, we developed an optimized approach that achieves full connectivity while preserving the game's challenge.</p>
+                    </div>
+
+                    <div class="graph-container">
+                        <img src="assets/graphs/final_strongly_connected.png" alt="Final Network Connectivity" class="graph">
+                        <p class="graph-caption">Figure: Final network connectivity after our optimized approach. All articles are now mutually reachable with only 525 additional links.</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p>This balanced approach achieved full connectivity while adding only 525 links. But do these new links make sense semantically? Let's examine some examples:</p>
+
+                        <h3>Links added first by our algorithm</h3>
+                        <table class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Article 1</th>
+                                    <th>Article 2</th>
+                                    <th>Similarity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Polish-Muscovite War (1605–1618)</td>
+                                    <td>Polish–Muscovite War (1605–1618)</td>
+                                    <td>0.977</td>
+                                </tr>
+                                <tr>
+                                    <td>The Bahamas</td>
+                                    <td>Bahamas</td>
+                                    <td>0.944</td>
+                                </tr>
+                                <tr>
+                                    <td>Cleopatra VII</td>
+                                    <td>Cleopatra VII of Egypt</td>
+                                    <td>0.927</td>
+                                </tr>
+                                <tr>
+                                    <td>European Goldfinch</td>
+                                    <td>European Greenfinch</td>
+                                    <td>0.817</td>
+                                </tr>
+                                <tr>
+                                    <td>List of countries</td>
+                                    <td>List of European countries</td>
+                                    <td>0.802</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>The highest-similarity connections are extremely intuitive - many are simply different names for the same concept or closely related species. These links are so natural that their absence from the original network seems more like an oversight than a deliberate choice.</p>
+
+                        <h3>Links added last by our algorithm</h3>
+                        <table class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Article 1</th>
+                                    <th>Article 2</th>
+                                    <th>Similarity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Romeo and Juliet</td>
+                                    <td>Julius and Ethel Rosenberg</td>
+                                    <td>0.336</td>
+                                </tr>
+                                <tr>
+                                    <td>Crohn's disease</td>
+                                    <td>Schatzki ring</td>
+                                    <td>0.333</td>
+                                </tr>
+                                <tr>
+                                    <td>Little Women</td>
+                                    <td>The Famous Five (characters)</td>
+                                    <td>0.330</td>
+                                </tr>
+                                <tr>
+                                    <td>Minimum wage</td>
+                                    <td>FairTax</td>
+                                    <td>0.313</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>Even the lower-similarity connections maintain some logical relationship - they connect articles within similar domains (literature, medical conditions, economic policy) while still requiring players to think creatively about the connections. This preserves the game's challenge while eliminating truly impossible paths.</p>
+
+                        <p>It's important to note that these limitations in connectivity are partly due to the nature of the dataset itself. Wikispeedia uses only a small subset of Wikipedia articles, which means that many potential intermediate articles that could provide more natural connections are simply not available in the game. For instance, while "Romeo and Juliet" and "Julius and Ethel Rosenberg" might be better connected through articles about "Famous couples" or "Tragic love stories", such bridging articles are not part of the Wikispeedia dataset.</p>
+
+                        <div class="graphs-container">
+                            <div class="graph-wrapper">
+                                <img src="assets/graphs/distribution_current_links.png" alt="Distribution of Current Links" class="graph">
+                                <p class="graph-caption">Figure: Distribution of existing links in the Wikispeedia network.</p>
+                            </div>
+                            <div class="graph-wrapper">
+                                <img src="assets/graphs/distribution_added_links.png" alt="Distribution of Added Links" class="graph">
+                                <p class="graph-caption">Figure: Distribution of links added by our algorithm.</p>
+                            </div>
                         </div>
 
-                        <div class="tool-description">
-                            <p>Our analysis tool categorizes article relationships into four key scenarios:</p>
-                            <ul class="feature-list">
-                                <li><span class="status-dot linked"></span>Linked: Direct connection exists</li>
-                                <li><span class="status-dot not-needed"></span>Not Linked (Appropriate): No connection needed</li>
-                                <li><span class="status-dot missing"></span>Missing Link: Should be connected</li>
-                                <li><span class="status-dot non-existent"></span>Non-existent: Article needs creation</li>
-                            </ul>
-                        </div>
+                        <p>The distribution graphs above show how our added links complement the existing network structure, maintaining a similar pattern of connectivity while filling critical gaps in the network.</p>
                     </div>
                 </div>
             </div>

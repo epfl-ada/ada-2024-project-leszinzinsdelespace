@@ -124,6 +124,7 @@ header {
     padding: 40px 0;
     position: relative;
     display: flex;
+    width: 100%;
     flex-direction: column;
     justify-content: center;
 }
@@ -484,7 +485,6 @@ main {
 }
 
 .text-container {
-    max-width: 1200px;
     margin-left: 100px;
     margin-right: 300px;
     padding: 0 20px;
@@ -525,13 +525,12 @@ main {
 }
 
 .text-block {
-    max-width: 800px;
     margin-bottom: 40px;
     color: rgba(255, 255, 255, 0.9);
 }
 
 .text-block p {
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.3rem);
     line-height: 1.7;
     color: rgba(255, 255, 255, 0.8);
     margin-bottom: 1.5rem;
@@ -1685,5 +1684,425 @@ header {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
+}
+
+.graphs-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.graph-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.graph-wrapper .graph {
+    margin: 0;
+    width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.graph-wrapper .graph-caption {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Add hover effect for the caption too */
+.graph-wrapper:hover .graph-caption {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+    .graphs-container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .graph-wrapper .graph {
+        height: 300px; /* Slightly smaller height on mobile */
+    }
+}
+
+/* Graph hover effects for all graph containers */
+.graph-container, .graph-wrapper {
+    transition: transform 0.3s ease, z-index 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.graph-container:hover, .graph-wrapper:hover {
+    transform: scale(1.1);
+    z-index: 2;
+}
+
+/* Style for all graphs */
+.graph-container .graph, .graph-wrapper .graph {
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.graph-container:hover .graph, .graph-wrapper:hover .graph {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for all graph captions */
+.graph-container .graph-caption, .graph-wrapper .graph-caption {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.graph-container:hover .graph-caption, .graph-wrapper:hover .graph-caption {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Ensure proper stacking on mobile */
+@media (max-width: 768px) {
+    .graph-container:hover, .graph-wrapper:hover {
+        transform: scale(1.05); /* Slightly smaller scale factor on mobile */
+    }
+}
+
+.article-excerpt {
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 4px solid var(--primary-color);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 8px 8px 0;
+    backdrop-filter: blur(10px);
+}
+
+.article-excerpt blockquote {
+    margin: 0;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Center all graph containers */
+.graph-container, .graph-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 3rem auto;  /* Increased margin for better spacing */
+    max-width: 1200px;  /* Increased from 800px */
+    width: 100%;
+}
+
+/* Center graphs inside their containers */
+.graph-container .graph, .graph-wrapper .graph {
+    width: 100%;
+    height: auto;
+    max-width: 900px;   /* Increased from 500px */
+    border-radius: 12px; /* Slightly larger radius */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    margin: 0 auto;
+}
+
+/* Ensure captions are centered */
+.graph-container .graph-caption, .graph-wrapper .graph-caption {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    width: 100%;        /* Full width to maintain center alignment */
+}
+
+/* Keep the hover effects */
+.graph-container:hover, .graph-wrapper:hover {
+    transform: scale(1.1);
+    z-index: 2;
+}
+
+.graph-container:hover .graph, .graph-wrapper:hover .graph {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Maintain mobile responsiveness */
+@media (max-width: 768px) {
+    .graph-container, .graph-wrapper {
+        max-width: 95%;  /* Slightly smaller max-width on mobile */
+    }
+}
+
+.criteria-list {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.criteria-list li {
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+}
+
+/* Interactive graph container styles */
+.interactive-graph-container {
+    width: 820px;      /* Reverted back to original size */
+    height: 620px;     /* Reverted back to original size */
+    margin: 2rem auto; /* Reverted back to original margin */
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px; /* Reverted to original radius */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.interactive-graph-container:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.interactive-graph-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+.interactive-graph-container iframe::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+@media (max-width: 768px) {
+    .interactive-graph-container {
+        height: 400px;
+        margin: 1.5rem auto;
+    }
+}
+
+/* Responsive adjustments for larger graphs */
+@media (max-width: 1400px) {
+    .graph-container, .graph-wrapper {
+        max-width: 1000px;
+    }
+    
+    .graph-container .graph, .graph-wrapper .graph {
+        max-width: 800px;
+    }
+    
+    .interactive-graph-container {
+        width: 820px;  /* Keep original width */
+        height: 620px; /* Keep original height */
+    }
+}
+
+@media (max-width: 1200px) {
+    .graph-container, .graph-wrapper {
+        max-width: 90%;
+    }
+    
+    .graph-container .graph, .graph-wrapper .graph {
+        max-width: 700px;
+    }
+    
+    .interactive-graph-container {
+        width: 90%;    /* Only make responsive below 1200px */
+        height: 600px;
+    }
+}
+
+@media (max-width: 768px) {
+    .interactive-graph-container {
+        height: 400px;
+        margin: 1.5rem auto;
+    }
+}
+
+/* Full screen modal for graphs */
+.graph-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.graph-modal.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+.graph-modal img {
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.graph-modal.active img {
+    transform: scale(1);
+}
+
+/* Make regular graphs clickable */
+.graph-container .graph, .graph-wrapper .graph {
+    cursor: pointer;
+}
+
+/* Close button */
+.graph-modal-close {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.graph-modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* Add these styles for the path controls */
+.path-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.path-button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.path-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.path-button:active {
+    transform: translateY(0);
+}
+
+.path-container {
+    position: relative;
+    width: 820px;
+    height: 620px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.path-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+@media (max-width: 1200px) {
+    .path-container {
+        width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .path-container {
+        height: 400px;
+    }
+    
+    .path-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .path-button {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+    }
+}
+
+/* Add or update styles for the animated GIF */
+.path-evolution-gif {
+    width: 100%;
+    max-width: 900px;   
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    margin: 3rem auto;
+    display: block;
+    /* Animation properties already set */
+    animation: fadeIn 1s ease-in;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
+}
+
+.path-evolution-gif:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Ensure proper mobile display */
+@media (max-width: 768px) {
+    .path-evolution-gif {
+        max-width: 95%;
+        margin: 2rem auto;
+    }
+    
+    .path-evolution-gif:hover {
+        transform: scale(1.02);
+    }
 }
 
