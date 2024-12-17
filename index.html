@@ -299,6 +299,9 @@
                     </div>
 
                     <div class="text-block">
+        
+                        <p>As we can see, there is a big cluster containing most of the articles that can be mutually reached. But there is still more than 500 articles (around 12%) that are either not reachable from any other article or that can't reach most articles.</p>
+
                         <p>Our goal is to make every article reachable from any starting point, enhancing the game's playability while preserving its core challenge. We'll focus on adding only the most essential connections - those that users naturally expect to find - rather than artificially flooding the network with links.</p>
                         
                         <p>Let's revisit our table of most frequent backtracks. The most common frustration point occurs between "Soybean" and "Bean", with 111 recorded backtracks. This suggests a missing connection that should be obvious to users.</p>
@@ -353,21 +356,24 @@
                         <p>This approach dramatically improved connectivity, but at a severe cost: it added 372,813 new links—more than quintupling the total number of connections in the network. Such a dense web of links would fundamentally change the nature of Wikispeedia, making it too easy to find connections and removing the creative challenge that makes the game engaging.</p>
                         
                         <p>This reveals an important tension in our mission: while we want to make the game more accessible by eliminating impossible paths, we must be careful not to sacrifice the core gameplay experience that makes Wikispeedia both challenging and rewarding.</p>
+
+                        <p>But is it even possible to make every article reachable from any starting point? Maybe there is an article that is so specific that it would make no sense to even try to connect it to other articles. To elucidate this, we decided to plot the embeddings of all articles (by reducing the dimensionality of the embeddings to 2 dimensions using t-SNE) and see if there are any completely isolated articles, especially words that are not in the main cluster.</p>
                     </div>
 
                     
 
                     <div class="interactive-graph-container">
                         <iframe src="assets/interactive/isolated_words.html" scrolling="no"></iframe>
-                        <p class="graph-caption">Graph:....</p>
+                        <p class="graph-caption">Figure: t-SNE visualization of article embeddings showing connected (blue) and isolated (red) articles in semantic space.</p>
                     </div>
                     <div class="text-block">
-                        <p>Above we see the semantic distribution of Wikispeedia articles projected into a 2D space. Each point represents an article, with blue dots showing connected articles and red dots highlighting isolated articles that are unreachable. </p>
+                        <p>Interestingly, the visualization reveals that there are no truly semantically isolated articles - even the currently disconnected articles (shown in red) are semantically similar to some connected articles (in blue), as evidenced by their proximity in the semantic space. This suggests that the current disconnections in the network are more a result of missing links rather than fundamental semantic incompatibility between articles.</p>
+                        <p>To be able to connect all articles, we devised an algoorithm that would, at each step, add a link between the isolated article that is the most similar to any article in the main cluster and this article of the main cluster. So the selected article (and articles connected to it) would now be part of the main cluster. We repeated this process until all articles were connected.</p>
                     </div>
 
                     <div class="interactive-graph-container">
                         <iframe src="assets/interactive/word_embeddings_with_links.html" scrolling="no"></iframe>
-                        <p class="graph-caption">Graph:....</p>
+                        <p class="graph-caption">Figure: t-SNE visualization of links added by our algorithm. They may not seem optimal since similarity in the reduced space is not necessarily the same as similarity in the original (3072-D) space.</p>
 
                     </div>
                     <div class="text-block">

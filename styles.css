@@ -1854,8 +1854,7 @@ header {
 .interactive-graph-container {
     width: 820px;      /* Reverted back to original size */
     height: 620px;     /* Reverted back to original size */
-    margin: 2rem auto; /* Reverted back to original margin */
-    background: rgba(255, 255, 255, 0.03);
+    margin: 2rem auto 4rem auto; /* Added more bottom margin */
     border-radius: 12px; /* Reverted to original radius */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
