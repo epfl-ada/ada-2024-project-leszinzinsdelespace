@@ -195,7 +195,7 @@
 
                     <!-- <div class="code-block">
                         <pre><span class="article-name">Édouard Manet</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Paul Cézanne'</span><span class="brackets">]</span>
-<span class="article-name">������engus I of the Picts</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Picts'</span><span class="brackets">]</span>
+<span class="article-name">engus I of the Picts</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Picts'</span><span class="brackets">]</span>
 <span class="article-name">€2 commemorative coins</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Euro'</span><span class="brackets">]</span>
 <span class="article-name">11th century</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Middle Ages'</span><span class="brackets">]</span>
 <span class="article-name">12th century</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Middle Ages'</span><span class="brackets">]</span>
@@ -362,12 +362,15 @@
                         <p class="graph-caption">Graph:....</p>
                     </div>
                     <div class="text-block">
-                        <p>Explain algorithm</p>
+                        <p>Above we see the semantic distribution of Wikispeedia articles projected into a 2D space. Each point represents an article, with blue dots showing connected articles and red dots highlighting isolated articles that are unreachable. </p>
                     </div>
 
                     <div class="interactive-graph-container">
                         <iframe src="assets/interactive/word_embeddings_with_links.html" scrolling="no"></iframe>
                         <p class="graph-caption">Graph:....</p>
+                        <div class="text-block">
+                            <p class="analysis-text">Now this is the same semantic space with our algorithm's proposed connections overlaid in red. These new links bridge semantic gaps while maintaining meaningful relationships between articles, strategically connecting isolated nodes to the main network without overwhelming it with unnecessary connections.</p>
+                        </div>
 
                     </div>
 
@@ -381,107 +384,13 @@
                     </div>
 
                     <div class="text-block">
-                        <p>This balanced approach achieved full connectivity while adding only 525 links. But do these new links make sense semantically? Let's examine some examples:</p>
-
-                        <h3>Links added first by our algorithm</h3>
-                        <table class="styled-table">
-                            <thead>
-                                <tr>
-                                    <th>Article 1</th>
-                                    <th>Article 2</th>
-                                    <th>Similarity</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Polish-Muscovite War (1605–1618)</td>
-                                    <td>Polish–Muscovite War (1605–1618)</td>
-                                    <td>0.977</td>
-                                </tr>
-                                <tr>
-                                    <td>The Bahamas</td>
-                                    <td>Bahamas</td>
-                                    <td>0.944</td>
-                                </tr>
-                                <tr>
-                                    <td>Cleopatra VII</td>
-                                    <td>Cleopatra VII of Egypt</td>
-                                    <td>0.927</td>
-                                </tr>
-                                <tr>
-                                    <td>European Goldfinch</td>
-                                    <td>European Greenfinch</td>
-                                    <td>0.817</td>
-                                </tr>
-                                <tr>
-                                    <td>List of countries</td>
-                                    <td>List of European countries</td>
-                                    <td>0.802</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <p>The highest-similarity connections are extremely intuitive - many are simply different names for the same concept or closely related species. These links are so natural that their absence from the original network seems more like an oversight than a deliberate choice.</p>
-
-                        <h3>Links added last by our algorithm</h3>
-                        <table class="styled-table">
-                            <thead>
-                                <tr>
-                                    <th>Article 1</th>
-                                    <th>Article 2</th>
-                                    <th>Similarity</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Romeo and Juliet</td>
-                                    <td>Julius and Ethel Rosenberg</td>
-                                    <td>0.336</td>
-                                </tr>
-                                <tr>
-                                    <td>Crohn's disease</td>
-                                    <td>Schatzki ring</td>
-                                    <td>0.333</td>
-                                </tr>
-                                <tr>
-                                    <td>Little Women</td>
-                                    <td>The Famous Five (characters)</td>
-                                    <td>0.330</td>
-                                </tr>
-                                <tr>
-                                    <td>Minimum wage</td>
-                                    <td>FairTax</td>
-                                    <td>0.313</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <p>Even the lower-similarity connections maintain some logical relationship - they connect articles within similar domains (literature, medical conditions, economic policy) while still requiring players to think creatively about the connections. This preserves the game's challenge while eliminating truly impossible paths.</p>
-
-                        <p>It's important to note that these limitations in connectivity are partly due to the nature of the dataset itself. Wikispeedia uses only a small subset of Wikipedia articles, which means that many potential intermediate articles that could provide more natural connections are simply not available in the game. For instance, while "Romeo and Juliet" and "Julius and Ethel Rosenberg" might be better connected through articles about "Famous couples" or "Tragic love stories", such bridging articles are not part of the Wikispeedia dataset.</p>
-
-                        <div class="graphs-container">
-                            <div class="graph-wrapper">
-                                <img src="assets/graphs/distribution_current_links.png" alt="Distribution of Current Links" class="graph">
-                                <p class="graph-caption">Figure: Distribution of existing links in the Wikispeedia network.</p>
-                            </div>
-                            <div class="graph-wrapper">
-                                <img src="assets/graphs/distribution_added_links.png" alt="Distribution of Added Links" class="graph">
-                                <p class="graph-caption">Figure: Distribution of links added by our algorithm.</p>
-                            </div>
-                        </div>
-
-                        <p>The distribution graphs above show how our added links complement the existing network structure, maintaining a similar pattern of connectivity while filling critical gaps in the network.</p>
+                        <p>The visualization above represents a remarkable achievement: we've successfully connected all 4,604 articles into a single strongly connected component. This means every article is now reachable from any other article, creating a fully navigable network. What's particularly impressive is that we achieved this with only 525 carefully chosen additional links - a mere fraction of the potential connections we could have added.</p>
+                        
+                        <p>The single green circle in the graph, labeled "4604", represents this unified network where all articles are mutually accessible. This is in stark contrast to the initial fragmented state we saw earlier, where many articles were isolated or part of disconnected components. Our selective approach to adding links has maintained the game's challenge while eliminating impossible paths.</p>
+                        
+                        <p>But do these new connections make sense semantically? Let's examine some examples:</p>
                     </div>
-                </div>
-            </div>
-        </section>
 
-        <section id="beyond" class="section">
-            <div class="text-container">
-                <h2 class="section-title">Beyond the broken links</h2>
-                
-                <div class="content-wrapper">
                     <div class="text-block">
                         <p class="analysis-text">
                             To truly understand how our fixes reshape the semantic landscape of Wikispeedia, we've created something special: a three-dimensional visualization of the article network in semantic space. By projecting each article into this space using embedding techniques, we can literally see how concepts cluster and connect. Watch as previously isolated articles find their natural homes in the semantic constellation, and witness how our carefully crafted links bridge the conceptual chasms that once frustrated players.
@@ -492,6 +401,39 @@
                         <iframe src="assets/interactive/isolated_words.html" scrolling="no"></iframe>
                         <p class="graph-caption">Graph:....</p>
                     </div>
+                    
+                    <div class="text-block">
+                        <p class="analysis-text">  
+                            As an added bonus, we have created the Wikispeedia Missing Link Research Tool, a resource designed to enhance both player experience and network design. By identifying potential missing links and areas of frustration, this tool provides actionable insights for improving the hyperlink network - and saving Christmas by letting Santa get to Christmas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="beyond" class="section">
+            <div class="text-container">
+                <div class="text-block">
+                    <p class="analysis-text">
+                       By looking at the semantic space, we can see that the new connections are bridging the gaps between semantically related articles. 
+                    </p>
+                </div>
+                <div class="interactive-graph-container">
+                    <iframe src="assets/interactive/isolated_words.html" scrolling="no"></iframe>
+                    <p class="graph-caption">Isolated articles in the 2D embedding space</p>
+                </div>
+
+                <h2 class="section-title">Beyond the broken links</h2>
+                
+            
+                <div class="content-wrapper">
+                    <div class="text-block">
+                        <p class="analysis-text">
+                            To truly understand how our fixes reshape the semantic landscape of Wikispeedia, we've created something special: a three-dimensional visualization of the article network in semantic space. By projecting each article into this space using embedding techniques, we can literally see how concepts cluster and connect. Watch as previously isolated articles find their natural homes in the semantic constellation, and witness how our carefully crafted links bridge the conceptual chasms that once frustrated players.
+                        </p>
+                    </div>
+
+                   
                     
                     <div class="text-block">
                         <p class="analysis-text">  
