@@ -2106,3 +2106,120 @@ body.modal-open {
     }
 }
 
+.criteria-box {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.03) 100%
+    );
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 2.5rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    width: calc(100% - 4rem);
+    text-align: left;
+    color: rgba(255, 255, 255, 0.9);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 0 0 20px rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Shine effect overlay */
+.criteria-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.criteria-box:hover {
+    transform: translateY(-5px) scale(1.02);
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.08) 0%,
+        rgba(255, 255, 255, 0.04) 100%
+    );
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        inset 0 0 30px rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.criteria-box:hover::before {
+    left: 100%;
+}
+
+.criteria-box h3 {
+    color: #ff1f71;
+    margin: 0 0 1rem 0;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 10px rgba(255, 31, 113, 0.3);
+}
+
+.criteria-box p {
+    margin: 0;
+    line-height: 1.6;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: none;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
+.criteria-box .criteria-list {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+    list-style-type: decimal;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.criteria-box .criteria-list li {
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+    font-size: 1.2rem;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1024px) {
+    .criteria-box {
+        margin: 2rem 2rem;
+        padding: 2rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .criteria-box {
+        width: calc(100% - 3rem);
+        margin: 2rem auto;
+        padding: 1.5rem;
+    }
+    
+    .criteria-box h3 {
+        font-size: 1.75rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .criteria-box {
+        width: calc(100% - 2rem);
+        margin: 1.5rem auto;
+        padding: 1.25rem;
+    }
+}
+

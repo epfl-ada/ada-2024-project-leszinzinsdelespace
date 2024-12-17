@@ -59,7 +59,8 @@
                 <div class="content-wrapper">
                     <div class="text-block">
                         <p class="lead">Wikispeedia lets users chase connections between ideas - but sometimes, the path to victory vanishes unexpectedly. Players think they're close, only to hit dead-ends where crucial links are missing.</p>
-                        <p>Imagine starting on "Bob Dylan," aiming for "Christmas," and wandering through "Winter," "Snow," and "Santa Claus" - only to find "Christmas" doesn't exist. The game reveals the fascinating (and frustrating) gaps in how we connect concepts.</p>
+                        <p>Imagine starting on "Bob Dylan," aiming for "Christmas," and wandering through "Winter," "Snow," and "Santa Claus" - only to find "Christmas" doesn't exist.</p>
+                        <p>The game reveals the fascinating (and frustrating) gaps in how we connect concepts.</p>
                     </div>
                     <div class="subtitle-container">
                         <h3 class="pink-subtitle">The Ups and Downs of Wikispeedia</h3>
@@ -89,6 +90,7 @@
                     </div>
                     <div class="text-block">
                         <p>If a game drags on too long, frustration can build as players wait longer for the rewarding sense of completion. As illustrated in the graph above, there is a noticeable correlation between the frequency of backtracking and overall game duration: each backtrack adds an average of 43 seconds to the game time.</p>
+                        <p> More interestingly, we can see that the more backtracks a game has, the more likely it is that the user will give a "difficult" rating to the game.</p>
                     </div>
                 </div>
             </div>
@@ -101,6 +103,7 @@
                     <div class="text-block">
                         <p class="lead">These recurring patterns of visibly frustrated user behavior stem from the fact that there seem to be unexpected dead-ends and unreachable targets. A simple analysis of the pages at which players backtrack most often shows that backtracking is associated with closely related concepts not being linked together in the hyperlink network.</p>
                         <p>Upon close inspection of certain paths, we notice that some target articles do not exist at all, forcing the user to repeatedly think they are very close to the target, only to find themselves having to backtrack.</p>
+                        <p> For example, the most frequent backtrack in our dataset is from "Soybean" when "Bean" is the target, with 111 recorded backtracks.</p>
                     </div>
                     <div id="backtrack-table" >
                         <div class="text-container">
@@ -221,7 +224,7 @@
                     </div> -->
 
                     <div class="text-block">
-                        <p class="analysis-text">If we take a closer look at the infamous "Bob Dylan" to "Christmas" game, we stumble upon something very interesting: the ups and downs in cosine similarity along the path reveal critical moments of coherence and disconnection. The fluctuations show that certain transitions between articles are semantically smooth, marked by high similarity scores, while others involve abrupt drops, indicating potential cognitive roadblocks for players.</p>
+                        <p class="analysis-text">We thought it might be interesting to compute the cosine similarity for every position in the path of every game. If we take a closer look at the infamous "Bob Dylan" to "Christmas" game, we stumble upon something very interesting: the ups and downs in cosine similarity along the path reveal critical moments of coherence and disconnection. The fluctuations show that certain transitions between articles are semantically smooth, marked by high similarity scores, while others involve abrupt drops, indicating potential cognitive roadblocks for players.</p>
                     </div>
 
                     <div class="graph-container">
@@ -232,7 +235,7 @@
                     <div class="text-block">
                         <p class="analysis-text">For instance, the sudden rise in similarity around "A Christmas Carol" suggests a clear connection to the target topic, providing players with a sense of progress. On the other hand, sharp dips, such as transitions to unrelated concepts like "Domesticated Turkey" or "Roman Britain," highlight moments where players might feel lost or misdirected. These valleys in similarity likely represent key frustration points, where the semantic bridge between concepts feels incomplete or unintuitive.</p>
                         
-                        <p class="analysis-text">These patterns tell a story of how players navigate conceptual leaps, with peaks offering clear guidance and troughs reflecting moments of struggle.</p>
+                        <p class="analysis-text">These patterns tell us a story: a story of how players navigate conceptual leaps, with peaks offering clear guidance and troughs reflecting moments of struggle.</p>
                         
                         <p class="analysis-text insight-question">So it might be interesting to look at the cosine similarity for every position in other paths - perhaps a common pattern will emerge?</p>
                     </div>
@@ -243,7 +246,7 @@
                     </div>
 
                     <div class="text-block">
-                        <p class="analysis-text smaller">It seems like we are onto something. It might be interesting to compare the paths, adjusting for path length.</p>
+                        <p class="analysis-text smaller">It seems like we are onto something. It might be interesting to compare the paths, adjusting for path length:</p>
                     </div>
 
                     <div class="graph-container">
@@ -261,7 +264,7 @@
                     </div>
 
                     <div class="text-block">
-                        <p class="analysis-text">Sometimes a dead-end might be due to the correct link being "hidden" in the article page - analysis shows that players consistently click on the first links.</p>
+                        <p class="analysis-text"> Perhaps a dead-end might be due to the correct link being "hidden" in the article page? Analysis shows that players consistently click on the first links appearing in each article.</p>
                     </div>
 
                     <div class="graph-container">
@@ -270,13 +273,12 @@
                     </div>
 
                     <div class="text-block">
-                        <p class="analysis-text">Our analysis uncovers a fascinating pattern in the endgame stage—even in unfinished paths. By zooming in on the highest similarity point within each game and the final eight moves leading up to it, we can piece together several intriguing scenarios for every Wikispeedia game:</p>
+                        <p class="analysis-text"> By looking at the different types of game paths, we can classify each game into one of four categories:</p>
 
                         <ul class="analysis-list">
-                            <li><strong>Lost Player</strong>: The player explores validly but doesn't break a cosine similarity (CS) threshold of 0.3.</li>
+                            <li><strong> Lost Player</strong>: The player explores validly but doesn't break a cosine similarity (CS) threshold of 0.3.</li>
                             <li><strong>Frustrated Player</strong>: They reach a high CS (>0.3) but hit a dead-end due to missing links, blocking progress.</li>
                             <li><strong>Unobservant Player</strong>: A key link exists (CS > 0.3) but is overlooked and not clicked. This hints at interface design improvements.</li>
-                            <li><strong>Player Messing Around</strong>: They navigate aimlessly, forming circular paths with no real progress, indicating data to filter or clean.</li>
                             <li><strong>Victorious Player</strong>: They reach the target, offering insights into optimal navigation.</li>
                         </ul>
                     </div>
@@ -310,15 +312,18 @@
                             </blockquote>
                         </div>
                         
-                        <p>The word "bean" explicitly appears in the article, yet there's no hyperlink to the Bean page! This is a clear example of a missing semantic connection - the link should exist but was simply overlooked during the wiki's creation. Such oversights, while small, may significantly impact user experience and navigation patterns.</p>
+                        <p>The word "bean" explicitly appears in the article, yet there's no hyperlink to the Bean page! This is a clear example of a missing semantic connection - the link should exist but was simply overlooked during the network's creation. Such oversights, while small, may significantly impact user experience and navigation patterns.</p>
                     </div>
 
                     <div class="text-block">
-                        <p>Using this insight, we developed a systematic approach: add a link between articles when:</p>
-                        <ol class="criteria-list">
-                            <li>The name of one article appears in the content of another, and</li>
-                            <li>The two articles have a strong semantic similarity (cosine similarity > 0.5)</li>
-                        </ol>
+                        <div class="criteria-box">
+                            <h3>Link Addition Criteria</h3>
+                            <p>Using this insight, we developed a systematic approach: add a link between articles when:</p>
+                            <ol class="criteria-list">
+                                <li>The name of one article appears in the content of another, and</li>
+                                <li>The two articles have a strong semantic similarity (cosine similarity > 0.5)</li>
+                            </ol>
+                        </div>
                         
                         <p>This approach ensures we only add links that are both contextually relevant and semantically meaningful.</p>
                     </div>
@@ -326,6 +331,10 @@
                     <div class="graph-container">
                         <img src="assets/graphs/strong_similarity_inarticle_strongly_connected.png" alt="Network Connectivity After Adding Semantic Links" class="graph">
                         <p class="graph-caption">Figure: Network connectivity after adding links based on article content and semantic similarity. The main connected component grew from 4,051 to 4,100 articles.</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p>The graph above visualizes the network structure after implementing our semantic similarity-based link additions.
                     </div>
 
                     <div class="text-block">
@@ -475,7 +484,20 @@
                 
                 <div class="content-wrapper">
                     <div class="text-block">
-                        <p class="analysis-text">As an added bonus, we have created the Wikispeedia Missing Link Research Tool, a resource designed to enhance both player experience and network design. By identifying potential missing links and areas of frustration, this tool provides actionable insights for improving the hyperlink network - and saving Christmas by letting Santa get to Christmas.</p>
+                        <p class="analysis-text">
+                            To truly understand how our fixes reshape the semantic landscape of Wikispeedia, we've created something special: a three-dimensional visualization of the article network in semantic space. By projecting each article into this space using embedding techniques, we can literally see how concepts cluster and connect. Watch as previously isolated articles find their natural homes in the semantic constellation, and witness how our carefully crafted links bridge the conceptual chasms that once frustrated players.
+                        </p>
+                    </div>
+
+                    <div class="interactive-graph-container">
+                        <iframe src="assets/interactive/isolated_words.html" scrolling="no"></iframe>
+                        <p class="graph-caption">Graph:....</p>
+                    </div>
+                    
+                    <div class="text-block">
+                        <p class="analysis-text">  
+                            As an added bonus, we have created the Wikispeedia Missing Link Research Tool, a resource designed to enhance both player experience and network design. By identifying potential missing links and areas of frustration, this tool provides actionable insights for improving the hyperlink network - and saving Christmas by letting Santa get to Christmas.
+                        </p>
                     </div>
                 </div>
             </div>
