@@ -362,7 +362,7 @@
                         <p class="graph-caption">Graph:....</p>
                     </div>
                     <div class="text-block">
-                        <p>Explain algorithm</p>
+                        <p>Above we see the semantic distribution of Wikispeedia articles projected into a 2D space. Each point represents an article, with blue dots showing connected articles and red dots highlighting isolated articles that are unreachable. </p>
                     </div>
 
                     <div class="interactive-graph-container">
@@ -370,8 +370,9 @@
                         <p class="graph-caption">Graph:....</p>
 
                     </div>
-
                     <div class="text-block">
+                        <p class="analysis-text">Now this is the same semantic space with our algorithm's proposed connections overlaid in red. These new links bridge semantic gaps while maintaining meaningful relationships between articles, strategically connecting isolated nodes to the main network without overwhelming it with unnecessary connections.</p>
+                
                         <p>By carefully balancing semantic similarity and network structure, we developed an optimized approach that achieves full connectivity while preserving the game's challenge.</p>
                     </div>
 
@@ -381,8 +382,13 @@
                     </div>
 
                     <div class="text-block">
-                        <p>This balanced approach achieved full connectivity while adding only 525 links. But do these new links make sense semantically? Let's examine some examples:</p>
-
+                        <p>The visualization above represents a remarkable achievement: we've successfully connected all 4,604 articles into a single strongly connected component. This means every article is now reachable from any other article, creating a fully navigable network. What's particularly impressive is that we achieved this with only 525 carefully chosen additional links - a mere fraction of the potential connections we could have added.</p>
+                        
+                        <p>The single green circle in the graph, labeled "4604", represents this unified network where all articles are mutually accessible. This is in stark contrast to the initial fragmented state we saw earlier, where many articles were isolated or part of disconnected components. Our selective approach to adding links has maintained the game's challenge while eliminating impossible paths.</p>
+                        
+                        <p>But do these new connections make sense semantically? Let's examine some examples:</p>
+                    </div>
+                    <div class="text-block">
                         <h3>Links added first by our algorithm</h3>
                         <table class="styled-table">
                             <thead>
@@ -488,16 +494,13 @@
                         </p>
                     </div>
 
-                    <div class="interactive-graph-container">
-                        <iframe src="assets/interactive/isolated_words.html" scrolling="no"></iframe>
-                        <p class="graph-caption">Graph:....</p>
-                    </div>
                     
-                    <div class="text-block">
+                    
+                    <!-- <div class="text-block">
                         <p class="analysis-text">  
                             As an added bonus, we have created the Wikispeedia Missing Link Research Tool, a resource designed to enhance both player experience and network design. By identifying potential missing links and areas of frustration, this tool provides actionable insights for improving the hyperlink network - and saving Christmas by letting Santa get to Christmas.
                         </p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>
