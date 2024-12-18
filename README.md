@@ -82,11 +82,5 @@ We did create additional datasets ourselves: embeddings - we embedded each artic
 | Elena | X | X |  |  | X | X |
 | Tania | X | X | X |  | X | X |
 
-## Questions for TAs (optional)
-
-- Is our analysis deep enough or is it too superficial ? How far should we go ?
-- Is there something obvious and fundamental in our reasoning and analysis that we have missed ?
-- How can we quantitatively distinguish between missing semantic links versus expected detours in user navigation? Are there recommended benchmarks or thresholds for identifying a "critical missing link" in a network?
-- Are there established metrics in information-seeking literature that could help quantify user frustration more robustly? Would incorporating path completion times enhance our analysis?
 
 ---
