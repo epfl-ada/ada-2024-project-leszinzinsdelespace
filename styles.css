@@ -2300,3 +2300,65 @@ body.modal-open {
     margin-bottom: 0;
 }
 
+.model-info-btn {
+    background: rgba(255, 31, 113, 0.1);
+    border: 1px solid rgba(255, 31, 113, 0.2);
+    color: var(--text-color);
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+.hover-hint {
+    opacity: 0.7;
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+}
+
+.model-info-content {
+    position: absolute;
+    background: rgba(10, 25, 47, 0.95);
+    border: 1px solid rgba(255, 31, 113, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    transform: translateY(10px);
+    z-index: 100;
+    margin-top: 1rem;
+}
+
+.model-info-btn:hover {
+    background: rgba(255, 31, 113, 0.2);
+}
+
+.model-info-btn:hover + .model-info-content,
+.model-info-content:hover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.model-info-content ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.model-info-content li {
+    margin: 0.5rem 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.model-info-content p {
+    margin: 0.5rem 0;
+    line-height: 1.6;
+}
+
