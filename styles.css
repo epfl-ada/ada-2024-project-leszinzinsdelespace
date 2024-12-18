@@ -2222,3 +2222,81 @@ body.modal-open {
     }
 }
 
+.emotion-insight {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 31, 113, 0.05) 0%,
+        rgba(255, 142, 83, 0.05) 100%
+    );
+    border-radius: 16px;
+    padding: 2rem;
+    margin: 2rem 0;
+    border: 1px solid rgba(255, 31, 113, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.emotion-insight:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 10px 20px rgba(255, 31, 113, 0.1),
+        0 6px 6px rgba(0, 0, 0, 0.1);
+    border-color: rgba(255, 31, 113, 0.2);
+    background: linear-gradient(
+        135deg,
+        rgba(255, 31, 113, 0.08) 0%,
+        rgba(255, 142, 83, 0.08) 100%
+    );
+}
+
+/* Add shine effect on hover */
+.emotion-insight::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.03),
+        transparent
+    );
+    transform: rotate(45deg);
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+.emotion-insight:hover::after {
+    opacity: 1;
+}
+
+.emotion-insight h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.emotion-insight:hover h3 {
+    color: #ff4081; /* Slightly brighter shade on hover */
+}
+
+.emotion-insight p {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+.emotion-insight:hover p {
+    color: rgba(255, 255, 255, 1);
+}
+
+.emotion-insight p:last-child {
+    margin-bottom: 0;
+}
+
