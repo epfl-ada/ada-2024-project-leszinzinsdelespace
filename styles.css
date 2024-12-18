@@ -2362,3 +2362,15 @@ body.modal-open {
     line-height: 1.6;
 }
 
+.graph-explanation {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 1rem 0 2rem 0;
+    padding: 0 1rem;
+    max-width: 600px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
