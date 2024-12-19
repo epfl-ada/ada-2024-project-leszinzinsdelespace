@@ -4,7 +4,7 @@
 ## Quick Start 🚀
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/yourproject.git
+git clone https://github.com/epfl-ada/ada-2024-project-leszinzinsdelespace.git
 
 # Change into the project directory
 cd yourproject
