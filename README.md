@@ -90,14 +90,12 @@ We did create additional datasets ourselves: embeddings - we embedded each artic
 
 ## Project Structure
 
-The directory structure of our project looks like this:
-
-├── data                                    <- Project data files
-├── assets                                  <- Static assets
+├── data                           <- Project data files
+├── assets                         <- Static assets
 │   ├── ada.svg
 │   ├── algo_animation.gif
 │   ├── dataset.svg
-│   ├── graphs/
+│   ├── graphs/                    <- Graphical representations
 │   │   ├── averageratingvsbacktracks.png
 │   │   ├── distribution_added_links.png
 │   │   ├── distribution_current_links.png
@@ -105,22 +103,14 @@ The directory structure of our project looks like this:
 │   │   ├── initial_strongly_connected.png
 │   │   ├── mediangamedurationvsbacktracks.png
 │   │   └── strong_similarity_inarticle_strongly_connected.png
-│   ├── interactive/
+│   ├── interactive/               <- Interactive visualizations
 │   │   ├── isolated_words.html
 │   │   └── word_embeddings_with_links.html
 │   ├── partiemaudite.png
 │   ├── path_evolution.gif
 │   ├── path_to_christmas.png
 │   └── paths_adjusted_for_length.png
-├── index.html                             <- Main webpage
-├── script.js                              <- JavaScript functionality
-├── styles.css                             <- CSS styling
-└── README.md                              <- Project documentation
-
-This structure shows the organization of our website:
-- `data/`: Contains the project data files
-- `assets/`: Contains all static assets including images, animations, and interactive visualizations
-- `index.html`: Main webpage file
-- `script.js`: JavaScript code for website functionality
-- `styles.css`: CSS styling rules
-
+├── index.html                     <- Main webpage
+├── script.js                      <- JavaScript functionality
+├── styles.css                     <- CSS styling
+└── README.md                      <- Project documentation
