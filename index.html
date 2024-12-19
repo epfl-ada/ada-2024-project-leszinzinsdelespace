@@ -90,6 +90,7 @@
                     <div class="graphs-container">
                         <div class="graph-wrapper">
                             <img src="assets/graphs/mediangamedurationvsbacktracks.png" alt="Median Game Duration vs Backtracks" class="graph">
+<<<<<<< Updated upstream
                             <p class="graph-caption">Figure 1: Relationship between game duration and number of backtracks</p>
                             <p class="graph-explanation">Each backtrack adds approximately 43 seconds to game duration. This suggests that when players hit dead ends, they spend significant time reconsidering their strategy before trying a new path.</p>
                         </div>
@@ -97,6 +98,25 @@
                             <img src="assets/graphs/averageratingvsbacktracks.png" alt="Average Rating vs Backtracks" class="graph">
                             <p class="graph-caption">Figure 2: Impact of backtracks on user ratings</p>
                             <p class="graph-explanation">Games with more backtracks are consistently rated as more difficult by users. The trend suggests that unexpected dead ends and path revisions significantly impact the perceived challenge of the game.</p>
+=======
+                            <p class="graph-caption">Figure 1: Relationship between game duration and number of backtracks.</p>
+                            <button class="model-info-btn">
+                                What does this mean? <span class="hover-hint">(hover to learn more)</span>
+                            </button>
+                            <div class="model-info-content">
+                                <p>This graph shows a clear correlation: each backtrack adds approximately 43 seconds to game duration. This suggests that when players hit dead ends, they spend significant time reconsidering their strategy before trying a new path.</p>
+                            </div>
+                        </div>
+                        <div class="graph-wrapper">
+                            <img src="assets/graphs/averageratingvsbacktracks.png" alt="Average Rating vs Backtracks" class="graph">
+                            <p class="graph-caption">Figure 2: Impact of backtracks on user ratings.</p>
+                            <button class="model-info-btn">
+                                What does this mean? <span class="hover-hint">(hover to learn more)</span>
+                            </button>
+                            <div class="model-info-content">
+                                <p>This visualization reveals that games with more backtracks are consistently rated as more difficult by users. The trend suggests that unexpected dead ends and path revisions significantly impact the perceived challenge of the game.</p>
+                            </div>
+>>>>>>> Stashed changes
                         </div>
                     </div>
                     <div class="time-highlight">
@@ -299,6 +319,12 @@
                     <div class="graph-container">
                         <img src="assets/distrib.png" alt="Link Distribution Analysis" class="graph smaller">
                         <p class="graph-caption">Figure: Distribution of clicked links by position in article</p>
+                        <button class="model-info-btn">
+                            What does this mean? <span class="hover-hint">(hover to learn more)</span>
+                        </button>
+                        <div class="model-info-content">
+                            <p>This distribution shows that players heavily favor links appearing at the beginning of articles. This behavior suggests that important connections might be overlooked simply because they appear later in the text, potentially contributing to perceived dead-ends.</p>
+                        </div>
                     </div>
 
                     <div class="text-block">
@@ -325,8 +351,18 @@
 
                     <div class="graph-container">
                         <img src="assets/graphs/initial_strongly_connected.png" alt="Initial Network Connectivity Analysis" class="graph">
+<<<<<<< Updated upstream
                         <p class="graph-caption">Initial state of Wikispeedia's network</p>
                         <p class="graph-explanation">The large circle (4,051 articles) represents interconnected pages, while smaller circles show isolated articles that can't be reached from the main network, making some games impossible to complete.</p>
+=======
+                        <p class="graph-caption">Figure: Analysis of the initial network connectivity in Wikispeedia.</p>
+                        <button class="model-info-btn">
+                            What does this mean? <span class="hover-hint">(hover to learn more)</span>
+                        </button>
+                        <div class="model-info-content">
+                            <p>This graph shows the initial state of Wikispeedia's network. The large circle (4,051 articles) represents interconnected pages, while smaller circles show isolated articles that can't be reached from the main network, making some games impossible to complete.</p>
+                        </div>
+>>>>>>> Stashed changes
                     </div>
 
                     <div class="text-block">
@@ -363,8 +399,18 @@
 
                     <div class="graph-container">
                         <img src="assets/graphs/strong_similarity_inarticle_strongly_connected.png" alt="Network Connectivity After Adding Semantic Links" class="graph">
+<<<<<<< Updated upstream
                         <p class="graph-caption">Network connectivity after adding semantic links</p>
                         <p class="graph-explanation">After adding links based on semantic similarity, the main connected component grew to 4,100 articles. While this is an improvement, it shows that semantic similarity alone isn't enough to fully connect the network.</p>
+=======
+                        <p class="graph-caption">Figure: Network connectivity after adding semantic links.</p>
+                        <button class="model-info-btn">
+                            What does this mean? <span class="hover-hint">(hover to learn more)</span>
+                        </button>
+                        <div class="model-info-content">
+                            <p>After adding links based on semantic similarity, the main connected component grew to 4,100 articles. While this is an improvement, it shows that semantic similarity alone isn't enough to fully connect the network.</p>
+                        </div>
+>>>>>>> Stashed changes
                     </div>
 
                     <div class="text-block">
@@ -381,8 +427,18 @@
 
                     <div class="graph-container">
                         <img src="assets/graphs/all_inarticle_strongly_connected.png" alt="Network Connectivity with All In-Article Links" class="graph">
+<<<<<<< Updated upstream
                         <p class="graph-caption">Network connectivity with all possible in-article links</p>
                         <p class="graph-explanation">Adding all possible in-article links creates an overwhelmingly connected network. While only 17 articles remain isolated, the addition of 372,813 new links would make the game too easy and lose its educational value.</p>
+=======
+                        <p class="graph-caption">Figure: Network connectivity with all possible in-article links.</p>
+                        <button class="model-info-btn">
+                            What does this mean? <span class="hover-hint">(hover to learn more)</span>
+                        </button>
+                        <div class="model-info-content">
+                            <p>Adding all possible in-article links creates an overwhelmingly connected network. While only 17 articles remain isolated, the addition of 372,813 new links would make the game too easy and lose its educational value.</p>
+                        </div>
+>>>>>>> Stashed changes
                     </div>
 
                     <div class="text-block">
@@ -417,8 +473,18 @@
 
                     <div class="graph-container">
                         <img src="assets/graphs/final_strongly_connected.png" alt="Final Network Connectivity" class="graph">
+<<<<<<< Updated upstream
                         <p class="graph-caption">Final optimized network connectivity</p>
                         <p class="graph-explanation">Our optimized approach successfully connected all 4,604 articles with just 525 carefully chosen new links. This achieves full connectivity while preserving the game's challenge, creating a balance between playability and difficulty.</p>
+=======
+                        <p class="graph-caption">Figure: Final optimized network connectivity.</p>
+                        <button class="model-info-btn">
+                            What does this mean? <span class="hover-hint">(hover to learn more)</span>
+                        </button>
+                        <div class="model-info-content">
+                            <p>Our optimized approach successfully connected all 4,604 articles with just 525 carefully chosen new links. This achieves full connectivity while preserving the game's challenge, creating a balance between playability and difficulty.</p>
+                        </div>
+>>>>>>> Stashed changes
                     </div>
 
                     <div class="text-block">
