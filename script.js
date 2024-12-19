@@ -23,6 +23,9 @@ class AudioPlayer {
         navigator.mediaDevices.addEventListener('devicechange', () => {
             this.handleDeviceChange();
         });
+
+        // Add reference to logo
+        this.logo = document.querySelector('.logo');
     }
 
     // Add a shuffle method
@@ -78,6 +81,8 @@ class AudioPlayer {
     togglePlayPause() {
         if (!this.audio.src) {
             this.loadAndPlaySong(this.currentSongIndex);
+            // Make logo dance when music starts
+            this.startLogoDance();
             return;
         }
 
@@ -85,11 +90,13 @@ class AudioPlayer {
             this.audio.pause();
             this.playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
             this.updateControlsVisibility(false);
+            this.stopLogoDance();
         } else {
             this.audio.play()
                 .then(() => {
                     this.playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
                     this.updateControlsVisibility(true);
+                    this.startLogoDance();
                 })
                 .catch(error => {
                     console.error('Error playing audio:', error);
@@ -100,6 +107,16 @@ class AudioPlayer {
                 });
         }
         this.isPlaying = !this.isPlaying;
+    }
+
+    startLogoDance() {
+        // Add dancing animation class
+        this.logo.classList.add('dancing');
+    }
+
+    stopLogoDance() {
+        // Remove dancing animation class
+        this.logo.classList.remove('dancing');
     }
 
     loadAndPlaySong(index) {
@@ -506,4 +523,19 @@ class PathVisualizer {
 // Initialize the path visualizer when the DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new PathVisualizer();
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const logo = document.querySelector('.logo');
+    
+    logo.addEventListener('click', function() {
+        // Remove the class if it exists to reset the animation
+        this.classList.remove('spinning');
+        
+        // Trigger reflow to restart the animation
+        void this.offsetWidth;
+        
+        // Add the class back to start the animation
+        this.classList.add('spinning');
+    });
 });

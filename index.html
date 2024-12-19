@@ -106,7 +106,15 @@
                         </div>
                         <p class="time-caption">Each backtrack adds an average of 43 seconds to the game time, significantly extending the duration of play and potentially increasing player frustration.</p>
                     </div>
-                    <p class="analysis-text">More interestingly, we can see that the more backtracks a game has, the more likely it is that the user will give a "difficult" rating to the game.</p>
+                    <div class="time-highlight">
+                        <div style="display: flex; align-items: flex-end;">
+                            <span class="time-number difficult">difficult</span>
+                        </div>
+                        <p class="time-caption">Games with more backtracks are consistently rated as more difficult by users, showing a direct correlation between navigation challenges and perceived game complexity.</p>
+                    </div>
+                    <div class="frustration-highlight">
+                        These metrics point to clear patterns of user frustration and disengagement
+                    </div>
                 </div>
             </div>
         </section>
@@ -206,7 +214,7 @@
                 
                 <div class="content-wrapper">
                     <div class="text-block">
-                        <p>These patterns of frustration aren't random - they point to something deeper in how our minds connect ideas versus how Wikispeedia's network is structured. To understand this disconnect, we need to look beyond simple link counting and into the semantic relationships between articles.</p>
+                        <p> To understand the disconnect between the user's mental model and the game's structure, we need to look beyond simple link counting and into the semantic relationships between articles.</p>
                     </div>
 
                     <!-- <div class="code-block">
@@ -239,26 +247,16 @@
                     </div> -->
 
                     <div class="text-block">
-                        <p class="analysis-text">We thought it might be interesting to compute the cosine similarity for every position in the path of every game. If we take a closer look at the infamous "Bob Dylan" to "Christmas" game, we stumble upon something very interesting: the ups and downs in cosine similarity along the path reveal critical moments of coherence and disconnection. The fluctuations show that certain transitions between articles are semantically smooth, marked by high similarity scores, while others involve abrupt drops, indicating potential cognitive roadblocks for players.</p>
+                        <p class="analysis-text">We thought it might be interesting to compute the cosine similarity for every position in the path of every game. If we take a closer look at the infamous "Bob Dylan" to "Christmas" game, we stumble upon something very interesting: the ups and downs in cosine similarity along the path reveal moments of coherence and disconnection. The fluctuations show that certain transitions between articles are semantically smooth, marked by high similarity scores, while others involve abrupt drops, indicating dead-ends and frustration. </p>
+                    </div>
+
+                    <div class="text-block">
+                        <p class="analysis-text">We evaluated several embedding models (BERT, GloVe, and OpenAI) on this specific path. OpenAI's embeddings proved superior in capturing nuanced relationships between conceptually related articles (e.g., "Winter" → "Christmas") and providing more consistent similarity scores across different semantic domains.</p>
                     </div>
 
                     <div class="graph-container">
                         <img src="assets/path_to_christmas.png" alt="Path to Christmas Analysis" class="graph">
-                        <div class="arrow-highlight"></div>
                         <p class="graph-caption">Figure: Analysis of semantic distance from target in final steps</p>
-                        
-                        <button class="model-info-btn">
-                            Why OpenAI embeddings? <span class="hover-hint">(hover to learn more)</span>
-                        </button>
-                        
-                        <div class="model-info-content">
-                            <p>We evaluated several embedding models (BERT, GloVe, and OpenAI) on this specific path. OpenAI's embeddings proved superior by:</p>
-                            <ul>
-                                <li>Capturing nuanced relationships between conceptually related articles (e.g., "Winter" → "Christmas")</li>
-                                <li>Providing more consistent similarity scores across different semantic domains</li>
-                                <li>Better reflecting human intuition about concept relationships</li>
-                            </ul>
-                        </div>
                     </div>
 
                     <div class="text-block">
@@ -289,11 +287,15 @@
 
                     <div class="graph-container">
                         <img src="assets/distance_from_end.png" alt="Distance from End Analysis" class="graph smaller">
+                        <div class="arrow-highlight"></div>
                         <p class="graph-caption">Figure: Analysis of semantic distance from target in final steps</p>
                     </div>
 
                     <div class="text-block">
-                        <p class="analysis-text"> Perhaps a dead-end might be due to the correct link being "hidden" in the article page? Analysis shows that players consistently click on the first links appearing in each article.</p>
+                        <p class="analysis-text"> It looks like the semantic distance at a certain point in a path does not change between finished and unfinished paths. Why is this fascinating? Because it points to an unexpected and illogical event that leads to a player losing - it's not the distance to the target that matters, but the hyperlink network structure.</p>
+                    </div>
+                    <div class="text-block">
+                        <p class="analysis-text"> There might be an alterantive explanation: perhaps a dead-end might be due to the correct link being "hidden" in the article page? Analysis shows that players consistently click on the first links appearing in each article.</p>
                     </div>
 
                     <div class="graph-container">
@@ -302,14 +304,99 @@
                     </div>
 
                     <div class="text-block">
+                        <p class="analysis-text"> However, by checking for the presence of the correct link in each article, we can see that this does not account for the majority of dead-ends.</p>
+                    </div>
+
+                    <div class="text-block">
                         <p class="analysis-text"> By looking at the different types of game paths, we can classify each game into one of four categories:</p>
 
-                        <ul class="analysis-list">
-                            <li><strong> Lost Player</strong>: The player explores validly but doesn't break a cosine similarity (CS) threshold of 0.3.</li>
-                            <li><strong>Frustrated Player</strong>: They reach a high CS (>0.3) but hit a dead-end due to missing links, blocking progress.</li>
-                            <li><strong>Unobservant Player</strong>: A key link exists (CS > 0.3) but is overlooked and not clicked. This hints at interface design improvements.</li>
-                            <li><strong>Victorious Player</strong>: They reach the target, offering insights into optimal navigation.</li>
-                        </ul>
+                        <div class="player-cards">
+                            <div class="player-card lost">
+                                <div class="player-card-content">
+                                    <div class="card-icon">😕</div>
+                                    <h3>Lost Player</h3>
+                                    <p>The player explores validly but doesn't break a cosine similarity threshold of 0.3.</p>
+                                </div>
+                                
+                                <div class="similarity-indicator">
+                                    <div class="cosine-label">Cosine Similarity</div>
+                                    <div class="cs-viz-container">
+                                        <div class="cs-viz wandering">
+                                            <div class="cs-bar"></div>
+                                            <div class="cs-marker">0.3</div>
+                                            <div class="cs-current">●</div>
+                                            <div class="cs-scale start">0</div>
+                                            <div class="cs-scale end">1</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="player-card frustrated">
+                                <div class="player-card-content">
+                                    <div class="card-icon">😤</div>
+                                    <h3>Frustrated Player</h3>
+                                    <p>They reach a high cosine similarity (>0.3) but hit a dead-end due to missing links, blocking progress.</p>
+                                </div>
+                                
+                                <div class="similarity-indicator">
+                                    <div class="cosine-label">Cosine Similarity</div>
+                                    <div class="cs-viz-container">
+                                        <div class="cs-viz blocked">
+                                            <div class="cs-bar"></div>
+                                            <div class="cs-marker">0.3</div>
+                                            <div class="cs-current">●</div>
+                                            <div class="cs-block" style="left: 60%">✕</div>
+                                            <div class="cs-scale start">0</div>
+                                            <div class="cs-scale end">1</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="player-card unobservant">
+                                <div class="player-card-content">
+                                    <div class="card-icon">🤔</div>
+                                    <h3>Unobservant Player</h3>
+                                    <p>A key link exists (cosine similarity > 0.3) but is overlooked and not clicked. This hints at interface design improvements.</p>
+                                </div>
+                                
+                                <div class="similarity-indicator">
+                                    <div class="cosine-label">Cosine Similarity</div>
+                                    <div class="cs-viz-container">
+                                        <div class="cs-viz missed">
+                                            <div class="cs-bar"></div>
+                                            <div class="cs-marker">0.3</div>
+                                            <div class="cs-current">●</div>
+                                            <div class="cs-missed" style="left: 60%">○</div>
+                                            <div class="cs-scale start">0</div>
+                                            <div class="cs-scale end">1</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="player-card victorious">
+                                <div class="player-card-content">
+                                    <div class="card-icon">🎉</div>
+                                    <h3>Victorious Player</h3>
+                                    <p>They reach the target, offering insights into optimal navigation.</p>
+                                </div>
+                                
+                                <div class="similarity-indicator">
+                                    <div class="cosine-label">Cosine Similarity</div>
+                                    <div class="cs-viz-container">
+                                        <div class="cs-viz success">
+                                            <div class="cs-bar"></div>
+                                            <div class="cs-marker">0.3</div>
+                                            <div class="cs-current">🎯</div>
+                                            <div class="cs-scale start">0</div>
+                                            <div class="cs-scale end">1</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -530,15 +617,23 @@
                 <div class="content-wrapper">
                     <div class="text-block">
                         <p class="analysis-text">
-                            To truly understand how our fixes reshape the semantic landscape of Wikispeedia, we've created something special: a three-dimensional visualization of the article network in semantic space. By projecting each article into this space using embedding techniques, we can literally see how concepts cluster and connect. Watch as previously isolated articles find their natural homes in the semantic constellation, and witness how our carefully crafted links bridge the conceptual chasms that once frustrated players.
+                            Our journey through Wikispeedia's network revealed more than just broken paths and frustrated players – it uncovered a deeper truth about how we connect knowledge. By analyzing user behavior, semantic relationships, and network structure, we discovered that the challenge isn't just about fixing missing links; it's about understanding how people naturally associate concepts.
+                        </p>
+                        
+                        <p class="analysis-text">
+                            The 525 links we identified represent more than just technical solutions – they reflect the intuitive connections that players expected to find. From "Soybean" to "Bean", from "Winter" to "Christmas", each new connection bridges not just articles, but human expectations with digital reality.
+                        </p>
+                        
+                        <p class="analysis-text">
+                            This project demonstrates how data science can help us understand and improve the way we organize and connect information. As we continue to build and refine digital knowledge networks, perhaps the most valuable insight is this: the best path between two points isn't always the shortest – it's the one that makes the most sense to the human mind.
                         </p>
                     </div>
 
-                    <div class="dictionary-entry">
-                        <div class="definition">
+                    <div class="about-section">
+                        <p>
                             And so, by bridging these semantic gaps with 525 carefully chosen links, we didn't just fix a game – we helped Santa find his way back to Christmas, one click at a time. 🎄                        </div>
                         
-                    </div>
+                        </p>
                 </div>
             </div>
         </section>
@@ -584,7 +679,7 @@
                     <div class="contributor">
                         <img src="assets/elena.png" alt="">
                         <h4>Elena Dimitratchkova</h4>
-                        <p class="contributor-desc"> Visualization Professional</p>
+                        <p class="contributor-desc"> Visualization and Graph Professional</p>
                     </div>
                 </div>
             </div>

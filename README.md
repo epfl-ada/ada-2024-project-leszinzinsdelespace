@@ -70,12 +70,9 @@ We did create additional datasets ourselves: embeddings - we embedded each artic
 - **Step 7 - Wrapping up**
     - Final changes: cleaning the project repository and finalizing the results webpage.
 
-## Proposed Timeline
+## Link to our website 
 
-- 18.10.24 - 25.10.14: Step 1 - Initial Data Exploration and Data Cleaning
-- 25.10.24 - 08.11.24: Step 2 & 3- Data Exploration, Analyzing Backtracking Behavior
-- 08.11.24 - 15.11.24: Step 3 & 4 - Analyzing User Frustration Patterns of Behavior, Building a Semantic Distance Matrix and Finding Missing Links, Building the Final Narrative
-- 15.11.24 → : Step (5 &) 6 - Wrapping Up, Final Results Webpage
+- https://epfl-ada.github.io/ada-2024-project-leszinzinsdelespace/
 
 ## Organization within the team
 
