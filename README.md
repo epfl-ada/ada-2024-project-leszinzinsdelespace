@@ -7,13 +7,13 @@
 git clone https://github.com/epfl-ada/ada-2024-project-leszinzinsdelespace.git
 
 # Change into the project directory
-cd yourproject
+cd ada-2024-project-leszinzinsdelespace
 
 # Install dependencies
 pip install -r requirements.txt
 
 # Run the main application or script
-python main.py
+python results.ipynb
 
 ```
 
