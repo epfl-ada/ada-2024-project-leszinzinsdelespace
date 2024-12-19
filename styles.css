@@ -2504,3 +2504,33 @@ body.modal-open {
     }
 }
 
+.frustration-highlight {
+    font-size: 3rem;  /* Made bigger */
+    font-weight: 700;  /* Made bolder */
+    text-align: center;
+    margin: 3rem auto;
+    max-width: 1200px;
+    line-height: 1.4;
+    background: linear-gradient(45deg, var(--primary-color), #FF8E53);  /* Pink to orange gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;  /* Removed text shadow as it interferes with gradient */
+    animation: softPulse 3s infinite;
+}
+
+@keyframes softPulse {
+    0% {
+        opacity: 0.8;
+        transform: scale(0.98);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0.8;
+        transform: scale(0.98);
+    }
+}
+
