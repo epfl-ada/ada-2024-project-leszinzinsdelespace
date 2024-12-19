@@ -15,7 +15,7 @@ pip install -r requirements.txt
 # Run the main application or script
 python main.py
 
-```bash
+```
 
 ## Abstract
 
