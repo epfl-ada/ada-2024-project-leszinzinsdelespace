@@ -88,5 +88,7 @@ We did create additional datasets ourselves: embeddings - we embedded each artic
 | Elena | X | X |  |  | X | X |
 | Tania | X | X | X |  | X | X |
 
+## Project Structure
 
+├── data                                    <- Project data files
 ---
