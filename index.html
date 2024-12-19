@@ -90,11 +90,13 @@
                     <div class="graphs-container">
                         <div class="graph-wrapper">
                             <img src="assets/graphs/mediangamedurationvsbacktracks.png" alt="Median Game Duration vs Backtracks" class="graph">
-                            <p class="graph-caption">Figure 1: Relationship between game duration and number of backtracks.</p>
+                            <p class="graph-caption">Figure 1: Relationship between game duration and number of backtracks</p>
+                            <p class="graph-explanation">Each backtrack adds approximately 43 seconds to game duration. This suggests that when players hit dead ends, they spend significant time reconsidering their strategy before trying a new path.</p>
                         </div>
                         <div class="graph-wrapper">
                             <img src="assets/graphs/averageratingvsbacktracks.png" alt="Average Rating vs Backtracks" class="graph">
-                            <p class="graph-caption">Figure 2: Impact of backtracks on user ratings.</p>
+                            <p class="graph-caption">Figure 2: Impact of backtracks on user ratings</p>
+                            <p class="graph-explanation">Games with more backtracks are consistently rated as more difficult by users. The trend suggests that unexpected dead ends and path revisions significantly impact the perceived challenge of the game.</p>
                         </div>
                     </div>
                     <div class="text-block">
@@ -239,6 +241,19 @@
                     <div class="graph-container">
                         <img src="assets/path_to_christmas.png" alt="Path to Christmas Analysis" class="graph">
                         <p class="graph-caption">Figure: Semantic similarity analysis of the path from "Bob Dylan" to "Christmas"</p>
+                        
+                        <button class="model-info-btn">
+                            Why OpenAI embeddings? <span class="hover-hint">(hover to learn more)</span>
+                        </button>
+                        
+                        <div class="model-info-content">
+                            <p>We evaluated several embedding models (BERT, GloVe, and OpenAI) on this specific path. OpenAI's embeddings proved superior by:</p>
+                            <ul>
+                                <li>Capturing nuanced relationships between conceptually related articles (e.g., "Winter" → "Christmas")</li>
+                                <li>Providing more consistent similarity scores across different semantic domains</li>
+                                <li>Better reflecting human intuition about concept relationships</li>
+                            </ul>
+                        </div>
                     </div>
 
                     <div class="text-block">
@@ -305,7 +320,8 @@
 
                     <div class="graph-container">
                         <img src="assets/graphs/initial_strongly_connected.png" alt="Initial Network Connectivity Analysis" class="graph">
-                        <p class="graph-caption">Figure: Analysis of the initial network connectivity in Wikispeedia. Not all articles are mutually reachable.</p>
+                        <p class="graph-caption">Initial state of Wikispeedia's network</p>
+                        <p class="graph-explanation">The large circle (4,051 articles) represents interconnected pages, while smaller circles show isolated articles that can't be reached from the main network, making some games impossible to complete.</p>
                     </div>
 
                     <div class="text-block">
@@ -342,7 +358,8 @@
 
                     <div class="graph-container">
                         <img src="assets/graphs/strong_similarity_inarticle_strongly_connected.png" alt="Network Connectivity After Adding Semantic Links" class="graph">
-                        <p class="graph-caption">Figure: Network connectivity after adding links based on article content and semantic similarity. The main connected component grew from 4,051 to 4,100 articles.</p>
+                        <p class="graph-caption">Network connectivity after adding semantic links</p>
+                        <p class="graph-explanation">After adding links based on semantic similarity, the main connected component grew to 4,100 articles. While this is an improvement, it shows that semantic similarity alone isn't enough to fully connect the network.</p>
                     </div>
 
                     <div class="text-block">
@@ -359,7 +376,8 @@
 
                     <div class="graph-container">
                         <img src="assets/graphs/all_inarticle_strongly_connected.png" alt="Network Connectivity with All In-Article Links" class="graph">
-                        <p class="graph-caption">Figure: Network connectivity after adding all possible in-article links. While only 17 articles remain isolated, the network becomes overwhelmed with new connections.</p>
+                        <p class="graph-caption">Network connectivity with all possible in-article links</p>
+                        <p class="graph-explanation">Adding all possible in-article links creates an overwhelmingly connected network. While only 17 articles remain isolated, the addition of 372,813 new links would make the game too easy and lose its educational value.</p>
                     </div>
 
                     <div class="text-block">
@@ -394,7 +412,8 @@
 
                     <div class="graph-container">
                         <img src="assets/graphs/final_strongly_connected.png" alt="Final Network Connectivity" class="graph">
-                        <p class="graph-caption">Figure: Final network connectivity after our optimized approach. All articles are now mutually reachable with only 525 additional links.</p>
+                        <p class="graph-caption">Final optimized network connectivity</p>
+                        <p class="graph-explanation">Our optimized approach successfully connected all 4,604 articles with just 525 carefully chosen new links. This achieves full connectivity while preserving the game's challenge, creating a balance between playability and difficulty.</p>
                     </div>
 
                     <div class="text-block">
@@ -510,13 +529,11 @@
                         </p>
                     </div>
 
-                    
-                    
-                    <!-- <div class="text-block">
-                        <p class="analysis-text">  
-                            As an added bonus, we have created the Wikispeedia Missing Link Research Tool, a resource designed to enhance both player experience and network design. By identifying potential missing links and areas of frustration, this tool provides actionable insights for improving the hyperlink network - and saving Christmas by letting Santa get to Christmas.
-                        </p>
-                    </div> -->
+                    <div class="dictionary-entry">
+                        <div class="definition">
+                            And so, by bridging these semantic gaps with 525 carefully chosen links, we didn't just fix a game – we helped Santa find his way back to Christmas, one click at a time. 🎄                        </div>
+                        
+                    </div>
                 </div>
             </div>
         </section>
