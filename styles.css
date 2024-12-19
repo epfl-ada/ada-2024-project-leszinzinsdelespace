@@ -2776,3 +2776,49 @@ body.modal-open {
     transition: color 0.3s ease;
 }
 
+@keyframes spin {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.2); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+.logo {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.logo.spinning {
+    animation: spin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes dance {
+    0% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(-10deg) scale(1.1); }
+    50% { transform: rotate(0deg) scale(1); }
+    75% { transform: rotate(10deg) scale(1.1); }
+    100% { transform: rotate(0deg) scale(1); }
+}
+
+.logo.dancing {
+    animation: dance 2s infinite ease-in-out;
+    transform-origin: center center;
+}
+
+/* Keep existing logo hover and click animations */
+.logo {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.logo.spinning {
+    animation: spin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
