@@ -490,6 +490,10 @@
                         <p>Interestingly, the visualization reveals that there are no truly semantically isolated articles - even the currently disconnected articles (shown in red) are semantically similar to some connected articles (in blue), as evidenced by their proximity in the semantic space. This suggests that the current disconnections in the network are more a result of missing links rather than fundamental semantic incompatibility between articles.</p>
                         <p>To be able to connect all articles, we devised an algoorithm that would, at each step, add a link between the isolated article that is the most similar to any article in the main cluster and this article of the main cluster. So the selected article (and articles connected to it) would now be part of the main cluster. We repeated this process until all articles were connected.</p>
                     </div>
+                    <div class="graph-container">
+                        <img src="assets/algo_animation.gif" alt="Algorithm Animation" class="graph">
+                        <p class="graph-caption">Visualisation of our algorithm to connect isolated articles</p>
+                    </div>
 
                     <div class="interactive-graph-container">
                         <iframe src="assets/interactive/word_embeddings_with_links.html" scrolling="no"></iframe>
