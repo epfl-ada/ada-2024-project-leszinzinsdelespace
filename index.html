@@ -319,12 +319,72 @@
                     <div class="text-block">
                         <p class="analysis-text"> By looking at the different types of game paths, we can classify each game into one of four categories:</p>
 
-                        <ul class="analysis-list">
-                            <li><strong> Lost Player</strong>: The player explores validly but doesn't break a cosine similarity (CS) threshold of 0.3.</li>
-                            <li><strong>Frustrated Player</strong>: They reach a high CS (>0.3) but hit a dead-end due to missing links, blocking progress.</li>
-                            <li><strong>Unobservant Player</strong>: A key link exists (CS > 0.3) but is overlooked and not clicked. This hints at interface design improvements.</li>
-                            <li><strong>Victorious Player</strong>: They reach the target, offering insights into optimal navigation.</li>
-                        </ul>
+                        <div class="player-cards">
+                            <div class="player-card lost">
+                                <div class="card-icon">😕</div>
+                                <h3>Lost Player</h3>
+                                <p>The player explores validly but doesn't break a cosine similarity (CS) threshold of 0.3.</p>
+                                <div class="similarity-indicator">
+                                    <div class="cosine-label">Cosine Similarity</div>
+                                    <div class="cs-viz-container">
+                                        <div class="cs-viz wandering">
+                                            <div class="cs-bar"></div>
+                                            <div class="cs-marker" style="left: 20%">0.3</div>
+                                            <div class="cs-current" style="left: 15%">●</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="player-card frustrated">
+                                <div class="card-icon">😤</div>
+                                <h3>Frustrated Player</h3>
+                                <p>They reach a high CS (>0.3) but hit a dead-end due to missing links, blocking progress.</p>
+                                <div class="similarity-indicator">
+                                    <div class="cosine-label">Cosine Similarity</div>
+                                    <div class="cs-viz-container">
+                                        <div class="cs-viz blocked">
+                                            <div class="cs-bar"></div>
+                                            <div class="cs-marker" style="left: 30%">0.3</div>
+                                            <div class="cs-current" style="left: 45%">●</div>
+                                            <div class="cs-block" style="left: 60%">✕</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="player-card unobservant">
+                                <div class="card-icon">🤔</div>
+                                <h3>Unobservant Player</h3>
+                                <p>A key link exists (CS > 0.3) but is overlooked and not clicked. This hints at interface design improvements.</p>
+                                <div class="similarity-indicator">
+                                    <div class="cosine-label">Cosine Similarity</div>
+                                    <div class="cs-viz-container">
+                                        <div class="cs-viz missed">
+                                            <div class="cs-bar"></div>
+                                            <div class="cs-marker" style="left: 30%">0.3</div>
+                                            <div class="cs-current" style="left: 45%">●</div>
+                                            <div class="cs-missed" style="left: 60%">○</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="player-card victorious">
+                                <div class="card-icon">🎉</div>
+                                <h3>Victorious Player</h3>
+                                <p>They reach the target, offering insights into optimal navigation.</p>
+                                <div class="similarity-indicator">
+                                    <div class="cosine-label">Cosine Similarity</div>
+                                    <div class="cs-viz-container">
+                                        <div class="cs-viz success">
+                                            <div class="cs-bar"></div>
+                                            <div class="cs-current" style="left: 100%">🎯</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
