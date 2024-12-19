@@ -26,12 +26,19 @@ Wikispeedia engages users in associative thinking - following links based on the
 
 - How might terms with similar titles but different meanings (e.g., “Basil” vs. “Common Basilisk”) affect user navigation and frustration?
 
-**Is there a pattern that can create a feeling of “closeness” to the end ? Can this create frustration in the user if there is no ending path ?** 
+**Is there a pattern that can create a feeling of “closeness” to the end? Can this create frustration in the user if there is no ending path ?** 
 
 Other ideas we explored initially but subsequently dropped: 
 
 - We initially considered focusing solely on backtracking behavior, but decided that we wish to deepen our understanding of user behavior. We expanded our search to user frustration in general.
 - We considered visualizing the progress of players in real time at each path position as a probability tree.
+
+** With the study of semantic distance and the obvious lack of links, is there a way of improving the game by adding links between pages without altering the game, and therefore reducing player frustration?** 
+
+- Some pages only seem reachable from certain starting points. Would adding links to make them reachable from any starting point improve the game? 
+- What criteria should we use to add semantic links between articles? 
+- Can we generate an algo to connect clusters of articles (articles that are already connected) together? 
+- Would there be a good way of visualising the new semantic links added? 
 
 ## Proposed additional datasets (optional)
 
