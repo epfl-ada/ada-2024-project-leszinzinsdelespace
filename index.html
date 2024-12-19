@@ -214,7 +214,7 @@
                 
                 <div class="content-wrapper">
                     <div class="text-block">
-                        <p>These patterns of frustration aren't random - they point to something deeper in how our minds connect ideas versus how Wikispeedia's network is structured. To understand this disconnect, we need to look beyond simple link counting and into the semantic relationships between articles.</p>
+                        <p> To understand the disconnect between the user's mental model and the game's structure, we need to look beyond simple link counting and into the semantic relationships between articles.</p>
                     </div>
 
                     <!-- <div class="code-block">
@@ -247,7 +247,7 @@
                     </div> -->
 
                     <div class="text-block">
-                        <p class="analysis-text">We thought it might be interesting to compute the cosine similarity for every position in the path of every game. If we take a closer look at the infamous "Bob Dylan" to "Christmas" game, we stumble upon something very interesting: the ups and downs in cosine similarity along the path reveal critical moments of coherence and disconnection. The fluctuations show that certain transitions between articles are semantically smooth, marked by high similarity scores, while others involve abrupt drops, indicating potential cognitive roadblocks for players.</p>
+                        <p class="analysis-text">We thought it might be interesting to compute the cosine similarity for every position in the path of every game. If we take a closer look at the infamous "Bob Dylan" to "Christmas" game, we stumble upon something very interesting: the ups and downs in cosine similarity along the path reveal moments of coherence and disconnection. The fluctuations show that certain transitions between articles are semantically smooth, marked by high similarity scores, while others involve abrupt drops, indicating dead-ends and frustration. </p>
                     </div>
 
                     <div class="graph-container">
@@ -301,12 +301,19 @@
                     </div>
 
                     <div class="text-block">
-                        <p class="analysis-text"> Perhaps a dead-end might be due to the correct link being "hidden" in the article page? Analysis shows that players consistently click on the first links appearing in each article.</p>
+                        <p class="analysis-text"> It looks like the semantic distance at a certain point in a path does not change between finished and unfinished paths. Why is this fascinating? Because it points to an unexpected and illogical event that leads to a player losing - it's not the distance to the target that matters, but the hyperlink network structure.</p>
+                    </div>
+                    <div class="text-block">
+                        <p class="analysis-text"> There might be an alterantive explanation: perhaps a dead-end might be due to the correct link being "hidden" in the article page? Analysis shows that players consistently click on the first links appearing in each article.</p>
                     </div>
 
                     <div class="graph-container">
                         <img src="assets/distrib.png" alt="Link Distribution Analysis" class="graph smaller">
                         <p class="graph-caption">Figure: Distribution of clicked links by position in article</p>
+                    </div>
+
+                    <div class="text-block">
+                        <p class="analysis-text"> However, by checking for the presence of the correct link in each article, we can see that this does not account for the majority of dead-ends.</p>
                     </div>
 
                     <div class="text-block">
