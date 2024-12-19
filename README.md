@@ -15,6 +15,8 @@ pip install -r requirements.txt
 # Run the main application or script
 python main.py
 
+```bash
+
 ## Abstract
 
 Wikispeedia engages users in associative thinking - following links based on their perception of which concepts they believe are connected. However, players often believe they’re on the brink of victory, only to find a crucial link mysteriously missing. This leads to frustration, as the expected path ends abruptly. Players backtrack and seek an alternative path, since the one they believed to be the obvious shortest path turns out to be a dead-end. This pattern of user behavior points to missing semantic links, in cases where the semantic distance turns out to be very different from the mathematical shortest path. This is incredibly visible in one particular game of Wikispeedia where the player initially started on the Bob Dylan article with “Christmas” as the goal article and went through articles like  “Winter”, “Snow”, “Santa Claus” without ever finding a link to “Christmas”. One can only begin to imagine the frustration and confusion of the player at that point. This situation stemmed from the fact that the “Christmas” article simply does not exist…
