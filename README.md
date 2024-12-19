@@ -104,29 +104,4 @@ We did create additional datasets ourselves: embeddings - we embedded each artic
 | Elena | X | X |  |  | X | X |
 | Tania | X | X | X |  | X | X |
 
-## Project Structure
 
-├── data                           <- Project data files
-├── assets                         <- Static assets
-│   ├── ada.svg
-│   ├── algo_animation.gif
-│   ├── dataset.svg
-│   ├── graphs/                    <- Graphical representations
-│   │   ├── averageratingvsbacktracks.png
-│   │   ├── distribution_added_links.png
-│   │   ├── distribution_current_links.png
-│   │   ├── final_strongly_connected.png
-│   │   ├── initial_strongly_connected.png
-│   │   ├── mediangamedurationvsbacktracks.png
-│   │   └── strong_similarity_inarticle_strongly_connected.png
-│   ├── interactive/               <- Interactive visualizations
-│   │   ├── isolated_words.html
-│   │   └── word_embeddings_with_links.html
-│   ├── partiemaudite.png
-│   ├── path_evolution.gif
-│   ├── path_to_christmas.png
-│   └── paths_adjusted_for_length.png
-├── index.html                     <- Main webpage
-├── script.js                      <- JavaScript functionality
-├── styles.css                     <- CSS styling
-└── README.md                      <- Project documentation
