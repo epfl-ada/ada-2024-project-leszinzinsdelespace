@@ -92,17 +92,18 @@ We did create additional datasets ourselves: embeddings - we embedded each artic
 
 ## Organization within the team
 
-- Albert & Hugo - Data Exploration and Cleaning, Semantic distance analysis, Evaluating the performance of different models, computing the semantic distance matrix.
-- Khadija & Elena - Data Exploration and Visualization, Building the narrative, Final Webpage, Wrapping Up.
+- Albert & Hugo - Data Exploration and Cleaning, Semantic distance analysis, computing the semantic distance matrix, fixing missing links parts. 
+- Elena - Visualization, building the narrative, final webpage design, wrapping Up.
+- Khadija - Data exploration, evaluating the performance of different models, cleaning of the code,
 - Tania - Link between hormonal paths and their leading to frustration, backtracks, and giving up on the game. Webpage redaction.
 
-| Team Member/Step | 1 | 2 | 3 | 4 | 5 (Optional) | 6 |
+| Team Member/Step | 1 | 2 | 3 | 4 | 5  | 6 | 7 |
 | --- | --- | --- | --- | --- | --- | --- |
-| Albert | X | X | X | X | X |  |
-| Hugo | X | X | X | X | X |  |
-| Khadija | X | X |  |  | X | X |
-| Elena | X | X |  |  | X | X |
-| Tania | X | X | X |  | X | X |
+| Albert | X | X | X | X | X |  | |
+| Hugo | X | X | X | X | X |  |X |
+| Khadija | X | X | X |  |  | X |X |
+| Elena | X | X | X |  |  | X |X |
+| Tania | X | X | X |  |  | X |X |
 
 ## Project Structure
 
