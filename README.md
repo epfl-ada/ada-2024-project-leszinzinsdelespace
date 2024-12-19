@@ -84,7 +84,7 @@ We did create additional datasets ourselves: embeddings - we embedded each artic
 - **Step 6 - Building the Final Narrative**
     - Using all the data relating to backtracking behavior and frustration in general, plus our solution to reduce the frustration of players, we build a datastory around missing semantic links and the dark side of Wikispeedia: links that are mysteriously missing from an article where they most definitely should be present, goal articles that do not exist at all, shortest paths that have little to do with the logical and intuitive connection between concepts, plus a solution to contribute to a better and less frustated experience
 - **Step 7 - Wrapping up**
-    - Final changes: cleaning the project repository and finalizing the results webpage.
+    - Final changes: cleaning the project repository and finalizing the results webpage. 
 
 ## Link to our website 
 
