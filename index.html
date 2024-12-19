@@ -59,7 +59,7 @@
             <div class="text-container">
                 <div class="content-wrapper">
                     <div class="text-block">
-                        <p class="lead">Imagine trying to get to "Christmas" in Wikispeedia, only to find yourself stuck at "Winter" or "Santa Claus" with no way forward. This isn't just about one frustrated player's holiday quest - it's a window into a broader pattern of disconnection in how we navigate knowledge.</p>
+                        <p class="lead">Imagine trying to get to "Christmas" in Wikispeedia, only to find yourself stuck at "Winter" or "Santa Claus" with no way forward. Frustrating, isn't it? That is precisely the situation a player found themselves in. But this isn't just about one frustrated player's holiday quest - it's a window into a broader pattern of disconnection.</p>
                         
                         <p>In Wikispeedia, players chase connections between ideas, but sometimes these paths vanish unexpectedly. What starts as an engaging puzzle can become a dead end, revealing gaps in our digital knowledge network that mirror gaps in how we connect concepts.</p>
                     </div>
@@ -99,10 +99,14 @@
                             <p class="graph-explanation">Games with more backtracks are consistently rated as more difficult by users. The trend suggests that unexpected dead ends and path revisions significantly impact the perceived challenge of the game.</p>
                         </div>
                     </div>
-                    <div class="text-block">
-                        <p>If a game drags on too long, frustration can build as players wait longer for the rewarding sense of completion. As illustrated in the graph above, there is a noticeable correlation between the frequency of backtracking and overall game duration: each backtrack adds an average of 43 seconds to the game time.</p>
-                        <p> More interestingly, we can see that the more backtracks a game has, the more likely it is that the user will give a "difficult" rating to the game.</p>
+                    <div class="time-highlight">
+                        <div style="display: flex; align-items: flex-end;">
+                            <span class="time-number">43</span>
+                            <span class="time-unit">seconds</span>
+                        </div>
+                        <p class="time-caption">Each backtrack adds an average of 43 seconds to the game time, significantly extending the duration of play and potentially increasing player frustration.</p>
                     </div>
+                    <p class="analysis-text">More interestingly, we can see that the more backtracks a game has, the more likely it is that the user will give a "difficult" rating to the game.</p>
                 </div>
             </div>
         </section>
@@ -240,7 +244,8 @@
 
                     <div class="graph-container">
                         <img src="assets/path_to_christmas.png" alt="Path to Christmas Analysis" class="graph">
-                        <p class="graph-caption">Figure: Semantic similarity analysis of the path from "Bob Dylan" to "Christmas"</p>
+                        <div class="arrow-highlight"></div>
+                        <p class="graph-caption">Figure: Analysis of semantic distance from target in final steps</p>
                         
                         <button class="model-info-btn">
                             Why OpenAI embeddings? <span class="hover-hint">(hover to learn more)</span>
@@ -512,7 +517,7 @@
                             </div>
                         </div>
 
-                        <p>The distribution graphs above show how our added links complement the existing network structure, maintaining a similar pattern of connectivity while filling critical gaps in the network.</p>
+                        <p class="analysis-text">The distribution graphs above show how our added links complement the existing network structure, maintaining a similar pattern of connectivity while filling critical gaps in the network. </p>
                     </div>
                 </div>
             </div>

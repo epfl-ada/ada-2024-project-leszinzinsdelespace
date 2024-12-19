@@ -26,12 +26,19 @@ Wikispeedia engages users in associative thinking - following links based on the
 
 - How might terms with similar titles but different meanings (e.g., “Basil” vs. “Common Basilisk”) affect user navigation and frustration?
 
-**Is there a pattern that can create a feeling of “closeness” to the end ? Can this create frustration in the user if there is no ending path ?** 
+**Is there a pattern that can create a feeling of “closeness” to the end? Can this create frustration in the user if there is no ending path ?** 
 
 Other ideas we explored initially but subsequently dropped: 
 
 - We initially considered focusing solely on backtracking behavior, but decided that we wish to deepen our understanding of user behavior. We expanded our search to user frustration in general.
 - We considered visualizing the progress of players in real time at each path position as a probability tree.
+
+**With the study of semantic distance and the obvious lack of links, is there a way of improving the game by adding links between pages without altering the game, and therefore reducing player frustration?** 
+
+- Some pages only seem reachable from certain starting points. Would adding links to make them reachable from any starting point improve the game? 
+- What criteria should we use to add semantic links between articles? 
+- Can we find a way to connect clusters of articles? 
+- Would there be a good way of visualizing the new semantic links added? 
 
 ## Proposed additional datasets (optional)
 
@@ -54,11 +61,13 @@ We did create additional datasets ourselves: embeddings - we embedded each artic
 - **Step 3 - Analyzing User Frustration Patterns of Behavior, Building a Semantic Distance Matrix and Finding Missing Links**
     - We use our analysis of backtracking behavior to analyze how players get closer or further away from their target article, and how their frustration manifests itself through their navigation behavior.
     - We use semantic distance computation using OpenAI’s model. We first compared SentenceBERT, CLIP and GloVe’s performance to choose the model that best suited our needs, and OpenAI’s model gave the most coherent results. We used this model to evaluate how when users change pages by clicking forward or backwards they shorten or lengthen the semantic distance. This combined with the actual shortest path provided indicates differences between the way users perceive connections and how the articles are truly connected.
-- **Step 4 - Building the Final Narrative**
-    - Using all the data relating to backtracking behavior and frustration in general, we build a datastory around missing semantic links and the dark side of Wikispeedia: links that are mysteriously missing from an article where they most definitely should be present,  goal articles that do not exist at all, shortest paths that have little to do with the logical and intuitive connection between concepts.
-- **Step 5 (Optional) - Linking User Frustration to Semantic Distances**
-    - If we have sufficient time, we would like to further explore user frustration and precisely compute statistics relative to what makes players give up using information from unfinished paths and combining them with the evolution of the semantic distance to the target article (at what point was the maximum cosine similarity reached). This would potentially allow us to know why each unfinished path remained unfinished, which could be useful for players as well as for the creators of the game.
-- **Step 6 - Wrapping up**
+- **Step 4 - Linking User Frustration to Semantic Distances**
+    - We to further explore user frustration and precisely compute statistics relative to what makes players give up using information from unfinished paths and combining them with the evolution of the semantic distance to the target article (at what point was the maximum cosine similarity reached). This would potentially allow us to know why each unfinished path remained unfinished, which could be useful for players as well as for the creators of the game.
+- **Step 5 - Fixing Missing Links**
+    - To address the issue of missing links in Wikispeedia, we used a semantic similarity-based approach and an iterative algorithm in order to contribute to a better experience of the game and a lower frustration of players. We used an approach based on semantic similarity computation, where each article was represented as a vector in semantic space. We used cosine similarity to measure conceptual proximity between articles and identify isolated articles - Articles not connected to the main network but showing high semantic similarity to articles in the main cluster were identified as isolated. - At each step, we selected the isolated article with the highest semantic similarity to any article in the main cluster. A link was added between the isolated article and the most similar article in the main cluster. The isolated article, along with any articles already connected to it, was integrated into the main cluster. This process was repeated until all articles were connected to the main network. Using this method, we added 525 carefully chosen links, bridging semantic gaps and making navigation smoother and less frustrating for users.
+- **Step 6 - Building the Final Narrative**
+    - Using all the data relating to backtracking behavior and frustration in general, plus our solution to reduce the frustration of players, we build a datastory around missing semantic links and the dark side of Wikispeedia: links that are mysteriously missing from an article where they most definitely should be present, goal articles that do not exist at all, shortest paths that have little to do with the logical and intuitive connection between concepts, plus a solution to contribute to a better and less frustated experience
+- **Step 7 - Wrapping up**
     - Final changes: cleaning the project repository and finalizing the results webpage.
 
 ## Proposed Timeline
