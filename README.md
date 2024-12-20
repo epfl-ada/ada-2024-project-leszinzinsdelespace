@@ -1,6 +1,10 @@
 
 # Saving Christmas - Understanding User Frustration in Wikispeedia
 
+## Datastory 🔗
+
+- https://epfl-ada.github.io/ada-2024-project-leszinzinsdelespace/
+
 ## Quick Start 🚀
 ```bash
 # Clone the repository
@@ -19,7 +23,8 @@ python results.ipynb
 
 ## Abstract
 
-Wikispeedia engages users in associative thinking - following links based on their perception of which concepts they believe are connected. However, players often believe they’re on the brink of victory, only to find a crucial link mysteriously missing. This leads to frustration, as the expected path ends abruptly. Players backtrack and seek an alternative path, since the one they believed to be the obvious shortest path turns out to be a dead-end. This pattern of user behavior points to missing semantic links, in cases where the semantic distance turns out to be very different from the mathematical shortest path. This is incredibly visible in one particular game of Wikispeedia where the player initially started on the Bob Dylan article with “Christmas” as the goal article and went through articles like  “Winter”, “Snow”, “Santa Claus” without ever finding a link to “Christmas”. One can only begin to imagine the frustration and confusion of the player at that point. This situation stemmed from the fact that the “Christmas” article simply does not exist…
+Wikispeedia engages users in associative thinking - following hyperlinks trying to reach a target article in the fewest possible clicks. But what happens when the path you think should exist... doesn't?  Players often believe they’re on the brink of victory, only to find a crucial link mysteriously missing. This leads to frustration, as the expected path ends abruptly. Players backtrack and seek an alternative path, since the one they believed to be the obvious shortest path turns out to be a dead-end. This pattern of user behavior points to missing semantic links, in cases where the semantic distance turns out to be very different from the mathematical shortest path. This is incredibly visible in one particular game of Wikispeedia where the player initially started on the Bob Dylan article with “Christmas” as the goal article and went through articles like  “Winter”, “Snow”, “Santa Claus” without ever finding a link to “Christmas”. One can only begin to imagine the frustration and confusion of the player at that point. This situation stemmed from the fact that the “Christmas” article simply does not exist…
+  
 
 ## Research Questions
 
@@ -27,16 +32,27 @@ Wikispeedia engages users in associative thinking - following links based on the
 
 - How does user backtracking reflect unmet expectations in navigating a hyperlink network?
 - What insights can the difficulty rating of a completed path provide about the semantic distance between concepts?
+- How do players behave when encountering dead-ends?
+- What patterns emerge in backtracking behavior?
+- How does game duration correlate with number of backtracks?
 
 **How does the structure of a hyperlink network affect user navigation and the perception of semantic distance?**
 
 - Are high difficulty ratings associated with sparse or missing connections between seemingly related topics?
 - To what extent do incomplete paths indicate gaps in semantic linking within the network?
+- What percentage of articles are unreachable from the main network?
+- How do semantic relationships compare to existing hyperlinks?
+- Where are the critical gaps in article connectivity?
+
 
 **How can semantic distance be used to improve hyperlink networks and enhance user experience?**
 
+- How can we identify missing semantic links?
 - How does computed semantic distance between concepts compare to user-perceived similarity in navigation paths?
 - What cosine similarity threshold (fixed or variable) can indicate when a link is missing between two concepts, and how might this be applied as a tool for network improvement?
+- What criteria should we use for adding new connections?
+- How can we maintain game difficulty while eliminating impossible paths?
+
 
 **What challenges arise in differentiating between genuinely related and superficially similar concepts in a hyperlink network?**
 
@@ -71,30 +87,43 @@ We did create additional datasets ourselves: embeddings - we embedded each artic
         - Cleaning the time : for each one of the unfinished path with a timeout status : subtract 1800s (timeout time) to the duration
         - Merge the dataset properly to have a global overview with all graphs.
     - We determine a broad direction of exploration based on our initial findings.
+      
 - **Step 2 - Data Exploration**
     - We initially decided to focus our attention on backtracking behavior, and therefore computed various statistics relative to backtracks. We also plotted different metrics with and without backtracks.
     - By diving in deeper, we discover many missing links (”soybean” to “bean”), and, as it turns out, goal articles that do not exist at all (”Christmas”), therefore sending the player on a wild-goose chase and leading to extreme frustration and many consecutive dead-ends.
+      
 - **Step 3 - Analyzing User Frustration Patterns of Behavior, Building a Semantic Distance Matrix and Finding Missing Links**
     - We use our analysis of backtracking behavior to analyze how players get closer or further away from their target article, and how their frustration manifests itself through their navigation behavior.
-    - We use semantic distance computation using OpenAI’s model. We first compared SentenceBERT, CLIP and GloVe’s performance to choose the model that best suited our needs, and OpenAI’s model gave the most coherent results. We used this model to evaluate how when users change pages by clicking forward or backwards they shorten or lengthen the semantic distance. This combined with the actual shortest path provided indicates differences between the way users perceive connections and how the articles are truly connected.
-- **Step 4 - Linking User Frustration to Semantic Distances**
-    - We to further explore user frustration and precisely compute statistics relative to what makes players give up using information from unfinished paths and combining them with the evolution of the semantic distance to the target article (at what point was the maximum cosine similarity reached). This would potentially allow us to know why each unfinished path remained unfinished, which could be useful for players as well as for the creators of the game.
-- **Step 5 - Fixing Missing Links**
-    - To address the issue of missing links in Wikispeedia, we used a semantic similarity-based approach and an iterative algorithm in order to contribute to a better experience of the game and a lower frustration of players. We used an approach based on semantic similarity computation, where each article was represented as a vector in semantic space. We used cosine similarity to measure conceptual proximity between articles and identify isolated articles - Articles not connected to the main network but showing high semantic similarity to articles in the main cluster were identified as isolated. - At each step, we selected the isolated article with the highest semantic similarity to any article in the main cluster. A link was added between the isolated article and the most similar article in the main cluster. The isolated article, along with any articles already connected to it, was integrated into the main cluster. This process was repeated until all articles were connected to the main network. Using this method, we added 525 carefully chosen links, bridging semantic gaps and making navigation smoother and less frustrating for users.
+    - We use semantic distance computation using OpenAI’s model. We first compared SentenceBERT, CLIP and CLIP’s performance to choose the model that best suited our needs, and OpenAI’s model gave the most coherent results. We used this model to evaluate how when users change pages by clicking forward or backwards they shorten or lengthen the semantic distance. This combined with the actual shortest path provided indicates differences between the way users perceive connections and how the articles are truly connected.
+      
+- **Step 4 - Semantic Analysis: Linking User Frustration to Semantic Distances**
+    - Explored user frustration and precisely computed statistics relative to what makes players give up using information from unfinished paths and combined them with the evolution of the semantic distance to the target article (at what point was the maximum cosine similarity reached). This would potentially allow us to know why each unfinished path remained unfinished, which could be useful for players as well as for the creators of the game.
+    - Compared different embedding models (BERT, CLIP, OpenAI)
+    - Created semantic distance matrix for all article pairs
+    - Visualized article relationships using t-SNE dimensionality reduction
+
+- **Step 5 - Network Optimization: Fixing Missing Links**
+    - To address the issue of missing links in Wikispeedia, we used a semantic similarity-based approach and an iterative algorithm in order to contribute to a better experience of the game and a lower frustration of players. We used an approach based on semantic similarity computation, where each article was represented as a vector in semantic space. We used cosine similarity to measure conceptual proximity between articles and identify isolated articles
+    - Articles not connected to the main network but showing high semantic similarity to articles in the main cluster were identified as isolated.
+    - At each step, we selected the isolated article with the highest semantic similarity to any article in the main cluster. A link was added between the isolated article and the most similar article in the main cluster. The isolated article, along with any articles already connected to it, was integrated into the main cluster. This process was repeated until all articles were connected to the main network. Using this method, we added 525 carefully chosen links, bridging semantic gaps and making navigation smoother and less frustrating for users.
+    - Developed criteria for adding new links based on:
+     - Semantic similarity (cosine similarity > 0.5)
+     - Article name appearances in content
+   - Iteratively connected isolated articles to main network
+   - Validated new connections through semantic analysis
+     
 - **Step 6 - Building the Final Narrative**
-    - Using all the data relating to backtracking behavior and frustration in general, plus our solution to reduce the frustration of players, we build a datastory around missing semantic links and the dark side of Wikispeedia: links that are mysteriously missing from an article where they most definitely should be present, goal articles that do not exist at all, shortest paths that have little to do with the logical and intuitive connection between concepts, plus a solution to contribute to a better and less frustated experience
+    - Using all the data relating to backtracking behavior and frustration in general, plus our solution to reduce the frustration of players, we build a datastory around missing semantic links and the dark side of Wikispeedia: links that are mysteriously missing from an article where they most definitely should be present, goal articles that do not exist at all, shortest paths that have little to do with the logical and intuitive connection between concepts, plus a solution to contribute to a better and less frustated experience.
+      
 - **Step 7 - Wrapping up**
     - Final changes: cleaning the project repository and finalizing the results webpage. 
 
-## Link to our website 
-
-- https://epfl-ada.github.io/ada-2024-project-leszinzinsdelespace/
 
 ## Organization within the team
 
-- Albert & Hugo - Data Exploration and Cleaning, Semantic distance analysis, computing the semantic distance matrix, fixing missing links parts. 
-- Elena - Visualization, building the narrative, final webpage design, wrapping Up.
-- Khadija - Data exploration, evaluating the performance of different models, cleaning of the code,
+- Albert & Hugo - Data Exploration and Cleaning, Semantic distance analysis, computing the semantic distance matrix, fixing missing links parts. Connection addition algorithm design.
+- Elena - Visualizations, building the narrative. Final results webpage design and development.
+- Khadija - Data exploration, evaluating the performance of different models, cleaning of the code.
 - Tania - Link between hormonal paths and their leading to frustration, backtracks, and giving up on the game. Webpage redaction.
 
 | Team Member/Step | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
@@ -137,7 +166,6 @@ The directory structure of our project looks like this:
 ├── styles.css                             <- CSS styling
 └── README.md                              <- Project documentation
 
-This structure shows the organization of our website:
 - `data/`: Contains the project data files
 - `assets/`: Contains all static assets including images, animations, and interactive visualizations
 - `index.html`: Main webpage file
