@@ -48,22 +48,20 @@ def generate_all_words_df():
     all_words_df.to_csv('data/all_words_df.csv',index=False)
 
 def generate_closest_neighbors():
-
     links_df = data_loader.load_links()
-    G= nx.DiGraph()
+    G = nx.DiGraph()
     for _, row in links_df.iterrows():
-        G.add_edge(row['linkSource'], row['linkTarget'])
+    G.add_edge(row['linkSource'], row['linkTarget'])
 
-        # Find strongly connected components
+    # Find strongly connected components
     strongly_connected = list(nx.strongly_connected_components(G))
 
     # Find the largest component
     largest_component = max(range(len(strongly_connected)), key=lambda x: len(strongly_connected[x]))
     largest_component_words = set(strongly_connected[largest_component])
-    mask = np.array([word not in largest_component_words for word in all_words_df['article']])
-    # Ensure mask is a boolean array
-    mask = mask.astype(bool)
+
     all_words_df = pd.read_csv('data/all_words_df.csv')
+    articles = data_loader.load_articles()
 
     article_similarities = pd.read_csv('data/article_similarities_matrix.csv')
     article_similarities.columns = articles['article']
@@ -72,47 +70,71 @@ def generate_closest_neighbors():
     article_similarities = article_similarities.loc[all_words_df['article'], all_words_df['article']]
     links = []
 
+    # Precompute article indices
+    article_indices = {article: idx for idx, article in enumerate(all_words_df['article'])}
+
+
     # Continue until no active points remain
-    while mask.any():
+    while len(largest_component_words) < len(all_words_df):
         similarities = []
-        active_points = np.where(mask)[0]
+        # Get articles not in largest component
+        non_component_articles = set(all_words_df['article']) - largest_component_words
+        
+        # Iterate over articles not in largest component
+        for article in tqdm(non_component_articles, desc="Processing active points"):
+            article_idx = article_indices[article]
+            similarity_row = article_similarities.iloc[article_idx]
+            
+            # Get similarities to articles in largest component
+            component_similarities = {
+                comp_article: similarity_row[comp_article] 
+                for comp_article in largest_component_words
+            }
+            
+            if component_similarities:
+                # Find most similar article in component
+                nearest_neighbor = max(component_similarities.items(), key=lambda x: x[1])
+                similarities.append((nearest_neighbor[1], article, nearest_neighbor[0]))
 
-        # Iterate over each active point
-        for point in tqdm(active_points, desc="Processing active points"):
-            # Get similarity row for this point
-            similarity_row = article_similarities.iloc[point]
-
-            sorted_indices = np.argsort(-similarity_row.values)
-
-            # Filter out active indices (we only want neighbors that are not in the mask)
-            valid_indices = sorted_indices[~mask[sorted_indices]]
-
-            # Take the nearest valid neighbor
-            nearest_index = valid_indices[0]
-            nearest_neighbor = all_words_df.iloc[nearest_index]['article']
-
-            # Store tuple: (similarity, source_index, target_article)
-            similarities.append((similarity_row.iloc[nearest_index], point, nearest_neighbor))
-
-        # If no similarities found for any active point, break out to avoid infinite loop
-        if len(similarities) == 0:
-            break
-
-        # Sort by similarity in descending order and select the highest similarity pair
+        # Get closest pair
         sorted_similarities = sorted(similarities, key=lambda x: x[0], reverse=True)
         closest_pair = sorted_similarities[0]
 
         # Add the chosen link
-        source_article = all_words_df.iloc[closest_pair[1]]['article']
-        target_article = closest_pair[2]
+        source_article = closest_pair[1]  # Article outside component
+        target_article = closest_pair[2]  # Article in component
         similarity = closest_pair[0]
-        links.append((source_article, target_article, similarity))
 
-        # Deactivate the chosen source point
-        mask[closest_pair[1]] = False
+        # Precompute descendants for target_article and source_article
+        if source_article in G.nodes():
+            source_descendants = nx.descendants(G, source_article)
+            target_descendants = nx.descendants(G, target_article)
+
+            if target_article in source_descendants:
+                # Add edge only if source is a descendant of target
+                G.add_edge(target_article, source_article)
+                links.append((target_article, source_article, similarity))
+                print(f"Added edge between {target_article} and {source_article}")
+            elif source_article in target_descendants:
+                # Add edge only if target is a descendant of source
+                G.add_edge(source_article, target_article)
+                links.append((source_article, target_article, similarity))
+                print(f"Added edge between {source_article} and {target_article}")
+        else:
+            # If nodes are not connected or descendants cannot be determined
+            G.add_edges_from([(source_article, target_article), (target_article, source_article)])
+            links.extend([
+                (source_article, target_article, similarity),
+                (target_article, source_article, similarity)
+            ])
+            print(f"Added edge between {source_article} and {target_article}")
+    strongly_connected = list(nx.strongly_connected_components(G))
+    largest_component = max(range(len(strongly_connected)), key=lambda x: len(strongly_connected[x]))
+    largest_component_words = set(strongly_connected[largest_component])
 
     closest_neighbors_df = pd.DataFrame(links, columns=['source_article', 'target_article', 'similarity'])
     closest_neighbors_df.to_csv('data/closest_neighbors.csv',index=False)
+
 
 def generate_analysis_links():
     analysis_results = []
