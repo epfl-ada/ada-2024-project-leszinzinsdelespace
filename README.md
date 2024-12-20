@@ -94,11 +94,11 @@ We did create additional datasets ourselves: embeddings - we embedded each artic
       
 - **Step 3 - Analyzing User Frustration Patterns of Behavior, Building a Semantic Distance Matrix and Finding Missing Links**
     - We use our analysis of backtracking behavior to analyze how players get closer or further away from their target article, and how their frustration manifests itself through their navigation behavior.
-    - We use semantic distance computation using OpenAI’s model. We first compared SentenceBERT, CLIP and GloVe’s performance to choose the model that best suited our needs, and OpenAI’s model gave the most coherent results. We used this model to evaluate how when users change pages by clicking forward or backwards they shorten or lengthen the semantic distance. This combined with the actual shortest path provided indicates differences between the way users perceive connections and how the articles are truly connected.
+    - We use semantic distance computation using OpenAI’s model. We first compared SentenceBERT, CLIP and CLIP’s performance to choose the model that best suited our needs, and OpenAI’s model gave the most coherent results. We used this model to evaluate how when users change pages by clicking forward or backwards they shorten or lengthen the semantic distance. This combined with the actual shortest path provided indicates differences between the way users perceive connections and how the articles are truly connected.
       
 - **Step 4 - Semantic Analysis: Linking User Frustration to Semantic Distances**
     - Explored user frustration and precisely computed statistics relative to what makes players give up using information from unfinished paths and combined them with the evolution of the semantic distance to the target article (at what point was the maximum cosine similarity reached). This would potentially allow us to know why each unfinished path remained unfinished, which could be useful for players as well as for the creators of the game.
-    - Compared different embedding models (BERT, GloVe, OpenAI)
+    - Compared different embedding models (BERT, CLIP, OpenAI)
     - Created semantic distance matrix for all article pairs
     - Visualized article relationships using t-SNE dimensionality reduction
 
