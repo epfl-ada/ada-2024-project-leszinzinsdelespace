@@ -166,7 +166,6 @@ The directory structure of our project looks like this:
 ├── styles.css                             <- CSS styling
 └── README.md                              <- Project documentation
 
-This structure shows the organization of our website:
 - `data/`: Contains the project data files
 - `assets/`: Contains all static assets including images, animations, and interactive visualizations
 - `index.html`: Main webpage file
