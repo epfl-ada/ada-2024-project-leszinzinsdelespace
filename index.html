@@ -212,7 +212,7 @@
                     <div class="term">Cosine Similarity</div>
                     <div class="pronunciation">/ˈkoʊ.saɪn ˌsɪ.məˈlɛr.ə.ti//</div>
                     <div class="definition">
-                        A measure of how related two articles are, based on the angle between their embedding vectors. The closer this value is to 1, the more similar the articles are. For instance, "Winter" and "Christmas" might have a similarity of 0.8 (very related), while "Winter" and "Telephone" might have a similarity of 0.1 (unrelated). Think of it as measuring how much two articles "point in the same direction" in our meaning space.
+                        A quantitative measure of the conceptual proximity between two entities in a semantic space. In the context of Wikispeedia, it is computed using the normalized dot product between the vector representations of two articles.
                     </div>
                     <div class="formula">
                         <span style="display: inline-block;">
@@ -384,6 +384,12 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="visualization-wrapper">
+                    <p class="lead">
+                        Success or failure often depends on whether players can find a path through the network that matches their mental model. To better understand these semantic relationships, let's visualize how all articles in Wikispeedia relate to each other in terms of meaning, rather than just their hyperlink connections:
+                    </p>
                 </div>
             </div>
         </section>
