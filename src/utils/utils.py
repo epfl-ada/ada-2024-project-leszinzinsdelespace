@@ -1,6 +1,10 @@
 import urllib.parse
 import numpy as np
 import pandas as pd
+import imageio.v2 as imageio
+import glob
+import os
+
 def url_decode(url_encoded):
     return urllib.parse.unquote(url_encoded).replace('_', ' ')
 
@@ -36,3 +40,9 @@ def get_missing_links(entry):
         'biggest_similarity_article': entry['path'][-1],
         'target': entry['target']
     })
+
+
+def make_gif(folder,path):
+    image_files = sorted(glob.glob(f'{folder}/*.png'))
+    images = [imageio.imread(file) for file in image_files]
+    imageio.mimsave(path, images, duration=500, loop=0)

@@ -212,8 +212,35 @@ def wayanalysis():
     one_way_distances_df.to_csv('data/one_way_distances_df.csv',index=False)
     two_way_distances_df.to_csv('data/two_way_distances_df.csv',index=False)
 
-def missing_links_but_present(links, article_similarities): #TODO ALBERT
-    pass
+def get_should_link_dict(links, article_similarities,threshold=0):
+    results = []
+    for article in tqdm(articles['article']):
+        article_links = links[links['linkSource'] == article]
+        not_linked_articles = articles[~articles['article'].isin(article_links['linkTarget'])]
+        not_linked_articles = not_linked_articles[not_linked_articles['article'] != article]  # Remove current article
+        for target in not_linked_articles['article']:
+            similarity = article_similarities.loc[article,target]
+            if similarity > threshold:
+                results.append((article,target,similarity))
 
-def missing_links_but_present_all_complete_full_integral(links, article_similarities): #TODO ALBERT
-    pass
+    should_link_dict = {}
+    for article, target,similarity in results:
+        should_link_dict[article]= should_link_dict.get(article,[])+[target]
+    return should_link_dict
+
+
+def missing_links_but_present(links, article_similarities,threshold=0.5,output_file="missing_links_but_present.csv"): 
+    should_link_dict = get_should_link_dict(links, article_similarities,)
+    results = []
+    for article in should_link_dict:
+        content = open(f"data/plaintext_articles/{urllib.parse.quote(article.replace(' ', '_'))}.txt","r").read()
+        content_lowered = content.lower()
+        for target in should_link_dict[article]:
+            target_lowered = target.lower()
+            if target_lowered in content_lowered:
+                print(f"{target} present in {article} but not linked")
+                results.append((article,target))
+    pd.DataFrame(results).to_csv(output_file,index=False)
+
+def all_missing_links(links, article_similarities,output_file="all_missing_links.csv"):
+    missing_links_but_present(links, article_similarities,threshold=0,output_file=output_file)
