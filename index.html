@@ -199,20 +199,27 @@
         <section id="dots" class="section">
             <div class="text-container">
                 <h2 class="section-title">Reconnecting the dots</h2>
-                <p class="lead">This is where the notion of embeddings and similarity comes in.</p> <!-- TODO: explain what embeddings are-->
+                <p class="lead">Now that we've identified the problem of missing links and frustrated players, we need a systematic way to find which links should be added. This is where embeddings and similarity come in.</p>
                 
+                <div class="text-block">
+                    <p>Embeddings are a way to represent words or articles as points in a high-dimensional space, where the distance between points reflects their semantic relationship. Think of it as giving each article coordinates in a "meaning space" - articles about similar topics will be close together, while unrelated articles will be far apart.</p>
+                    
+                    <p>For example, in this space, "Winter" and "Christmas" would be relatively close together because they share related concepts, while "Winter" and "Telephone" would be far apart because they have little semantic connection. These embeddings allow us to quantify how related two articles are, beyond just counting shared words or existing links.</p>
+                    
+                </div>
+
                 <div class="dictionary-entry">
                     <div class="term">Cosine Similarity</div>
-                    <div class="pronunciation">/ˈkoʊ.saɪn ˌsɪ.məˈlɛr.ə.ti//</div> <!--TODO: replace with Similarity-->
+                    <div class="pronunciation">/ˈkoʊ.saɪn ˌsɪ.məˈlɛr.ə.ti//</div>
                     <div class="definition">
-                        A quantitative measure of the conceptual proximity between two entities in a semantic space. In the context of Wikispeedia, it is computed using the normalized dot product between the vector representations of two articles.
+                        A measure of how related two articles are, based on the angle between their embedding vectors. The closer this value is to 1, the more similar the articles are. For instance, "Winter" and "Christmas" might have a similarity of 0.8 (very related), while "Winter" and "Telephone" might have a similarity of 0.1 (unrelated). Think of it as measuring how much two articles "point in the same direction" in our meaning space.
                     </div>
                     <div class="formula">
                         <span style="display: inline-block;">
                             <span style="position: relative; display: inline-flex; align-items: center;">
                                 Cosine Similarity = <span style="margin-left: 4px; text-align: center;">
                                     <span style="border-bottom: 1px solid; display: block;">A · B</span>
-                                    <span>|A||B|</span>
+                                    <span>|A| |B|</span>
                                 </span>
                             </span>
                         </span>
@@ -230,7 +237,7 @@
                     </div>
 
                     <div class="text-block">
-                        <p class="analysis-text">We evaluated several embedding models (BERT, CLIP, and OpenAI) on this specific path. OpenAI's embeddings proved superior in capturing nuanced relationships between conceptually related articles (e.g., "Winter" → "Christmas") and providing more consistent similarity scores across different semantic domains.</p>
+                        <p class="analysis-text">We evaluated several embedding models (BERT, CLIP, and OpenAI) on this specific path. OpenAI's 3072-dimensional embeddings proved superior in capturing nuanced relationships between conceptually related articles (e.g., "Winter" → "Christmas") and providing more consistent similarity scores across different semantic domains.</p>
                     </div>
 
                     <div class="graph-container">
