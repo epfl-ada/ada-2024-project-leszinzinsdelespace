@@ -1,6 +1,22 @@
 
 # Saving Christmas - Understanding User Frustration in Wikispeedia
 
+## Quick Start 🚀
+```bash
+# Clone the repository
+git clone https://github.com/epfl-ada/ada-2024-project-leszinzinsdelespace.git
+
+# Change into the project directory
+cd ada-2024-project-leszinzinsdelespace
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the main application or script
+python results.ipynb
+
+```
+
 ## Abstract
 
 Wikispeedia engages users in associative thinking - following links based on their perception of which concepts they believe are connected. However, players often believe they’re on the brink of victory, only to find a crucial link mysteriously missing. This leads to frustration, as the expected path ends abruptly. Players backtrack and seek an alternative path, since the one they believed to be the obvious shortest path turns out to be a dead-end. This pattern of user behavior points to missing semantic links, in cases where the semantic distance turns out to be very different from the mathematical shortest path. This is incredibly visible in one particular game of Wikispeedia where the player initially started on the Bob Dylan article with “Christmas” as the goal article and went through articles like  “Winter”, “Snow”, “Santa Claus” without ever finding a link to “Christmas”. One can only begin to imagine the frustration and confusion of the player at that point. This situation stemmed from the fact that the “Christmas” article simply does not exist…
@@ -68,7 +84,7 @@ We did create additional datasets ourselves: embeddings - we embedded each artic
 - **Step 6 - Building the Final Narrative**
     - Using all the data relating to backtracking behavior and frustration in general, plus our solution to reduce the frustration of players, we build a datastory around missing semantic links and the dark side of Wikispeedia: links that are mysteriously missing from an article where they most definitely should be present, goal articles that do not exist at all, shortest paths that have little to do with the logical and intuitive connection between concepts, plus a solution to contribute to a better and less frustated experience
 - **Step 7 - Wrapping up**
-    - Final changes: cleaning the project repository and finalizing the results webpage.
+    - Final changes: cleaning the project repository and finalizing the results webpage. 
 
 ## Link to our website 
 
@@ -76,17 +92,57 @@ We did create additional datasets ourselves: embeddings - we embedded each artic
 
 ## Organization within the team
 
-- Albert & Hugo - Data Exploration and Cleaning, Semantic distance analysis, Evaluating the performance of different models, computing the semantic distance matrix.
-- Khadija & Elena - Data Exploration and Visualization, Building the narrative, Final Webpage, Wrapping Up.
+- Albert & Hugo - Data Exploration and Cleaning, Semantic distance analysis, computing the semantic distance matrix, fixing missing links parts. 
+- Elena - Visualization, building the narrative, final webpage design, wrapping Up.
+- Khadija - Data exploration, evaluating the performance of different models, cleaning of the code,
 - Tania - Link between hormonal paths and their leading to frustration, backtracks, and giving up on the game. Webpage redaction.
 
-| Team Member/Step | 1 | 2 | 3 | 4 | 5 (Optional) | 6 |
-| --- | --- | --- | --- | --- | --- | --- |
-| Albert | X | X | X | X | X |  |
-| Hugo | X | X | X | X | X |  |
-| Khadija | X | X |  |  | X | X |
-| Elena | X | X |  |  | X | X |
-| Tania | X | X | X |  | X | X |
+| Team Member/Step | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+|-------------------|---|---|---|---|---|---|---|
+| Albert            | X | X | X | X | X |   |   |
+| Hugo              | X | X | X | X | X |   | X |
+| Khadija           | X | X | X |   |   | X | X |
+| Elena             | X | X | X |   |   | X | X |
+| Tania             | X | X | X |   |   | X | X |
 
 
----
+## Project Structure
+
+The directory structure of our project looks like this:
+
+```bash
+
+├── data                                    <- Project data files
+├── assets                                  <- Static assets
+│   ├── ada.svg
+│   ├── algo_animation.gif
+│   ├── dataset.svg
+│   ├── graphs/
+│   │   ├── averageratingvsbacktracks.png
+│   │   ├── distribution_added_links.png
+│   │   ├── distribution_current_links.png
+│   │   ├── final_strongly_connected.png
+│   │   ├── initial_strongly_connected.png
+│   │   ├── mediangamedurationvsbacktracks.png
+│   │   └── strong_similarity_inarticle_strongly_connected.png
+│   ├── interactive/
+│   │   ├── isolated_words.html
+│   │   └── word_embeddings_with_links.html
+│   ├── partiemaudite.png
+│   ├── path_evolution.gif
+│   ├── path_to_christmas.png
+│   └── paths_adjusted_for_length.png
+├── index.html                             <- Main webpage
+├── script.js                              <- JavaScript functionality
+├── styles.css                             <- CSS styling
+└── README.md                              <- Project documentation
+
+This structure shows the organization of our website:
+- `data/`: Contains the project data files
+- `assets/`: Contains all static assets including images, animations, and interactive visualizations
+- `index.html`: Main webpage file
+- `script.js`: JavaScript code for website functionality
+- `styles.css`: CSS styling rules
+
+```
+
