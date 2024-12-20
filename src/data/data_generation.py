@@ -5,6 +5,9 @@ import pandas as pd
 from openai import OpenAI
 from src.utils.constants import OPENAI_API_KEY
 from src.utils.embedding import get_embedding
+import networkx as nx
+import numpy as np
+import urllib.parse
 
 def generate_embeddings():
     articles = data_loader.load_articles()
@@ -30,7 +33,8 @@ def generate_all_path_similarities(output_file='data/path_similarities.csv'):
 def generate_chosen_links():
     pass
 
-def generate_all_words_df(embedding):
+def generate_all_words_df():
+    embeddings = pd.read_csv('data/embeddings.csv')
     articles = data_loader.load_articles()
     # Step 1: Flatten all articles into a single list
     all_words = articles['article']
@@ -43,27 +47,29 @@ def generate_all_words_df(embedding):
     all_words_df['embedding'] = all_words_df['article'].map(embedding_dict)
     all_words_df.to_csv('data/all_words_df.csv',index=False)
 
-def generate_closest_neighbors(mask, all_words_df, article_similarities):
-    """
-    Iteratively find the closest neighbor for active points based on a similarity matrix,
-    link them, and mark the chosen points as inactive.
+def generate_closest_neighbors():
 
-    Parameters
-    ----------
-    mask : array-like of bool
-        A boolean array indicating which points are currently active (True = active, False = inactive).
-    all_words_df : pandas.DataFrame
-        A DataFrame containing at least a column 'article' corresponding to each index.
-    article_similarities : pandas.DataFrame
-        A DataFrame representing the similarity matrix between articles. It should be aligned with all_words_df.
+    links_df = data_loader.load_links()
+    G= nx.DiGraph()
+    for _, row in links_df.iterrows():
+        G.add_edge(row['linkSource'], row['linkTarget'])
 
-    Returns
-    -------
-    links : list of tuples
-        Each tuple contains (source_article, target_article) representing the chosen closest pairs.
-    """
+        # Find strongly connected components
+    strongly_connected = list(nx.strongly_connected_components(G))
+
+    # Find the largest component
+    largest_component = max(range(len(strongly_connected)), key=lambda x: len(strongly_connected[x]))
+    largest_component_words = set(strongly_connected[largest_component])
+    mask = np.array([word not in largest_component_words for word in all_words_df['article']])
     # Ensure mask is a boolean array
     mask = mask.astype(bool)
+    all_words_df = pd.read_csv('data/all_words_df.csv')
+
+    article_similarities = pd.read_csv('data/article_similarities_matrix.csv')
+    article_similarities.columns = articles['article']
+    article_similarities.index = articles['article']
+    # Ensure that the DataFrame has rows and columns aligned by article
+    article_similarities = article_similarities.loc[all_words_df['article'], all_words_df['article']]
     links = []
 
     # Continue until no active points remain
@@ -99,15 +105,16 @@ def generate_closest_neighbors(mask, all_words_df, article_similarities):
         # Add the chosen link
         source_article = all_words_df.iloc[closest_pair[1]]['article']
         target_article = closest_pair[2]
-        links.append((source_article, target_article))
+        similarity = closest_pair[0]
+        links.append((source_article, target_article, similarity))
 
         # Deactivate the chosen source point
         mask[closest_pair[1]] = False
 
-    closest_neighbors_df = pd.DataFrame(links, columns=['source_article', 'target_article'])
-    closest_neighbors_df.to_csv('data/closest_neighbors_df.csv',index=False)
+    closest_neighbors_df = pd.DataFrame(links, columns=['source_article', 'target_article', 'similarity'])
+    closest_neighbors_df.to_csv('data/closest_neighbors.csv',index=False)
 
-def generate_analysis_links(links_df, article_similarities):
+def generate_analysis_links():
     analysis_results = []
 
     for i, row in links_df.iterrows():
@@ -144,7 +151,9 @@ def generate_analysis_links(links_df, article_similarities):
     analysis_df['semantic_distance'] = analysis_df.apply(lambda row: article_similarities.loc[row['source_article'], row['target_article']], axis=1)
     analysis_df.to_csv('data/analysis_df.csv',index=False)
 
-def wayanalysis(links, article_similarities):
+def wayanalysis():
+    links = data_loader.load_links()
+    article_similarities = pd.read_csv('data/article_similarities_matrix.csv')
     G = nx.DiGraph()
     for _, row in links.iterrows():
         G.add_edge(row['linkSource'], row['linkTarget'])
