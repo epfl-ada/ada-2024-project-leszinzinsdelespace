@@ -125,8 +125,7 @@
                 <div class="content-wrapper">
                     <div class="text-block">
                         <p class="lead">These recurring patterns of visibly frustrated user behavior stem from the fact that there seem to be unexpected dead-ends and unreachable targets. A simple analysis of the pages at which players backtrack most often shows that backtracking is associated with closely related concepts not being linked together in the hyperlink network.</p>
-                        <p>Upon close inspection of certain paths, we notice that some target articles do not exist at all, forcing the user to repeatedly think they are very close to the target, only to find themselves having to backtrack.</p>
-                        <p> For example, the most frequent backtrack in our dataset is from "Soybean" when "Bean" is the target, with 111 recorded backtracks.</p>
+                        <!-- <p>Upon close inspection of certain paths, we notice that some target articles do not exist at all, forcing the user to repeatedly think they are very close to the target, only to find themselves having to backtrack.</p> -->
                     </div>
                     <div id="backtrack-table" >
                         <div class="text-container">
@@ -189,9 +188,10 @@
                             </table>
                         </div>
                     </div>
-                    
-                    <p class="highlight">But this, while infuriating for users, leads to a very intriguing question:</p>
-                    <h3 class="gradient-text">How would one go about finding the missing semantic links that lead to repeated and consistent user frustration?</h3>
+
+                    <p class="highlight"> For example, the most frequent backtrack in our dataset is from "Soybean" when "Bean" is the target, with 111 recorded backtracks. It's easy to imagine a player being frustrated when reading the whole article on Soybean without finding the link he desperatly need. We feel that there should be a link between these articles but </p>
+ 
+                    <h3 class="gradient-text">How would one know when a link is missing and would lead to repeated and consistent user frustration?</h3>
                 </div>
             </div>
         </section>
@@ -199,16 +199,16 @@
         <section id="dots" class="section">
             <div class="text-container">
                 <h2 class="section-title">Reconnecting the dots</h2>
-                <p class="lead">This is where the notion of semantic distance comes in.</p>
+                <p class="lead">This is where the notion of embeddings and similarity comes in.</p> <!-- TODO: explain what embeddings are-->
                 
                 <div class="dictionary-entry">
-                    <div class="term">Semantic Distance</div>
-                    <div class="pronunciation">/sɪˈmæntɪk ˈdɪstəns/</div>
+                    <div class="term">Cosine Similarity</div>
+                    <div class="pronunciation">/sɪˈmæntɪk ˈdɪstəns/</div> <!--TODO: replace with Similarity-->
                     <div class="definition">
-                        A quantitative measure of the conceptual difference between two entities in a semantic space. In the context of Wikispeedia, it is computed using the complement of cosine similarity between the vector representations of two articles.
+                        A quantitative measure of the conceptual proximity between two entities in a semantic space. In the context of Wikispeedia, it is computed using the normalized dot product between the vector representations of two articles.
                     </div>
                     <div class="formula">
-                        Semantic Distance = |1 - Cosine Similarity |
+                        Cosine Similarity = A*B/(|A||B|)
                     </div>
                 </div>
                 
@@ -216,35 +216,6 @@
                     <div class="text-block">
                         <p> To understand the disconnect between the user's mental model and the game's structure, we need to look beyond simple link counting and into the semantic relationships between articles.</p>
                     </div>
-
-                    <!-- <div class="code-block">
-                        <pre><span class="article-name">Édouard Manet</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Paul Cézanne'</span><span class="brackets">]</span>
-<span class="article-name">engus I of the Picts</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Picts'</span><span class="brackets">]</span>
-<span class="article-name">€2 commemorative coins</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Euro'</span><span class="brackets">]</span>
-<span class="article-name">11th century</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Middle Ages'</span><span class="brackets">]</span>
-<span class="article-name">12th century</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Middle Ages'</span><span class="brackets">]</span>
-<span class="article-name">13th century</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'4th century', 'Crusades', 'Middle Ages'</span><span class="brackets">]</span>
-<span class="article-name">14th century</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'4th century', '5th century'</span><span class="brackets">]</span>
-<span class="article-name">19th century</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Industrial Revolution'</span><span class="brackets">]</span>
-<span class="article-name">1 Ceres</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Ceres (dwarf planet)'</span><span class="brackets">]</span>
-<span class="article-name">2004 Atlantic hurricane season</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Hurricane Dennis'</span><span class="brackets">]</span>
-<span class="article-name">21st century</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'1st century', '2nd century'</span><span class="brackets">]</span>
-<span class="article-name">4 Vesta</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Asteroid'</span><span class="brackets">]</span>
-<span class="article-name">4th century</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Constantine I'</span><span class="brackets">]</span>
-<span class="article-name">90377 Sedna</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Scattered disc'</span><span class="brackets">]</span>
-<span class="article-name">AC DC</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Alternating current'</span><span class="brackets">]</span>
-<span class="article-name">AK-47</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Firearm', 'Weapon'</span><span class="brackets">]</span>
-<span class="article-name">ASCII</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Algorithm', 'Alphabet', 'BASIC', 'Unix'</span><span class="brackets">]</span>
-<span class="article-name">Aachen</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Austria'</span><span class="brackets">]</span>
-<span class="article-name">Aardvark</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Ape'</span><span class="brackets">]</span>
-<span class="article-name">Abacá</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Manila'</span><span class="brackets">]</span>
-<span class="article-name">Abacus</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Algorithm'</span><span class="brackets">]</span>
-<span class="article-name">Abbey Theatre</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Abbey'</span><span class="brackets">]</span>
-<span class="article-name">Abbot</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Archbishop of Canterbury', 'Pope'</span><span class="brackets">]</span>
-<span class="article-name">Abidjan</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Ghana', 'Ivory'</span><span class="brackets">]</span>
-<span class="article-name">Abkhazia</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Armenia'</span><span class="brackets">]</span>
-<span class="article-name">Absinthe</span><span class="colon">: </span><span class="brackets">[</span><span class="array-content">'Alcohol', 'Wine'</span><span class="brackets">]</span></pre>
-                    </div> -->
 
                     <div class="text-block">
                         <p class="analysis-text">We thought it might be interesting to compute the cosine similarity for every position in the path of every game. If we take a closer look at the infamous "Bob Dylan" to "Christmas" game, we stumble upon something very interesting: the ups and downs in cosine similarity along the path reveal moments of coherence and disconnection. The fluctuations show that certain transitions between articles are semantically smooth, marked by high similarity scores, while others involve abrupt drops, indicating dead-ends and frustration. </p>
@@ -256,7 +227,7 @@
 
                     <div class="graph-container">
                         <img src="assets/path_to_christmas.png" alt="Path to Christmas Analysis" class="graph">
-                        <p class="graph-caption">Figure: Analysis of semantic distance from target in final steps</p>
+                        <p class="graph-caption">Figure: Analysis of similarity with target in final steps</p>
                     </div>
 
                     <div class="text-block">
@@ -282,17 +253,17 @@
                     </div>
 
                     <div class="text-block">
-                        <p class="analysis-text">Across all completed games, a distinct trend appears during the endgame stage. But does this pattern persist in unfinished games as well? Let's take a closer look—leaving out the final step, naturally!</p>
+                        <p class="analysis-text">Across all completed games, a distinct trend appears during the endgame stage. But does this pattern persist in unfinished games as well? To be able to relate them, we processed the unfinished games to stop at the article in the path where the similarity with the target was the largest and where the player would expect the most to have a link. We also filtered out games where the player didn't even got close to the target article (similarity smaller than 0.3) as it may not make a lot to consider 2 completly unrelated articles to have a missing link. Let's take a closer look—leaving out the final step, naturally!</p>
                     </div>
 
                     <div class="graph-container">
-                        <img src="assets/distance_from_end.png" alt="Distance from End Analysis" class="graph smaller">
+                        <img src="assets/distance_from_end.png" alt="Similarity with End Analysis" class="graph smaller">
                         <div class="arrow-highlight"></div>
-                        <p class="graph-caption">Figure: Analysis of semantic distance from target in final steps</p>
+                        <p class="graph-caption">Figure: Analysis of similarity with target in final steps</p>
                     </div>
 
                     <div class="text-block">
-                        <p class="analysis-text"> It looks like the semantic distance at a certain point in a path does not change between finished and unfinished paths. Why is this fascinating? Because it points to an unexpected and illogical event that leads to a player losing - it's not the distance to the target that matters, but the hyperlink network structure.</p>
+                        <p class="analysis-text"> It looks like the similarity at a certain point in a path does not change between finished and unfinished paths. Why is this fascinating? Because it points to an unexpected and illogical event that leads to a player losing - it's not the similarity with the target that matters, but the hyperlink network structure.</p>
                     </div>
                     <div class="text-block">
                         <p class="analysis-text"> There might be an alterantive explanation: perhaps a dead-end might be due to the correct link being "hidden" in the article page? Analysis shows that players consistently click on the first links appearing in each article.</p>
@@ -407,18 +378,18 @@
                 <h2 class="section-title">Fixing missing links</h2>
                 <div class="content-wrapper">
                     <div class="text-block">
-                        <p class="lead">In Wikispeedia's network of articles, not every page is reachable from every other page. This fundamental connectivity issue means that some games are impossible to complete from the start.</p>
+                        <p class="lead">Another thing that make us think that there might be missing links to make Wikispeedia more fun to play is that in its network of articles, not every page is reachable from every other page. This fundamental connectivity issue means that some games are impossible to complete from the start.</p>
                     </div>
 
                     <div class="graph-container">
                         <img src="assets/graphs/initial_strongly_connected.png" alt="Initial Network Connectivity Analysis" class="graph">
                         <p class="graph-caption">Initial state of Wikispeedia's network</p>
-                        <p class="graph-explanation">The large circle (4,051 articles) represents interconnected pages, while smaller circles show isolated articles that can't be reached from the main network, making some games impossible to complete.</p>
+                        <p class="graph-explanation">The large circle (4,051 articles) represents interconnected pages, i.e. a cluster where there is a path between every pair of articles, while smaller circles show isolated articles that can't be reached from the main component, making some games impossible to complete.</p>
                     </div>
 
                     <div class="text-block">
         
-                        <p>As we can see, there is a big cluster containing most of the articles that can be mutually reached. But there is still more than 500 articles (around 12%) that are either not reachable from any other article or that can't reach most articles.</p>
+                        <p>As we can see, there is a big cluster containing most of the articles that can be mutually reached. But there is still more than 500 articles (around 12% of the articles) that are either not reachable from any other article or that can't reach most articles.</p>
 
                         <p>Our goal is to make every article reachable from any starting point, enhancing the game's playability while preserving its core challenge. We'll focus on adding only the most essential connections - those that users naturally expect to find - rather than artificially flooding the network with links.</p>
                         
@@ -459,7 +430,7 @@
                     </div>
 
                     <div class="text-block">
-                        <p>While this improvement is modest - only 49 additional articles became reachable - it confirms our hypothesis that some disconnected articles are semantically related and referenced within each other. However, the small increase also suggests that we need additional strategies to significantly improve the network's connectivity.</p>
+                        <p>While this improvement is modest - only 49 additional articles joined the main cluster - it confirms our hypothesis that some disconnected articles are semantically related and referenced within each other. However, the small increase also suggests that we need additional strategies to significantly improve the network's connectivity.</p>
                     </div>
 
                     <div class="text-block">
@@ -488,7 +459,7 @@
                     </div>
                     <div class="text-block">
                         <p>Interestingly, the visualization reveals that there are no truly semantically isolated articles - even the currently disconnected articles (shown in red) are semantically similar to some connected articles (in blue), as evidenced by their proximity in the semantic space. This suggests that the current disconnections in the network are more a result of missing links rather than fundamental semantic incompatibility between articles.</p>
-                        <p>To be able to connect all articles, we devised an algoorithm that would, at each step, add a link between the isolated article that is the most similar to any article in the main cluster and this article of the main cluster. So the selected article (and articles connected to it) would now be part of the main cluster. We repeated this process until all articles were connected.</p>
+                        <p>To be able to connect all articles, we devised an algorithm that would, at each step, add a link between the isolated article that is the most similar to any article in the main cluster and this article of the main cluster. So the selected article (and articles connected to it) would now be part of the main cluster. We repeated this process until all articles were connected.</p>
                     </div>
                     <div class="graph-container">
                         <img src="assets/algo_animation.gif" alt="Algorithm Animation" class="graph">
@@ -497,11 +468,11 @@
 
                     <div class="interactive-graph-container">
                         <iframe src="assets/interactive/word_embeddings_with_links.html" scrolling="no"></iframe>
-                        <p class="graph-caption">Figure: t-SNE visualization of links added by our algorithm. They may not seem optimal since similarity in the reduced space is not necessarily the same as similarity in the original (3072-D) space.</p>
+                        <p class="graph-caption">Figure: t-SNE visualization of links added by our algorithm. They may not seem optimal since similarity in the reduced 2D-space is not necessarily the same as similarity in the original 3072-D space.</p>
 
                     </div>
                     <div class="text-block">
-                        <p class="analysis-text">Now this is the same semantic space with our algorithm's proposed connections overlaid in red. These new links bridge semantic gaps while maintaining meaningful relationships between articles, strategically connecting isolated nodes to the main network without overwhelming it with unnecessary connections.</p>
+                        <p class="analysis-text">These new links bridge semantic gaps while maintaining meaningful relationships between articles, strategically connecting isolated nodes to the main network without overwhelming it with unnecessary connections.</p>
                 
                         <p>By carefully balancing semantic similarity and network structure, we developed an optimized approach that achieves full connectivity while preserving the game's challenge.</p>
                     </div>
@@ -609,6 +580,7 @@
                         </div>
 
                         <p class="analysis-text">The distribution graphs above show how our added links complement the existing network structure, maintaining a similar pattern of connectivity while filling critical gaps in the network. </p>
+                        <p class="analysis-text">Another nice way to visualize this improvement is to look at the evolution of the shortest path distance matrix. The original heatmap contains lines with very large shortest path distance corresponding to unconnected articles, whereas the final heatmap is smoother and more coherent</p>
                         <div class="interactive-graph-container">
                             <iframe src='https://flo.uri.sh/visualisation/20876939/embed' title='Interactive or visual content' class='flourish-embed-iframe' frameborder='0' scrolling='no'  sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'></iframe><div style='width:100%!;margin-top:4px!important;text-align:right!important;'><a class='flourish-credit' href='https://public.flourish.studio/visualisation/20876939/?utm_source=embed&utm_campaign=visualisation/20876939' target='_top' style='text-decoration:none!important'> </a></div>                    </div>
                         </div>
@@ -658,6 +630,7 @@
                 View Dataset
             </a>
         </div>
+        
 
         <footer class="contributors">
             <div class="text-container">
