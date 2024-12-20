@@ -1,6 +1,10 @@
 
 # Saving Christmas - Understanding User Frustration in Wikispeedia
 
+## Datastory 🔗
+
+- https://epfl-ada.github.io/ada-2024-project-leszinzinsdelespace/
+
 ## Quick Start 🚀
 ```bash
 # Clone the repository
@@ -86,9 +90,6 @@ We did create additional datasets ourselves: embeddings - we embedded each artic
 - **Step 7 - Wrapping up**
     - Final changes: cleaning the project repository and finalizing the results webpage. 
 
-## Link to our website 
-
-- https://epfl-ada.github.io/ada-2024-project-leszinzinsdelespace/
 
 ## Organization within the team
 
